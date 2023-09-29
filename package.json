@@ -10,12 +10,16 @@
   },
   "dependencies": {
     "@mantine/core": "^7.0.2",
+    "@mantine/dates": "^7.1.0",
+    "@mantine/form": "^7.1.0",
     "@mantine/hooks": "^7.0.2",
     "@tabler/icons-react": "^2.35.0",
+    "dayjs": "^1.11.10",
     "next": "latest",
     "nuka-carousel": "^6.0.3",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "tailwind-merge": "^1.14.0"
   },
   "devDependencies": {
     "@types/node": "latest",

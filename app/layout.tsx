@@ -1,10 +1,13 @@
-import { HeaderMenu } from '@/components/UI/Header';
-import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import '@mantine/core/styles.css';
 
-import { MantineProvider, ColorSchemeScript } from '@mantine/core';
+import { MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
+import './globals.css';
+
+import { HeaderMenu } from '@/components/UI/Header';
+
 import Footer from '@/components/UI/Footer';
 
 const inter = Inter({ subsets: ['latin'] });

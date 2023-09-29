@@ -1,10 +1,10 @@
 'use client';
-import Image from 'next/image';
+
 import React from 'react';
 
 import Link from 'next/link';
 import SocialButtons from './SocialButtons';
-import { Button, Card, Title } from '@mantine/core';
+import { Button, Card, Image, Title } from '@mantine/core';
 import { IconArrowMoveRight, IconHeart } from '@tabler/icons-react';
 import { links } from '@/exports';
 import MyButton from '@/Ui/Button';
@@ -16,13 +16,7 @@ const Footer = () => {
     <div className="bg-purple-900 pt-16 sm:px-6 md:px-8 px-4">
       <div className="top flex flex-col md:flex-row item-center">
         <div className="right flex justify-center basis-[100%] md:basis-[30%]">
-          <Image
-            src={'/bmw.png'}
-            width={200}
-            height={200}
-            priority
-            alt="image"
-          />
+          <Image src={'/bmw.png'} width={200} height={200} alt="image" />
         </div>
         <div className="left grid gap-8 grid-cols-1 md:grid-cols-2 md:basis-[60%] basis-[100%]">
           <Card className=" border-none space-y-3" bg={'transparent'}>

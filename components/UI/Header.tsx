@@ -1,5 +1,5 @@
 'use client';
-
+import { twMerge } from 'tailwind-merge';
 import { Menu, Group, Center, Button, Container, Avatar } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown, IconHeartHandshake } from '@tabler/icons-react';
@@ -7,12 +7,23 @@ import Link from 'next/link';
 
 import { links } from '@/exports';
 import { MobileHeader } from '../Home/MobileHeader';
+import { useParams, usePathname } from 'next/navigation';
 
 export function HeaderMenu() {
-  const [opened, { toggle }] = useDisclosure(false);
+  const pathname = usePathname();
+  console.log(pathname);
 
+  const [opened, { toggle }] = useDisclosure(false);
+  // const isActive = pathname ===
   const items = links.map((link) => {
-    <Link href={link.link}>{link.label}</Link>;
+    <Link
+      href={link.link}
+      className={twMerge(
+        pathname === link.link ? 'text-yellow-400' : 'text-white'
+      )}
+    >
+      {link.label}
+    </Link>;
     const menuItems = link.links?.map((item) => (
       <Menu.Item key={item.label}>
         <Link href={item.link}>{item.label}</Link>
@@ -28,7 +39,12 @@ export function HeaderMenu() {
           withinPortal
         >
           <Menu.Target>
-            <Link href={link.link}>
+            <Link
+              href={link.link}
+              className={twMerge(
+                pathname.includes(link.link) ? 'text-yellow-400' : 'text-white'
+              )}
+            >
               <Center>
                 <span>{link.label}</span>
                 <IconChevronDown size="0.9rem" stroke={1.5} />
@@ -41,7 +57,13 @@ export function HeaderMenu() {
     }
 
     return (
-      <Link key={link.label} href={link.link}>
+      <Link
+        key={link.label}
+        href={link.link}
+        className={twMerge(
+          pathname.includes(link.link) ? 'text-yellow-400' : 'text-white'
+        )}
+      >
         {link.label}
       </Link>
     );

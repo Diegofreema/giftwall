@@ -19,36 +19,11 @@ import {
   Text,
   Title,
 } from '@mantine/core';
+import { serviceText } from '@/exports';
 
 type Props = {};
 const texts = ['Our', 'Priorities'];
 
-const services = [
-  {
-    Icon: IconFeather,
-    title: 'Girl child education',
-    text: `
-        Education equips girls with knowledge, skills, and self-confidence, empowering them to make informed choices about their lives. It enables them to participate actively in social, economic, and political spheres, contributing to their own well-being and that of their communities. On a global scale, investing in girl child education contributes to achieving the United Nations Sustainable Development Goals, particularly those related to quality education, gender equality, and poverty reduction.  `,
-  },
-  {
-    Icon: IconClover,
-    title: 'Women and Youth Empowerment',
-    text: `Women empowerment refers to the process of granting women the knowledge, resources, and power to make choices and control their own lives. It involves eliminating gender-based discrimination and providing equal opportunities and rights to women in various spheres, including education, employment, healthcare, and participation in social and political decision-making. Empowered women have the ability to shape their destinies, challenge societal norms, and advocate for gender equality.`,
-  },
-  {
-    Icon: IconClubs,
-    title: 'Clean Healthy and Confident girl',
-    text: ` Good personal and menstrual Hygiene for the girl child.
-    Hygiene is not only essential for the physical health of the girl child but also for her emotional well-being, confidence, education, and overall empowerment. Providing education and resources to support proper hygiene practices is crucial in promoting the well-being and dignity of girls.`,
-  },
-  {
-    Icon: IconRosetteFilled,
-    title:
-      'Food outreach to elderly women , widows, abandoned pregnant teenagers and single mothers',
-    text: `Food outreach to elderly women, pregnant teenagers, single mothers and widows without income is very important. Many elderly women and widows have been abandoned by their families, so they
-    struggle to access nutritious meals regularly. Food outreach programs help ensure they receive essential nutrients to maintain their health and well-being. These individuals may face social isolation, and food outreach can provide them with regular contact with volunteers or community members, reducing loneliness and offering emotional support.`,
-  },
-];
 const Mission = (props: Props) => {
   return (
     <div className="min-h-screen py-[50px] bg-[#ebe9eb]">
@@ -82,7 +57,7 @@ const Mission = (props: Props) => {
           </div>
         </div>
         <div className="bottom grid sm:grid-cols-2 grid-cols-1 lg:grid-cols-4 mt-20 gap-3 ">
-          {services.map(({ Icon, title, text }, index) => (
+          {serviceText.map(({ Icon, title, text, url }, index) => (
             <Card
               key={index}
               className="cursor-pointer !space-y-2 group hover:!-translate-y-6 !min-h-fit  transition duration-300 relative"
@@ -106,7 +81,7 @@ const Mission = (props: Props) => {
                 <Button
                   unstyled
                   component={Link}
-                  href={'/'}
+                  href={url}
                   className="translate-x-4 !text-sm group-hover:translate-x-0 duration-200 transition opacity-0 group-hover:opacity-100"
                 >
                   Learn More

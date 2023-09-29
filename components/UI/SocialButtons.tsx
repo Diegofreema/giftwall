@@ -11,23 +11,23 @@ type Props = {};
 
 const socials = [
   {
-    href: '',
+    href: 'https://www.facebook.com/Marygiftwalls/',
     Icon: IconBrandFacebook,
   },
   {
-    href: '',
+    href: 'https://www.linkedin.com/in/behindmarygiftwallsfoundation/',
     Icon: IconBrandLinkedin,
   },
   {
-    href: '',
+    href: 'https://www.youtube.com/@UnstoppableSunshine1',
     Icon: IconBrandYoutube,
   },
   {
-    href: '',
+    href: 'https://www.instagram.com/behindmarygiftwallsfoundation/',
     Icon: IconBrandInstagram,
   },
   {
-    href: '',
+    href: 'https://www.tiktok.com/search?q=Unstoppable%20Sunshine&t=1695898560369',
     Icon: IconBrandTiktok,
   },
 ];
