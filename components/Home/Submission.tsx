@@ -1,7 +1,9 @@
+'use client';
+
 import React from 'react';
 
 import { Container, Image, Text, Title } from '@mantine/core';
-
+import { motion } from 'framer-motion';
 type Props = {};
 
 const Submission = (props: Props) => {
@@ -9,7 +11,12 @@ const Submission = (props: Props) => {
     <div className="min-h-screen py-[50px]">
       <Container>
         <div className="flex flex-col md:flex-row md:space-x-12 space-y-4 md:space-y-0 ">
-          <div className="md:basis-[50%] basis-[100%] w-full bg-black relative md:w-[300px]  rounded-md shadow-orange-50 shadow-md overflow-hidden h-full">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="md:basis-[50%] basis-[100%] w-full bg-black relative md:w-[300px]  rounded-md shadow-orange-50 shadow-md overflow-hidden h-full"
+          >
             <Image
               src={'/mission.png'}
               alt="mission-imag"
@@ -17,8 +24,13 @@ const Submission = (props: Props) => {
               width={'100%'}
               className="object-cover"
             />
-          </div>
-          <div className="md:basis-[50%] basis-[100%] space-y-8">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="md:basis-[50%] basis-[100%] space-y-8"
+          >
             <div className="text-center">
               <Title
                 order={2}
@@ -70,7 +82,7 @@ const Submission = (props: Props) => {
                 their own community and beyond.
               </Text>
             </div>
-          </div>
+          </motion.div>
         </div>
       </Container>
     </div>

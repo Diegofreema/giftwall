@@ -7,8 +7,9 @@ import Link from 'next/link';
 
 import { links } from '@/exports';
 import { MobileHeader } from '../Home/MobileHeader';
-import { useParams, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
+import { motion, motionValue } from 'framer-motion';
 export function HeaderMenu() {
   const pathname = usePathname();
   console.log(pathname);
@@ -72,7 +73,11 @@ export function HeaderMenu() {
   return (
     <header className="bg-purple-900 py-2 z-20 fixed inset-x-0 top-0">
       <Container size="lg">
-        <div className="flex justify-between items-center">
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex justify-between items-center"
+        >
           <Link href={'/'}>
             <Avatar size={100} src={'/bmw.png'} />
           </Link>
@@ -87,7 +92,7 @@ export function HeaderMenu() {
             </Button>
           </Group>
           <MobileHeader />
-        </div>
+        </motion.div>
       </Container>
     </header>
   );

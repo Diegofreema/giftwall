@@ -4,7 +4,7 @@ import { images } from '@/exports';
 import { Button } from '@mantine/core';
 import { IconArrowNarrowLeft, IconArrowNarrowRight } from '@tabler/icons-react';
 import Carousel from 'nuka-carousel';
-
+import { motion } from 'framer-motion';
 const text = ['BEHIND', ' MARYGIFT', 'WALLS', 'FOUNDATION'];
 
 const Hero = () => {
@@ -52,13 +52,29 @@ const Hero = () => {
               />
               <div className="absolute !top-[50%] !left-1/2 -translate-x-1/2 -translate-y-1/2">
                 <h1 className="text-xl md:text-7xl text-center mb-4 sm:mb-8 md:mb-16 sm:text-4xl font-bold">
-                  {item.title}
+                  {item.title.split(' ').map((word, index) => (
+                    <motion.span
+                      initial={{ opacity: 0, x: 40, y: -30, skewX: 40 }}
+                      whileInView={{ opacity: 1, x: 0, y: 0, skewX: 0 }}
+                      transition={{ duration: 0.5, delay: 0.5 * index }}
+                      className="inline-block"
+                      key={index}
+                    >
+                      {word}&nbsp;
+                    </motion.span>
+                  ))}
                 </h1>
                 <h3 className=" text-purple-500 text-xl md:text-5xl text-center font-bold">
                   {item.text.split(' ').map((item, index) => (
-                    <span className="inline-block" key={index}>
+                    <motion.span
+                      initial={{ opacity: 0, x: -10, y: 10 }}
+                      whileInView={{ opacity: 1, x: 0, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.5 * index }}
+                      className="inline-block"
+                      key={index}
+                    >
                       {item}&nbsp;
-                    </span>
+                    </motion.span>
                   ))}
                 </h3>
               </div>

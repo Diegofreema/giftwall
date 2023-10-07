@@ -34,7 +34,7 @@ export const links = [
   },
   {
     label: 'Services',
-    link: '/services',
+    link: '#',
     links: [
       {
         label: 'Girl Child Education',
@@ -62,10 +62,6 @@ export const links = [
     label: 'FAQ',
     link: '/faq',
   },
-  {
-    label: 'Articles',
-    link: '/articles',
-  },
 ];
 
 export const images = [
@@ -89,19 +85,19 @@ export const images = [
 
 export const services = [
   {
-    imgUrl: '/girl.png',
+    Icon: IconFeather,
     title: 'Girl Child Education',
   },
   {
-    imgUrl: '/women.png',
+    Icon: IconClover,
     title: 'Women Empowerment',
   },
   {
-    imgUrl: '/feed.png',
+    Icon: IconClubs,
     title: 'Operation Feed The Hungry',
   },
   {
-    imgUrl: '/woman.png',
+    Icon: IconRosetteFilled,
     title: 'Good Health For Women',
   },
 ];
@@ -443,18 +439,413 @@ export const countries = [
 
 export const eventImages = [
   {
-    url: 'https://images.unsplash.com/photo-1594135019380-20d97e4dc437?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZvdW5kYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
+    url: '/a.jpeg',
   },
   {
-    url: 'https://images.unsplash.com/photo-1541888698598-4096432cd70e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGZvdW5kYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
+    url: '/a1.jpeg',
+  },
+
+  {
+    url: '/a2.jpeg',
+  },
+  {
+    url: '/a3.jpeg',
+  },
+  {
+    url: '/a4.jpeg',
+  },
+  {
+    url: '/a5.jpeg',
+  },
+  {
+    url: '/a6.jpeg',
+  },
+  {
+    url: '/a7.jpeg',
+  },
+  {
+    url: '/a8.jpeg',
+  },
+  {
+    url: '/a9.jpeg',
+  },
+  {
+    url: '/b.jpeg',
+  },
+  {
+    url: '/b1.jpeg',
+  },
+  {
+    url: '/b2.jpeg',
+  },
+  {
+    url: '/b3.jpeg',
+  },
+  {
+    url: '/b4.jpeg',
+  },
+  {
+    url: '/b5.jpeg',
+  },
+  {
+    url: '/b6.jpeg',
+  },
+  {
+    url: '/b7.jpeg',
+  },
+  {
+    url: '/i.jpeg',
+  },
+  {
+    url: '/i1.jpeg',
+  },
+  {
+    url: '/i2.jpeg',
+  },
+  {
+    url: '/i3.jpeg',
+  },
+  {
+    url: '/i4.jpeg',
+  },
+  {
+    url: '/i5.jpeg',
+  },
+  {
+    url: '/i6.jpeg',
+  },
+  {
+    url: '/i7.jpeg',
+  },
+  {
+    url: '/i8.jpeg',
+  },
+  {
+    url: '/i9.jpeg',
+  },
+  {
+    url: '/j.jpeg',
+  },
+  {
+    url: '/j2.jpeg',
+  },
+  {
+    url: '/j3.jpeg',
+  },
+  {
+    url: '/j4.jpeg',
+  },
+  {
+    url: '/j5.jpeg',
+  },
+  {
+    url: '/j6.jpeg',
+  },
+  {
+    url: '/j7.jpeg',
+  },
+  {
+    url: '/j8.jpeg',
+  },
+  {
+    url: '/j9.jpeg',
+  },
+  {
+    url: '/k.jpeg',
+  },
+  {
+    url: '/k1.jpeg',
+  },
+  {
+    url: '/k2.jpeg',
+  },
+  {
+    url: '/k3.jpeg',
+  },
+  {
+    url: '/k4.jpeg',
+  },
+  {
+    url: '/k5.jpeg',
+  },
+  {
+    url: '/k6.jpeg',
+  },
+  {
+    url: '/k7.jpeg',
+  },
+  {
+    url: '/k8.jpeg',
+  },
+  {
+    url: '/k9.jpeg',
+  },
+  {
+    url: '/i.jpeg',
+  },
+  {
+    url: '/i1.jpeg',
+  },
+  {
+    url: '/i2.jpeg',
+  },
+  {
+    url: '/i3.jpeg',
+  },
+  {
+    url: '/i4.jpeg',
+  },
+  {
+    url: '/i5.jpeg',
+  },
+  {
+    url: '/i6.jpeg',
+  },
+  {
+    url: '/i7.jpeg',
+  },
+  {
+    url: '/i8.jpeg',
+  },
+  {
+    url: '/i9.jpeg',
+  },
+  {
+    url: '/m.jpeg',
+  },
+  {
+    url: '/m1.jpeg',
+  },
+  {
+    url: '/m2.jpeg',
+  },
+  {
+    url: '/m3.jpeg',
+  },
+  {
+    url: '/m4.jpeg',
+  },
+  {
+    url: '/m5.jpeg',
+  },
+  {
+    url: '/m6.jpeg',
+  },
+  {
+    url: '/m7.jpeg',
+  },
+  {
+    url: '/m8.jpeg',
+  },
+  {
+    url: '/m9.jpeg',
+  },
+  {
+    url: '/n.jpeg',
+  },
+  {
+    url: '/n1.jpeg',
+  },
+  {
+    url: '/n2.jpeg',
+  },
+  {
+    url: '/n3.jpeg',
+  },
+  {
+    url: '/n4.jpeg',
+  },
+  {
+    url: '/n5.jpeg',
+  },
+  {
+    url: '/n6.jpeg',
+  },
+  {
+    url: '/n7.jpeg',
+  },
+  {
+    url: '/n9.jpeg',
+  },
+  {
+    url: '/o.jpeg',
+  },
+  {
+    url: '/o1.jpeg',
+  },
+  {
+    url: '/o2.jpeg',
+  },
+  {
+    url: '/o3.jpeg',
+  },
+  {
+    url: '/o4.jpeg',
+  },
+  {
+    url: '/o5.jpeg',
+  },
+  {
+    url: '/o6.jpeg',
+  },
+  {
+    url: '/o7.jpeg',
+  },
+  {
+    url: '/o8.jpeg',
+  },
+  {
+    url: '/o9.jpeg',
+  },
+  {
+    url: '/w.jpeg',
+  },
+  {
+    url: '/w1.jpeg',
+  },
+  {
+    url: '/w2.jpeg',
+  },
+  {
+    url: '/w3.jpeg',
+  },
+  {
+    url: '/w4.jpeg',
+  },
+  {
+    url: '/w5.jpeg',
+  },
+  {
+    url: '/w6.jpeg',
+  },
+  {
+    url: '/w7.jpeg',
+  },
+  {
+    url: '/w8.jpeg',
+  },
+  {
+    url: '/w9.jpeg',
   },
 ];
 
 export const videos = [
   {
-    url: 'https://www.youtube.com/embed/Big_aFLmekI',
+    url: '/v.mp4',
+  },
+];
+
+export const emp = [
+  {
+    url: 'https://www.youtube.com/embed/0YWS2ORCd8g',
   },
   {
-    url: 'https://youtu.be/mSUKMfmLAt0',
+    url: 'https://www.youtube.com/embed/PKVvI-dqZb0',
+  },
+];
+
+export const youtube = [
+  {
+    url: 'https://www.youtube.com/embed/7KZb6hZC-U0',
+  },
+  {
+    url: 'https://www.youtube.com/embed/3xK11XkiSoI',
+  },
+  {
+    url: 'https://www.youtube.com/embed/CAmLIB0BFKM',
+  },
+  {
+    url: '/vd3.mp4',
+  },
+  {
+    url: '/vd5.mp4',
+  },
+  {
+    url: '/vd4.mp4',
+  },
+  {
+    url: '/vd2.mp4',
+  },
+  {
+    url: '/vd1.mp4',
+  },
+  {
+    url: '/vd.mp4',
+  },
+];
+
+export const feed = [
+  {
+    url: 'https://www.youtube.com/embed/Zp4Hq8VAbJo',
+  },
+  {
+    url: 'https://www.youtube.com/embed/nVJS7XSA9KA',
+  },
+];
+
+export const faq = [
+  {
+    label: 'What impact has your charity made?',
+
+    content: [
+      'Our organization has consistently delivered meaningful impact both in rural communities and through online initiatives. Our journey began in 2021 with the provision of educational materials for girls, and we are proud to report significant progress.',
+      'To date, we have provided full sponsorship for over 12 girls, enabling them to pursue their education from nursery to secondary school, and have supported the higher education of two deserving individuals at the university level.',
+      "In addition to our educational efforts, we've empowered 25 women by facilitating skills acquisition training and offering financial support for small business startups. We've also stepped in to boost existing businesses that were encountering challenges, thus fostering economic independence among women in our communities.",
+      'Since 2022, our organization has extended vital support to over 3,000 widows, elderly women, youths and single mothers in various rural communities across Nigeria. This assistance encompasses crucial areas such as medical aid, food provisions, and essential personal care items.',
+      'Our commitment to these impactful initiatives remains unwavering, and we are dedicated to continuing our mission of improving the lives of those we serve.',
+    ],
+  },
+  {
+    label: 'Where does my donation go?',
+    content: [
+      'Our organization is committed to addressing four core priorities that align with our mission of making a positive impact in our communities. These priorities represent our areas of focus and are essential components of our work:',
+      '1. Girl Child Education:We recognize the transformative power of education, particularly for girls. Our commitment to girl child education involves providing support, resources, and opportunities to ensure that girls have access to quality education, from primary school through to secondary and higher education.',
+      '2. Women and Youth Empowerment:Empowering women and youth is central to our mission. We actively engage in initiatives that equip women and young individuals with the skills, knowledge, and resources they need to thrive. This empowerment extends to various aspects of their lives, including economic independence, leadership development, and personal growth.',
+      '3. Food Supplies for Widows, Elderly Women, and Single Mothers:We understand the importance of addressing food security and basic needs in vulnerable populations. Our organization is dedicated to providing essential food supplies to widows, elderly women, and single mothers, ensuring that they have access to nutritious meals and a reliable source of sustenance.',
+      '4. Personal and Menstrual Hygiene:We believe that personal and menstrual hygiene is a fundamental aspect of overall well-being. Our efforts in this area encompass providing hygiene products, teachings , and support to individuals to maintain good personal hygiene, with a particular focus on menstrual health and dignity.',
+      'To support any of these vital causes, you can make a donation of your choice. Your contribution directly enables us to continue our impactful work and bring positive change to the lives of those we serve. Together, we can make a meaningful difference in our communities.',
+    ],
+  },
+  {
+    label: 'Can I volunteer with your charity?',
+    content: [
+      'We welcome individuals who share our vision of making a positive impact in our communities to join our cause as volunteers. Your support can help us reach a wider audience and further our mission. ',
+      'To become a volunteer, all you need is to possess qualities of kindness, compassion, and passion for our mission. Your willingness to contribute your time and energy to our organization is greatly appreciated.',
+      'To get started, please complete our volunteer registration form, where you can provide us with your details and areas of interest. This form will help us match your skills and preferences with our ongoing projects and initiatives.',
+      'Your commitment as a volunteer can help us create lasting change and improve the lives of those we serve. We look forward to having you as part of our dedicated team, working together to make a meaningful difference.',
+    ],
+  },
+  {
+    label: "How can I stay updated on your charity's activities and events?",
+    content: [
+      "1. Website:Regularly visit our official website, where we provide up-to-date information about our initiatives, events, and the impact we're making in our communities.",
+      '2. Social Media:Follow us on all our social media platforms to receive real-time updates, stories, and highlights of our work. Our social media profiles are a great way to stay connected and engage with our community.',
+      "3. Email Updates:If you're a registered member of our organization, you can receive emails directly to your inbox with news, event invitations, and updates. To become a registered member, please fill out the registration form available on our website.",
+      'By utilizing these communication channels, you can stay closely connected with our charity and be informed about the latest developments, events, and opportunities to get involved in our mission. Thank you for your interest in supporting our cause.',
+    ],
+  },
+  {
+    label: 'How can I get assistance or support from your charity?',
+    content: [
+      "If you are in need of assistance or support from our charity, we have established a straightforward process to ensure we can help those who align with our mission. Here's how you can reach out to us:",
+      '1. Contact Channels:You can get in touch with us through multiple communication channels, including our WhatsApp number, phone number, or by sending us an email.',
+      '2. Submission and Verification:Once we receive your request, our team will carefully review the information provided. We conduct an investigation to verify the details and ensure that you fall within our target group or criteria.',
+      '3. Resource Availability:While we are committed to assisting those in need, the availability of resources may vary. If we have the necessary resources and your request aligns with our mission, we will strive to attend to it promptly.',
+      '4. Response Time:We aim to address requests within a reasonable time frame. Typically, you can expect a response and assistance within 4 to 6 weeks, depending on the nature of the request and resource availability.',
+      'Our goal is to make a positive impact on the lives of those we serve, and we appreciate your understanding as we work to provide assistance to individuals and communities in need. ',
+    ],
+  },
+  {
+    label: 'How can I donate to your charity?',
+    content: [
+      'Here are the various ways you can make a donation to our charity:',
+      ` BEHIND MARYGIFT WALLS FOUNDATION 
+        Acct- 1024780415
+        Bank-UBA
+        Corporate account.`,
+      ` BEHIND MARYGIFT WALLS FOUNDATION
+        3003569985 
+        Domiciliary account`,
+    ],
   },
 ];

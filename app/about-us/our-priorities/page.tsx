@@ -20,11 +20,11 @@ const words = serviceText?.map((item, index) => (
 const page = (props: Props) => {
   return (
     <div className="min-h-screen py-[130px]">
-      <div className="!w-[90%] mx-auto">
+      <div className="!w-[90%] mx-auto !mb-14">
         {text.map((item, index) => (
           <Title
             key={index}
-            className="!text-3xl md:!text-6xl font-semibold   tracking-wider text-yellow-400"
+            className="!text-3xl md:!text-6xl font-semibold    tracking-wider text-yellow-400"
           >
             {item}
           </Title>

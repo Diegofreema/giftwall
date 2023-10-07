@@ -20,10 +20,10 @@ import {
   Title,
 } from '@mantine/core';
 import { serviceText } from '@/exports';
-
+import { motion } from 'framer-motion';
 type Props = {};
 const texts = ['Our', 'Priorities'];
-
+const MotionTitle = motion(Title);
 const Mission = (props: Props) => {
   return (
     <div className="min-h-screen py-[50px] bg-[#ebe9eb]">
@@ -31,58 +31,80 @@ const Mission = (props: Props) => {
         <div className="top">
           <div>
             {texts.map((item, index) => (
-              <Title
+              <MotionTitle
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.3 }}
+                id="title"
                 key={index}
-                className="!text-3xl md:text-7xl font-semibold  mb-1 tracking-wider text-yellow-400"
+                className="!text-3xl md:!text-6xl  font-semibold  mb-1 tracking-wider text-yellow-400"
               >
                 {item}
-              </Title>
+              </MotionTitle>
             ))}
           </div>
           <div className="flex md:mt-20 space-y-3 flex-col md:flex-row mt-4 justify-between">
-            <div className="flex md:flex-col">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex md:flex-col"
+            >
               <Text className="text-black font-medium ">Check Out</Text>
 
               <Text className="text-black font-medium ">Our Priorities</Text>
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+            >
               <Text className="!text-[#3E1273]  md:!text-2xl ">
                 BEHIND MARYGIFT WALLS FOUNDATION,
               </Text>
               <Text className="!text-[#3E1273]  md:!text-2xl ">
                 A Reason To Help Teenage Girls And Women
               </Text>
-            </div>
+            </motion.div>
           </div>
         </div>
         <div className="bottom grid sm:grid-cols-2 grid-cols-1 lg:grid-cols-4 mt-20 gap-3 ">
           {serviceText.map(({ Icon, title, text, url }, index) => (
             <Card
               key={index}
-              className="cursor-pointer !space-y-2 group hover:!-translate-y-6 !min-h-fit  transition duration-300 relative"
+              className="cursor-pointer !space-y-2 group hover:!-translate-y-6 !min-h-fit  transition duration-200 relative hover:!bg-yellow-400 group"
+              shadow="xl"
             >
               <Group className="flex justify-center">
                 <div className="w-full mb-4">
-                  <Icon size={30} />
+                  <Icon
+                    size={30}
+                    className="group-hover:text-white duration-200 transition"
+                  />
                 </div>
-                <Title order={3}>
+                <Title
+                  order={3}
+                  className="group-hover:!text-white duration-200 transition"
+                >
                   {title.length > 40 ? title.slice(0, 50) + '...' : title}
                 </Title>
               </Group>
               <Group className="mb-16">
-                <Text>{text.slice(0, 100)}...</Text>
+                <Text className="group-hover:!text-white duration-200 transition">
+                  {text.slice(0, 100)}...
+                </Text>
               </Group>
               <Group className="!flex items-center">
                 <IconArrowMoveRight
                   size={15}
-                  className=" group-hover:translate-x-2 duration-200 transition"
+                  className=" group-hover:translate-x-2 group-hover:!text-white  duration-200 transition"
                 />
                 <Button
                   unstyled
                   component={Link}
                   href={url}
-                  className="translate-x-4 !text-sm group-hover:translate-x-0 duration-200 transition opacity-0 group-hover:opacity-100"
+                  className="translate-x-4 group-hover:!text-white  !text-sm group-hover:translate-x-0 duration-200 transition opacity-0 group-hover:opacity-100"
                 >
                   Learn More
                 </Button>

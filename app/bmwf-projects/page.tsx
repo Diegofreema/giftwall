@@ -17,17 +17,19 @@ const page = (props: Props) => {
           </Title>
         ))}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {eventImages.map((img, i) => (
-          <Image
-            key={i}
-            src={img.url}
-            alt={'img'}
-            w={'100%'}
-            h={'300px'}
-            fit={'cover'}
-            radius={10}
-          />
+          <div key={i} className="overflow-hidden rounded-md">
+            <Image
+              key={i}
+              src={img.url}
+              alt={'img'}
+              className="!w-full"
+              h={'300px'}
+              fit={'cover'}
+              radius={10}
+            />
+          </div>
         ))}
         {videos.map((item, index) => (
           <iframe
@@ -35,7 +37,7 @@ const page = (props: Props) => {
             width="100%"
             height="300px"
             src={item.url}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             className="rounded-xl"
           />

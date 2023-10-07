@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { services } from '@/exports';
 import { Card, Container } from '@mantine/core';
-
+import { motion, Variants } from 'framer-motion';
 type Props = {};
 const texts = ['Our', 'Services'];
 
@@ -15,55 +15,66 @@ const Services = (props: Props) => {
         <div className="top">
           <div>
             {texts.map((item, index) => (
-              <p
+              <h1
                 key={index}
-                className="text-3xl md:text-6xl font-semibold  mb-1 tracking-wider text-yellow-400"
+                className="text-3xl md:text-6xl  font-semibold  mb-1 tracking-wider text-yellow-400"
               >
-                {item}
-              </p>
+                {item.split(' ').map((word, index) => (
+                  <motion.span
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.3 }}
+                    className="inline-block"
+                    key={index}
+                  >
+                    {word}&nbsp;
+                  </motion.span>
+                ))}
+              </h1>
             ))}
           </div>
           <div className="flex md:mt-20 space-y-3 flex-col md:flex-row mt-4 justify-between">
-            <div className="flex md:flex-col">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex md:flex-col"
+            >
               <p className="text-black font-medium text-sm ">One Goal,</p>
 
               <p className="text-black font-medium text-sm ">
                 {' '}
                 Different Services
               </p>
-            </div>
+            </motion.div>
 
-            <p className="text-[#3E1273]  text-lg ">
+            <motion.p
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-[#3E1273]  text-lg "
+            >
               BEHIND MARYGIFT WALLS FOUNDATION
-            </p>
+            </motion.p>
           </div>
         </div>
         <div className="bottom grid sm:grid-cols-2 grid-cols-1 lg:grid-cols-4 mt-20 gap-3 ">
-          {services.map((item, index) => (
-            <Card
+          {services.map(({ Icon, title }, index) => (
+            <motion.div
               key={index}
-              className="cursor-pointer hover:!-translate-y-6 !py-8 !flex flex-col items-center justify-center transition !min-h-[200px] duration-300 !bg-purple-900"
-              shadow="md"
-              padding="lg"
-              radius="md"
+              className="cursor-pointer rounded-md hover:!-translate-y-6 !py-8 !flex flex-col items-center justify-center shadow-md shadow-black p-2 transition !min-h-[200px] duration-300 !bg-purple-900 hover:!bg-yellow-400"
             >
-              <Card.Section className="flex justify-center items-center">
+              <div className="flex justify-center items-center">
                 <div className=" flex justify-center">
-                  <Image
-                    alt="img"
-                    src={item.imgUrl}
-                    className="object-contain"
-                    width={50}
-                    height={50}
-                  />
+                  <Icon size={50} className="text-white" />
                 </div>
-              </Card.Section>
-              <Card.Section>
+              </div>
+              <div>
                 <h2 className="text-2xl font-bold text-center text-white">
-                  {item.title}
+                  {title}
                 </h2>
-              </Card.Section>
-            </Card>
+              </div>
+            </motion.div>
           ))}
         </div>
       </Container>

@@ -10,13 +10,14 @@ export function MobileHeader() {
   return (
     <>
       <Drawer
+        hiddenFrom="md"
         opened={opened}
         onClose={close}
         position="right"
         className="!bg-purple-900 !w-full"
         size={'xs'}
       >
-        <SideMenu />
+        <SideMenu close={close} />
       </Drawer>
 
       <Button variant="subtle" hiddenFrom="md" onClick={open}>

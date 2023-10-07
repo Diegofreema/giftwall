@@ -34,23 +34,23 @@ const links = [
   },
   {
     label: 'Services',
-    link: '/services',
+    link: '#',
     links: [
       {
         label: 'Girl Child Education',
-        link: '/girl-child-education',
+        link: '/services/girl-child-education',
       },
       {
         label: 'Empowerment',
-        link: '/empowerment',
+        link: '/services/empowerment',
       },
       {
         label: 'Operation Feed The Hungry',
-        link: '/operation-feed-the-hungry',
+        link: '/services/operation-feed-the-hungry',
       },
       {
         label: 'Good Health For Women',
-        link: '/good-health-for-women',
+        link: '/services/good-health-for-women',
       },
     ],
   },
@@ -62,22 +62,20 @@ const links = [
     label: 'FAQ',
     link: '/faq',
   },
-  {
-    label: 'Articles',
-    link: '/articles',
-  },
 ];
 
-export function SideMenu() {
+export function SideMenu({ close }: { close: () => void }) {
   const [opened, { toggle }] = useDisclosure(false);
 
   const items = links.map((link) => {
-    <Link href={link.link} className="w-fit">
+    <Link href={link.link} className="w-fit" onClick={close}>
       {link.label}
     </Link>;
     const menuItems = link.links?.map((item) => (
-      <Menu.Item key={item.label} className="!w-fit">
-        <Link href={item.link}>{item.label}</Link>
+      <Menu.Item key={item.label} className="!w-fit" onClick={close}>
+        <Link href={item.link} onClick={close}>
+          {item.label}
+        </Link>
       </Menu.Item>
     ));
 
@@ -86,11 +84,11 @@ export function SideMenu() {
         <Menu
           key={link.label}
           trigger="hover"
-          transitionProps={{ exitDuration: 0 }}
+          transitionProps={{ exitDuration: 3 }}
           withinPortal
         >
           <Menu.Target>
-            <Link href={link.link}>
+            <Link href={link.link} onClick={close}>
               <Center>
                 <span>{link.label}</span>
 
@@ -104,7 +102,7 @@ export function SideMenu() {
     }
 
     return (
-      <Link key={link.label} href={link.link}>
+      <Link key={link.label} href={link.link} onClick={close}>
         {link.label}
       </Link>
     );
@@ -120,8 +118,9 @@ export function SideMenu() {
       >
         {items}
         <Button
-          className="!rounded-3xl !bg-yellow-400 text-white w- "
+          className="!rounded-3xl !bg-yellow-400 text-white  "
           rightSection={<IconHeartHandshake size={20} />}
+          onClick={close}
         >
           Support Us
         </Button>
