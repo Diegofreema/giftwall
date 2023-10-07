@@ -1,3 +1,4 @@
+'use client';
 import { texts, youtube } from '@/exports';
 import {
   Blockquote,
@@ -7,12 +8,17 @@ import {
   Image as Img,
   Group,
 } from '@mantine/core';
+import { motion } from 'framer-motion';
 
 import Image from 'next/image';
 
 type Props = {};
 
 const text = ['Girl', 'Child', 'Education'];
+const MotionImage = motion(Image);
+const MotionTitle = motion(Title);
+const MotionBlockquote = motion(Blockquote);
+const MotionGroup = motion(Group);
 const words = texts?.map((item, index) => (
   <Text key={index} fw={'bold'} className="!text-base md:!text-lg">
     {item}
@@ -20,12 +26,19 @@ const words = texts?.map((item, index) => (
 ));
 
 const video = youtube.map((item, index) => (
-  <Group key={index}>
+  <MotionGroup
+    initial={{ opacity: 0, scale: 0.5 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.7, delay: index * 0.3 }}
+    viewport={{ once: true }}
+    key={index}
+  >
     <iframe
       src={item.url}
-      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      className="h-[300px] w-[300px] rounded-md "
+      allowFullScreen
     ></iframe>
-  </Group>
+  </MotionGroup>
 ));
 
 const Page = (props: Props) => {
@@ -33,17 +46,23 @@ const Page = (props: Props) => {
     <div className="min-h-screen py-[120px] ">
       <Container my={'md'} className="!mb-10">
         {text.map((item, index) => (
-          <Title
+          <MotionTitle
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: index * 0.3 }}
             key={index}
             order={1}
             className="!text-3xl md:!text-5xl  font-semibold   tracking-wider text-purple-900"
           >
             {item}
-          </Title>
+          </MotionTitle>
         ))}
       </Container>
       <div className="w-full h-[300px] relative bg-[#ebe9eb] overflow-hidden">
-        <Image
+        <MotionImage
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
           src={'/foundation.jpeg'}
           alt="img"
           fill
@@ -53,8 +72,19 @@ const Page = (props: Props) => {
       </div>
       <Container>
         <div className="md:mt-[120px] !grid !grid-cols-1 mb-20 gap-10 sm:!grid-cols-2">
-          <Img src={'/girl-child.png'} radius={10} />
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -10 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <Img src={'/girl-child.png'} radius={10} />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 10 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+          >
             <Title order={4} ta={'center'} className="!text-purple-900">
               OUR ORGANIZATION PROMISE
             </Title>
@@ -74,7 +104,7 @@ const Page = (props: Props) => {
               in various communities in Nigeria that have been out of school due
               to financial difficulties.
             </Text>
-          </div>
+          </motion.div>
         </div>
         <Title
           mt={20}

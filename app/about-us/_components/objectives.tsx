@@ -1,9 +1,13 @@
 import { obj } from '@/exports';
 import { Group, Text } from '@mantine/core';
 import { twMerge } from 'tailwind-merge';
-
+import { motion } from 'framer-motion';
+const MotionGroup = motion(Group);
 const objectives = obj.map((item, index) => (
-  <Group
+  <MotionGroup
+    initial={{ opacity: 0, y: 10 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.7, delay: index * 0.3 }}
     gap={'md'}
     key={index}
     className="!shadow-sm !shadow-black !rounded-md"
@@ -21,7 +25,7 @@ const objectives = obj.map((item, index) => (
     <Text fz={'lg'} ta={'left'} className="!font-semibold !text-sm" size="md">
       {item.text}
     </Text>
-  </Group>
+  </MotionGroup>
 ));
 export const Objective = () => {
   return (

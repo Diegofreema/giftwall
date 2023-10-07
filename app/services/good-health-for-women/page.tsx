@@ -1,21 +1,32 @@
+'use client';
 import { feed, texts } from '@/exports';
 import { Container, Text, Title, Image as Img, Group } from '@mantine/core';
+import { motion } from 'framer-motion';
 
 import Image from 'next/image';
 
 type Props = {};
-
-const text = ['GOOD HEALTH FOR WOMEN'];
+const MotionGroup = motion(Group);
+const MotionTitle = motion(Title);
+const text = ['GOOD', ' HEALTH FOR WOMEN'];
 
 const video = feed.map((item, index) => (
-  <Group key={index} w={'100%'} h={'300px'}>
+  <MotionGroup
+    initial={{ opacity: 0, scale: 0 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.7 }}
+    viewport={{ once: true }}
+    key={index}
+    w={'100%'}
+    h={'300px'}
+  >
     <iframe
       width={'100%'}
       height="300px"
       src={item.url}
       allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     ></iframe>
-  </Group>
+  </MotionGroup>
 ));
 
 const Page = (props: Props) => {
@@ -23,16 +34,25 @@ const Page = (props: Props) => {
     <div className="min-h-screen py-[120px] ">
       <Container my={'md'} className="!my-16">
         {text.map((item, index) => (
-          <Title
+          <MotionTitle
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: index * 0.3 }}
             key={index}
             order={1}
             className="!text-3xl md:!text-5xl  font-semibold   tracking-wider text-purple-900"
           >
             {item}
-          </Title>
+          </MotionTitle>
         ))}
       </Container>
-      <div className="w-full h-[300px] relative bg-[#ebe9eb] overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+        className="w-full h-[300px] relative bg-[#ebe9eb] overflow-hidden"
+      >
         <Image
           src={'/foundation1.jpeg'}
           alt="img"
@@ -40,11 +60,23 @@ const Page = (props: Props) => {
           priority
           className="!object-cover"
         />
-      </div>
+      </motion.div>
       <Container>
         <div className="md:mt-[120px] !grid !grid-cols-1 mb-20 gap-10 sm:!grid-cols-2">
-          <Img src={'/image-35.png'} radius={10} fit="cover" />
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -15 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            <Img src={'/image-35.png'} radius={10} fit="cover" />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 15 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
             <Title order={2} ta={'center'} mb={10} className="!text-purple-900">
               GOOD HEALTH FOR WOMEN
             </Title>
@@ -58,7 +90,7 @@ const Page = (props: Props) => {
               topmost priority when it comes to the health of women and girls.
               Our team of experts are doing exceptionally well in this pursuit.
             </Text>
-          </div>
+          </motion.div>
         </div>
       </Container>
     </div>

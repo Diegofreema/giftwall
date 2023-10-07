@@ -760,14 +760,15 @@ export const youtube = [
   {
     url: '/vd5.mp4',
   },
-  {
-    url: '/vd4.mp4',
-  },
+
   {
     url: '/vd2.mp4',
   },
   {
     url: '/vd1.mp4',
+  },
+  {
+    url: '/vd6.mp4',
   },
   {
     url: '/vd.mp4',

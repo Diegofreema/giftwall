@@ -1,13 +1,22 @@
+'use client';
+
 import { serviceText } from '@/exports';
 import { Container, Group, Text, Title } from '@mantine/core';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import React from 'react';
 
 type Props = {};
 
 const text = ['Our', 'Priorities'];
+const MotionImage = motion(Image);
+const MotionTitle = motion(Title);
+const MotionGroup = motion(Group);
 const words = serviceText?.map((item, index) => (
-  <Group
+  <MotionGroup
+    initial={{ opacity: 0, y: 10 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.7, delay: index * 0.3 }}
     id={item.id}
     key={index}
     fw={'bold'}
@@ -15,23 +24,30 @@ const words = serviceText?.map((item, index) => (
   >
     <Title>{item.title}</Title>
     <Text>{item.text}</Text>
-  </Group>
+  </MotionGroup>
 ));
+
 const page = (props: Props) => {
   return (
     <div className="min-h-screen py-[130px]">
       <div className="!w-[90%] mx-auto !mb-14">
         {text.map((item, index) => (
-          <Title
+          <MotionTitle
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: index * 0.3 }}
             key={index}
             className="!text-3xl md:!text-6xl font-semibold    tracking-wider text-yellow-400"
           >
             {item}
-          </Title>
+          </MotionTitle>
         ))}
       </div>
       <div className="w-full h-[300px] overflow-hidden relative">
-        <Image
+        <MotionImage
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
           src={'/foundation.jpeg'}
           alt="img"
           fill
@@ -42,7 +58,14 @@ const page = (props: Props) => {
       <Container>
         <div className="grid grid-cols-1 space-y-8 mt-10">
           {words}
-          <Group fw={'bold'} className="!text-base md:!text-lg space-y-3">
+          <MotionGroup
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            gap={'md'}
+            fw={'bold'}
+            className="!text-base md:!text-lg space-y-3"
+          >
             <Text>
               {' '}
               Lack of income can lead to financial stress. Food assistance
@@ -62,7 +85,7 @@ const page = (props: Props) => {
               income is vital for their physical and emotional well-being, as
               well as for building stronger, more compassionate communities.
             </Text>
-          </Group>
+          </MotionGroup>
         </div>
       </Container>
     </div>

@@ -1,28 +1,38 @@
+'use client';
+
 import { serviceText } from '@/exports';
 import { Container, Group, Text, Title } from '@mantine/core';
 import Image from 'next/image';
 import React from 'react';
 import VolunteerForm from '../_components/VolunteerForm';
+import { motion } from 'framer-motion';
 
 type Props = {};
 
-const text = ['Become', 'A', 'Volunteer'];
-
+const text = ['Become', 'A Volunteer'];
+const MotionImage = motion(Image);
+const MotionTitle = motion(Title);
 const page = (props: Props) => {
   return (
     <div className="min-h-screen py-[130px]">
-      <div className="!w-[90%] mx-auto flex flex-col md:flex-row  md:space-x-3 mb-16 mt-5">
+      <div className="!w-[90%] mx-auto  mb-16 mt-5">
         {text.map((item, index) => (
-          <Title
+          <MotionTitle
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: index * 0.3 }}
             key={index}
-            className="!text-3xl md:!text-6xl font-semibold   tracking-wider text-yellow-400"
+            className="!text-3xl block md:!text-6xl font-semibold   tracking-wider text-yellow-400"
           >
             {item}
-          </Title>
+          </MotionTitle>
         ))}
       </div>
       <div className="w-full h-[300px] overflow-hidden relative">
-        <Image
+        <MotionImage
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
           src={'/foundation.jpeg'}
           alt="img"
           fill

@@ -2,12 +2,14 @@
 import { IconPlus } from '@tabler/icons-react';
 import { Accordion, Text, Container, Title } from '@mantine/core';
 import { faq } from '@/exports';
+import { motion } from 'framer-motion';
 
 type FAQ = {
   label: string;
   content: string[];
 };
 const text = ['Frequently', 'Asked Questions'];
+const MotionTitle = motion(Title);
 const Faq = () => {
   // See groceries data above
   const items = faq?.map((item: FAQ) => (
@@ -29,13 +31,16 @@ const Faq = () => {
     <div className="min-h-screen py-[120px]">
       <Container my={'md'} className="!mb-10">
         {text.map((item, index) => (
-          <Title
+          <MotionTitle
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: index * 0.3 }}
             key={index}
             order={1}
             className="!text-xl md:!text-4xl  font-semibold   tracking-wider text-purple-900"
           >
             {item}
-          </Title>
+          </MotionTitle>
         ))}
       </Container>
       <Container className="!mx-auto !mt-[50px] " mt={20}>
