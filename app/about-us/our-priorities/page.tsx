@@ -48,11 +48,11 @@ const page = (props: Props) => {
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          src={'/foundation.jpeg'}
+          src={'/j7.jpeg'}
           alt="img"
           fill
           priority
-          className="object-cover"
+          className="object-fill"
         />
       </div>
       <Container>

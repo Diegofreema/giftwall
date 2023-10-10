@@ -66,17 +66,17 @@ export const links = [
 
 export const images = [
   {
-    imgUrl: '/foundation1.jpeg',
+    imgUrl: '/o4.jpeg',
     title: 'SANITIZE THE GIRL CHILD',
     text: 'Good Sanitation and Hygiene Practice.',
   },
   {
-    imgUrl: '/foundation1.jpeg',
+    imgUrl: '/j3.jpeg',
     title: 'FROM THE STREET TO THE CLASSROOM',
     text: 'Every Girl Child Deserves a Good Education.',
   },
   {
-    imgUrl: '/foundation2.jpeg',
+    imgUrl: '/w8.jpeg',
     title: 'REACHING OUT TO RURAL COMMUNITIES',
 
     text: 'Operation Feed One For All',
@@ -201,37 +201,54 @@ export const serviceText = [
 
 export const people = [
   {
-    imgUrl: '/8b6732f5-b2ad-48c1-b211-5c355be4ffa7.png',
+    imgUrl: '/img8.jpeg',
+    name: 'MaryGift Ozoemena Chukura. ',
+    job: 'CEO',
   },
   {
-    imgUrl: '/207f979a-2836-44cd-ab77-0d4881afbc1d.png',
+    imgUrl: '/img.jpeg',
+    name: 'Juliet Oge Okonji',
+    job: 'Administrator',
   },
   {
-    imgUrl: '/Egbuhuzor.png',
+    imgUrl: '/img1.jpeg',
+    name: 'Blessing Ngozi Njoku',
+    job: 'P. R. I',
   },
   {
-    imgUrl: '/Isioma.jpg',
+    imgUrl: '/img2.jpeg',
+    name: 'Johnny Chinedu Okonkwo',
+    job: 'Publicity',
   },
   {
-    imgUrl: '/luchy-photo_16x9.png',
+    imgUrl: '/img3.jpeg',
+    name: 'Success Oluchi Nwandire',
+    job: 'Publicity',
   },
   {
-    imgUrl: '/Martha-Nwosu-Ugochukwu.jpg',
+    imgUrl: '/img4.jpeg',
+    name: 'Joy Isioma Arueze',
+    job: 'Events',
   },
   {
-    imgUrl: '/Maryann-Chukwu.jpg',
+    imgUrl: '/img5.jpeg',
+    name: 'Princess Maudline Iloduba',
+    job: ' Assistant Coordinator Lagos',
   },
   {
-    imgUrl: '/Maryann-Ebere-1.png',
+    imgUrl: '/img6.jpeg',
+    name: 'Emmanuella Chidinma Egbuhuzor',
+    job: 'Coach-beauty and body care',
   },
   {
-    imgUrl: '/Ngozi-2.jpg',
+    imgUrl: '/img9.jpeg',
+    name: 'Edwin Gini Chukura',
+    job: 'Administration ',
   },
   {
-    imgUrl: '/Ruth.jpg',
-  },
-  {
-    imgUrl: '/image-37.png',
+    imgUrl: '/img7.jpeg',
+    name: 'Ruth Igbinovia ',
+    job: 'Outreach',
   },
 ];
 

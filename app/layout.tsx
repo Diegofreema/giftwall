@@ -9,6 +9,7 @@ import './globals.css';
 import { HeaderMenu } from '@/components/UI/Header';
 
 import Footer from '@/components/UI/Footer';
+import Provider from '@/components/Provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,11 +26,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <MantineProvider>
-          <HeaderMenu />
-          {children}
-          <Footer />
-        </MantineProvider>
+        <Provider>
+          <MantineProvider>
+            <HeaderMenu />
+            {children}
+            <Footer />
+          </MantineProvider>
+        </Provider>
       </body>
     </html>
   );

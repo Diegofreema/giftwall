@@ -1,10 +1,21 @@
+'use client';
 import { people } from '@/exports';
 import { Container, Text, Title, Image as Img, Stack } from '@mantine/core';
-import Image from 'next/image';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 const text = ['Our', 'Team'];
+const MotionImage = motion(Image);
+const MotionTitle = motion(Title);
+const MotionStack = motion(Stack);
+
 const profile = people?.map((item, index) => (
-  <Stack
+  <MotionStack
+    initial={{ opacity: 0, scale: 0 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.7 }}
+    viewport={{ once: true }}
     align="center"
     key={index}
     fw={'bold'}
@@ -20,34 +31,44 @@ const profile = people?.map((item, index) => (
       />
     </div>
     <Text fw={'bold'} className="text-purple-900">
-      Volunteer
+      {item.name}
     </Text>
-  </Stack>
+    <Text fw={'bold'} className="text-purple-900">
+      {item.job}
+    </Text>
+  </MotionStack>
 ));
 const page = () => {
   return (
     <div className="min-h-screen py-[130px]">
       <div className="!w-[90%] mx-auto mb-10">
         {text.map((item, index) => (
-          <Title
+          <MotionTitle
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: index * 0.3 }}
             key={index}
             className="!text-3xl md:!text-6xl  font-semibold   tracking-wider text-yellow-400"
           >
             {item}
-          </Title>
+          </MotionTitle>
         ))}
       </div>
       <div className="w-full h-[300px] overflow-hidden relative">
-        <Image
-          src={'/foundation1.jpeg'}
+        <MotionImage
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          src={'/j4.jpeg'}
           alt="img"
           fill
           priority
-          className="object-fit"
+          className="object-fill"
         />
       </div>
       <Container>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 space-y-8 mt-10 sm:mt-20">
+        <PayPalButtons />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 space-y-10 mt-10 sm:mt-20">
           {profile}
         </div>
       </Container>

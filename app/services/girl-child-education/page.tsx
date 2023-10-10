@@ -33,11 +33,19 @@ const video = youtube.map((item, index) => (
     viewport={{ once: true }}
     key={index}
   >
-    <iframe
-      src={item.url}
-      className="h-[300px] w-[300px] rounded-md "
-      allowFullScreen
-    ></iframe>
+    {item.url.startsWith('https') ? (
+      <iframe
+        src={item.url}
+        className="h-[300px] w-[300px] rounded-md "
+        allowFullScreen
+      ></iframe>
+    ) : (
+      <video
+        src={item.url}
+        className="h-[300px] w-[300px] rounded-md "
+        controls
+      ></video>
+    )}
   </MotionGroup>
 ));
 
@@ -58,16 +66,16 @@ const Page = (props: Props) => {
           </MotionTitle>
         ))}
       </Container>
-      <div className="w-full h-[300px] relative bg-[#ebe9eb] overflow-hidden">
+      <div className="w-full h-[400px] relative bg-[#ebe9eb] overflow-hidden">
         <MotionImage
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          src={'/foundation.jpeg'}
+          src={'/j5.jpeg'}
           alt="img"
           fill
           priority
-          className="!object-cover"
+          className="!object-fill"
         />
       </div>
       <Container>

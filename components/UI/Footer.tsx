@@ -3,6 +3,7 @@
 import React from 'react';
 
 import Link from 'next/link';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 import SocialButtons from './SocialButtons';
 import { Button, Card, Image, Title } from '@mantine/core';
 import { IconArrowMoveRight, IconHeart } from '@tabler/icons-react';
@@ -44,9 +45,7 @@ const Footer = () => {
                 rightSection={
                   <IconHeart size={15} className="ml-2 fill-white  " />
                 }
-              >
-                Support Us
-              </MyButton>
+              ></MyButton>
             </Card.Section>
           </Card>
           <Card className="!bg-transparent border-none space-y-3">
