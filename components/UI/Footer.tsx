@@ -45,7 +45,9 @@ const Footer = () => {
                 rightSection={
                   <IconHeart size={15} className="ml-2 fill-white  " />
                 }
-              ></MyButton>
+              >
+                Support Us
+              </MyButton>
             </Card.Section>
           </Card>
           <Card className="!bg-transparent border-none space-y-3">
