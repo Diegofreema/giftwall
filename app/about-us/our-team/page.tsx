@@ -1,7 +1,6 @@
 'use client';
 import { people } from '@/exports';
 import { Container, Text, Title, Image as Img, Stack } from '@mantine/core';
-import { PayPalButtons } from '@paypal/react-paypal-js';
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -47,6 +46,7 @@ const page = () => {
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: index * 0.3 }}
+            viewport={{ once: true }}
             key={index}
             className="!text-3xl md:!text-6xl  font-semibold   tracking-wider text-yellow-400"
           >
@@ -67,7 +67,6 @@ const page = () => {
         />
       </div>
       <Container>
-        <PayPalButtons />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 space-y-10 mt-10 sm:mt-20">
           {profile}
         </div>

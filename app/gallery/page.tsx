@@ -27,7 +27,7 @@ const page = (props: Props) => {
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 1 }}
             viewport={{ once: true }}
             key={i}
             className="overflow-hidden rounded-md"
@@ -47,7 +47,7 @@ const page = (props: Props) => {
           <motion.video
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 1 }}
             viewport={{ once: true }}
             key={index}
             width="100%"

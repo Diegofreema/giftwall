@@ -31,9 +31,10 @@ const page = (props: Props) => {
           <div key={i} className="overflow-hidden rounded-md">
             {/* @ts-ignore */}
             <MotionImage
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              viewport={{ once: true }}
               key={i}
               src={img.url}
               className="!w-full"
@@ -45,9 +46,9 @@ const page = (props: Props) => {
         ))}
         {videos.map((item, index) => (
           <motion.video
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
             viewport={{ once: true }}
             key={index}
             width="100%"

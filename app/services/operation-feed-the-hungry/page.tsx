@@ -59,11 +59,11 @@ const Page = (props: Props) => {
         className="w-full h-[300px] relative bg-[#ebe9eb] overflow-hidden"
       >
         <Image
-          src={'/foundation1.jpeg'}
+          src={'/o2.jpeg'}
           alt="img"
           fill
           priority
-          className="!object-cover"
+          className="!object-fill"
         />
       </motion.div>
       <Container>
