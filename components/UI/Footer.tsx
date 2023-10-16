@@ -1,11 +1,8 @@
 'use client';
 
-import React from 'react';
-
 import Link from 'next/link';
-import { PayPalButtons } from '@paypal/react-paypal-js';
 import SocialButtons from './SocialButtons';
-import { Button, Card, Image, Title } from '@mantine/core';
+import { Card, Image, Title } from '@mantine/core';
 import { IconArrowMoveRight, IconHeart } from '@tabler/icons-react';
 import { links } from '@/exports';
 import MyButton from '@/Ui/Button';

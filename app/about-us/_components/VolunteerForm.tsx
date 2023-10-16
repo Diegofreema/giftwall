@@ -1,6 +1,8 @@
 'use client';
 
+import { useToast } from '@/components/UI/use-toast';
 import { countries } from '@/exports';
+import { registerVolunteer, volunteer } from '@/lib/actions/user';
 import {
   TextInput,
   Button,
@@ -14,6 +16,7 @@ import { DatePickerInput } from '@mantine/dates';
 import { useForm } from '@mantine/form';
 import { IconDownload } from '@tabler/icons-react';
 import Link from 'next/link';
+import { useState } from 'react';
 const data = [
   'Girl-Child Education',
   'Women Empowerment',
@@ -21,6 +24,8 @@ const data = [
   'Health and Wellbeing',
 ];
 export default function VolunteerForm() {
+  const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
   const form = useForm({
     initialValues: {
       email: '',
@@ -47,12 +52,32 @@ export default function VolunteerForm() {
       country: (value) => (value.length > 0 ? null : 'Country is required'),
     },
   });
+  const handleSubmit = async (values: volunteer) => {
+    setLoading(true);
+    try {
+      await registerVolunteer(values);
+      toast({
+        variant: 'success',
+        title: 'Welcome to Our Foundation',
+        description: 'We are glad to have you as a volunteer',
+      });
+      form.reset();
+    } catch (error: any) {
+      toast({
+        title: 'Something went wrong',
+        description: 'error?.message',
+        variant: 'destructive',
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Box maw={600} mx="auto" mt={50}>
       <form
         className="space-y-4"
-        onSubmit={form.onSubmit((values) => console.log(values, 'form'))}
+        onSubmit={form.onSubmit((values) => handleSubmit(values))}
       >
         <>
           <TextInput
@@ -166,6 +191,7 @@ export default function VolunteerForm() {
 
         <Group justify="center" mt="lg">
           <Button
+            disabled={loading}
             type="submit"
             unstyled
             className="!bg-yellow-400 p-2 !rounded-md uppercase text-purple-900 font-semibold"

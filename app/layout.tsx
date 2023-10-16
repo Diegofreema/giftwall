@@ -10,6 +10,7 @@ import { HeaderMenu } from '@/components/UI/Header';
 
 import Footer from '@/components/UI/Footer';
 import Provider from '@/components/Provider';
+import { Toaster } from '@/components/UI/toaster';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -29,7 +30,7 @@ export default function RootLayout({
         {process.env.NODE_ENV === 'production' && (
           <script
             async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7182862426441767"
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3715294239275186"
             crossOrigin="anonymous"
           ></script>
         )}
@@ -40,6 +41,7 @@ export default function RootLayout({
             <HeaderMenu />
             {children}
             <Footer />
+            <Toaster />
           </MantineProvider>
         </Provider>
       </body>
