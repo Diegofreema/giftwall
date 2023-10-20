@@ -2,11 +2,13 @@ import Hero from '@/components/Home/Hero';
 import Mission from '@/components/Home/Mission';
 import Services from '@/components/Home/Services';
 import Submission from '@/components/Home/Submission';
+import { getSlider } from '@/lib/actions/user';
 
-export default function Home() {
+export default async function Home() {
+  const slider = await getSlider();
   return (
     <div className="font-bold text-8xl">
-      <Hero />
+      <Hero slider={slider} />
       <Services />
       <Mission />
       <Submission />

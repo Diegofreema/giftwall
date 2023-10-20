@@ -5,11 +5,19 @@ import { Button } from '@mantine/core';
 import { IconArrowNarrowLeft, IconArrowNarrowRight } from '@tabler/icons-react';
 import Carousel from 'nuka-carousel';
 import { motion } from 'framer-motion';
-const text = ['BEHIND', ' MARYGIFT', 'WALLS', 'FOUNDATION'];
+import { Slider } from '@/lib/types';
 
-const Hero = () => {
-  return (
-    <div className=" pt-[100px] min-h-screen pb-[100px] overflow-hidden w-full text-white">
+type Prop = {
+  slider: {
+    imgUrl: string;
+    heading: string;
+    description: string;
+    _id: string;
+  }[];
+};
+const Hero = ({ slider }: Prop) => {
+  const sliders =
+    slider.length > 0 ? (
       <Carousel
         autoplayInterval={5000}
         className="!h-[100vh]"
@@ -38,13 +46,13 @@ const Hero = () => {
           </Button>
         )}
       >
-        {images.map((item) => (
-          <div key={item.imgUrl} className="w-full !h-[100vh] relative">
+        {slider.map((item) => (
+          <div key={item?.imgUrl} className="w-full !h-[100vh] relative">
             <>
               <div className="w-full h-full absolute inset-0 bg-black/70"></div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={item.imgUrl}
+                src={item?.imgUrl}
                 alt="img"
                 width={'100%'}
                 height={'100%'}
@@ -52,7 +60,7 @@ const Hero = () => {
               />
               <div className="absolute !top-[50%] !left-1/2 -translate-x-1/2 -translate-y-1/2">
                 <h1 className="text-xl md:text-7xl text-center mb-4 sm:mb-8 md:mb-16 sm:text-4xl font-bold">
-                  {item.title.split(' ').map((word, index) => (
+                  {item?.heading?.split(' ').map((word, index) => (
                     <motion.span
                       initial={{ opacity: 0, x: 40, y: -30, skewX: 40 }}
                       whileInView={{ opacity: 1, x: 0, y: 0, skewX: 0 }}
@@ -65,7 +73,7 @@ const Hero = () => {
                   ))}
                 </h1>
                 <h3 className=" text-purple-500 text-xl md:text-5xl text-center font-bold">
-                  {item.text.split(' ').map((item, index) => (
+                  {item?.description?.split(' ').map((item, index) => (
                     <motion.span
                       initial={{ opacity: 0, x: -10, y: 10 }}
                       whileInView={{ opacity: 1, x: 0, y: 0 }}
@@ -82,6 +90,16 @@ const Hero = () => {
           </div>
         ))}
       </Carousel>
+    ) : (
+      <div className="w-full h-full flex items-center justify-center">
+        <h1 className="text-3xl md:text-6xl  font-semibold  mb-1 tracking-wider text-yellow-400">
+          No Slider
+        </h1>
+      </div>
+    );
+  return (
+    <div className=" pt-[100px] min-h-screen pb-[100px] overflow-hidden w-full text-white">
+      {sliders}
     </div>
   );
 };

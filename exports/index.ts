@@ -144,11 +144,11 @@ export const obj = [
 export const goals = [
   {
     title: ' To Reach and Impact',
-    text: 'To establish our presence in African countries and directly impact the lives of rural women and girls through our programs and services within 10years',
+    text: 'To establish our presence in African countries and directly impact the lives of rural women and girls through our programs and services within 10 years',
   },
   {
-    title: ' Education Access',
-    text: 'To Ensure that atleast 20% of girls in our target communities have access to quality education, reducing the gender gap in school enrollment and retention.',
+    title: 'Education Access',
+    text: 'To Ensure that at least 20% of girls in our target communities have access to quality education, reducing the gender gap in school enrollment and retention.',
   },
   {
     title: ' Economic Empowerment',
