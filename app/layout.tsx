@@ -11,6 +11,7 @@ import { HeaderMenu } from '@/components/UI/Header';
 import Footer from '@/components/UI/Footer';
 import Provider from '@/components/Provider';
 import { Toaster } from '@/components/UI/toaster';
+import { CrispProvider } from '@/components/Crisp/CrispProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -38,6 +39,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Provider>
           <MantineProvider>
+            <CrispProvider />
             <HeaderMenu />
             {children}
             <Footer />

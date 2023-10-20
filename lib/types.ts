@@ -45,3 +45,14 @@ export type GalleryProps = {
     videoUrl: string;
   }[];
 };
+
+export type AboutProps = {
+  goals: {
+    heading: string;
+    description: string;
+  }[];
+  obj: {
+    heading: string;
+    description: string;
+  }[];
+};

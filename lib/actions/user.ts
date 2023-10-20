@@ -88,7 +88,13 @@ export const getGoals = async () => {
   try {
     connectToDB();
     const goals = await Goal.find();
-    return goals;
+    const safeGoals = goals?.map((goal) => {
+      return {
+        heading: goal?.heading,
+        description: goal?.description,
+      };
+    });
+    return safeGoals;
   } catch (error: any) {
     throw new Error(`Failed to get goals: ${error?.message}`);
   }
@@ -125,7 +131,13 @@ export const getObj = async () => {
   try {
     connectToDB();
     const objectives = await Obj.find();
-    return objectives;
+    const safeObj = objectives?.map((item) => {
+      return {
+        heading: item?.heading,
+        description: item?.description,
+      };
+    });
+    return safeObj;
   } catch (error: any) {
     throw new Error(`Failed to get slider: ${error?.message}`);
   }
