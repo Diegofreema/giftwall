@@ -39,12 +39,12 @@ const Submission = (props: Props) => {
                 About Us
               </Title>
               <Text ta={'center'}>
-                About us Behind MaryGift Walls foundation is about teaching and
-                guiding women to embrace their challenges that represent walls
-                on life’s journey, to see those walls as roadblocks; instead,
-                see them as opportunities for growth, resilience, and
-                transformation. To know with determination and effort, they can
-                find ways to overcome any barrier.
+                Behind MaryGift Walls foundation is about teaching and guiding
+                women to embrace their challenges that represent walls on life’s
+                journey, to see those walls as roadblocks; instead, see them as
+                opportunities for growth, resilience, and transformation. To
+                know with determination and effort, they can find ways to
+                overcome any barrier.
               </Text>
             </div>
             <div>

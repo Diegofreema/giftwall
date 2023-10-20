@@ -12,6 +12,8 @@ import Project from '../model/project';
 import Team from '../model/team';
 import Video from '../model/video';
 import { Slider } from '../types';
+import ProjectVideo from '../model/projectVideos';
+import EventModel from '../model/event';
 
 export type volunteer = {
   email: string;
@@ -75,7 +77,7 @@ export const getSlider = async () => {
 export const getEvents = async () => {
   try {
     connectToDB();
-    const events = await Event.find();
+    const events = await EventModel.find();
     return events;
   } catch (error: any) {
     throw new Error(`Failed to get events: ${error?.message}`);
@@ -95,9 +97,28 @@ export const getGallery = async () => {
   try {
     connectToDB();
     const gallery = await Gallery.find();
-    return gallery;
+    const safeGallery = gallery?.map((item) => {
+      return {
+        imgUrl: item?.imgUrl,
+      };
+    });
+    return safeGallery;
   } catch (error: any) {
     throw new Error(`Failed to get gallery: ${error?.message}`);
+  }
+};
+export const getVideos = async () => {
+  try {
+    connectToDB();
+    const videos = await Video.find();
+    const safeVideos = videos?.map((item) => {
+      return {
+        videoUrl: item?.videoUrl,
+      };
+    });
+    return safeVideos;
+  } catch (error: any) {
+    throw new Error(`Failed to get videos: ${error?.message}`);
   }
 };
 export const getObj = async () => {
@@ -113,7 +134,21 @@ export const getPriorities = async () => {
   try {
     connectToDB();
     const priorities = await Priority.find();
-    return priorities;
+    const safePriorities = priorities?.map((priority) => {
+      const smallCaps = priority?.heading
+        .slice(0, 9)
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, '-');
+      const url = `/about-us/our-priorities#${smallCaps}`;
+      return {
+        heading: priority?.heading,
+        description: priority?.description,
+        _id: priority?._id,
+        url,
+      };
+    });
+    return safePriorities;
   } catch (error: any) {
     throw new Error(`Failed to get priorities: ${error?.message}`);
   }
@@ -122,26 +157,52 @@ export const getProjects = async () => {
   try {
     connectToDB();
     const projects = await Project.find();
-    return projects;
+
+    const safeProjects = projects?.map((project) => {
+      return {
+        name: project?.name,
+        imgUrl: project?.imgUrl,
+        _id: project?._id,
+      };
+    });
+    return safeProjects;
   } catch (error: any) {
     throw new Error(`Failed to get projects: ${error?.message}`);
   }
 };
+export async function fetchProjectVideos() {
+  try {
+    connectToDB();
+
+    const projects = await ProjectVideo.find();
+    const safeProjects = projects?.map((item) => {
+      return {
+        name: item?.name,
+        videoUrl: item?.videoUrl,
+        _id: item?._id,
+      };
+    });
+    return safeProjects;
+  } catch (error) {
+    console.log(error);
+
+    throw new Error('Failed to get Project Videos');
+  }
+}
 export const getTeam = async () => {
   try {
     connectToDB();
     const teams = await Team.find();
-    return teams;
+    const safeTeams = teams?.map((team) => {
+      return {
+        name: team?.name,
+        job: team?.job,
+        imgUrl: team?.imgUrl,
+        _id: team?._id,
+      };
+    });
+    return safeTeams;
   } catch (error: any) {
     throw new Error(`Failed to get teams: ${error?.message}`);
-  }
-};
-export const getVideos = async () => {
-  try {
-    connectToDB();
-    const videos = await Video.find();
-    return videos;
-  } catch (error: any) {
-    throw new Error(`Failed to get slider: ${error?.message}`);
   }
 };
