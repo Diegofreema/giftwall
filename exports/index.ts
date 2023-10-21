@@ -44,10 +44,7 @@ export const links = [
         label: 'Empowerment',
         link: '/services/empowerment',
       },
-      {
-        label: 'Operation Feed The Hungry',
-        link: '/services/operation-feed-the-hungry',
-      },
+
       {
         label: 'Good Health For Women',
         link: '/services/good-health-for-women',
