@@ -1,9 +1,7 @@
 'use client';
 
-import { serviceText } from '@/exports';
-import { Container, Group, Text, Title } from '@mantine/core';
+import { Container, Title } from '@mantine/core';
 import Image from 'next/image';
-import React from 'react';
 import VolunteerForm from '../_components/VolunteerForm';
 import { motion } from 'framer-motion';
 

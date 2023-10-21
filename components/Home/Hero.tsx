@@ -1,11 +1,9 @@
 'use client';
 
-import { images } from '@/exports';
 import { Button } from '@mantine/core';
 import { IconArrowNarrowLeft, IconArrowNarrowRight } from '@tabler/icons-react';
 import Carousel from 'nuka-carousel';
 import { motion } from 'framer-motion';
-import { Slider } from '@/lib/types';
 
 type Prop = {
   slider: {
@@ -97,7 +95,7 @@ const Hero = ({ slider }: Prop) => {
       </div>
     );
   return (
-    <div className=" md:pt-[60px] min-h-screen pb-[100px] overflow-hidden w-full text-white">
+    <div className="  min-h-screen pb-[100px] overflow-hidden w-full text-white">
       {sliders}
     </div>
   );

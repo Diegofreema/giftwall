@@ -112,9 +112,7 @@ export function SideMenu({ close }: { close: () => void }) {
     <aside className="!h-full">
       <Stack
         gap={'md'}
-        className="!text-purple-900 h-screen flex flex-col items-center"
-        align="center"
-        justify="center"
+        className="!text-purple-900 h-screen flex flex-col items-center pt-[30px]"
       >
         {items}
         <Button

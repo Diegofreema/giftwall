@@ -26,12 +26,13 @@
     "lucide-react": "^0.287.0",
     "moment-timezone": "^0.5.43",
     "mongoose": "^7.6.2",
-    "next": "^13.4.10-canary.0",
+    "next": "^13.4.19",
     "nuka-carousel": "^6.0.3",
     "react": "latest",
     "react-dom": "latest",
     "tailwind-merge": "^1.14.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "webpack": "^5.89.0"
   },
   "devDependencies": {
     "@types/node": "latest",
