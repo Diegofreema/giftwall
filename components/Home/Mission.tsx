@@ -71,7 +71,7 @@ const Mission = ({ priorities }: PriorityProps) => {
           </div>
         </div>
         <div className="bottom grid sm:grid-cols-2 grid-cols-1 lg:grid-cols-4 mt-20 gap-3 ">
-          {priorities.map(({ heading, description, _id, url }, index) => {
+          {priorities.map(({ heading, description, url }, index) => {
             return (
               <Card
                 key={index}
