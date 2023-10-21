@@ -65,7 +65,6 @@ export const getSlider = async () => {
         imgUrl: slider?.imgUrl,
         heading: slider?.heading,
         description: slider?.description,
-        _id: slider?._id,
       };
     });
     return safeSlider;
@@ -78,7 +77,16 @@ export const getEvents = async () => {
   try {
     connectToDB();
     const events = await EventModel.find();
-    return events;
+    const safeEvents = events?.map((event) => {
+      return {
+        name: event?.name,
+        imgUrl: event?.imgUrl,
+        description: event?.description,
+        venue: event?.venue,
+        date: event?.date,
+      };
+    });
+    return safeEvents;
   } catch (error: any) {
     throw new Error(`Failed to get events: ${error?.message}`);
   }
@@ -156,7 +164,7 @@ export const getPriorities = async () => {
       return {
         heading: priority?.heading,
         description: priority?.description,
-        _id: priority?._id,
+
         url,
       };
     });
@@ -174,7 +182,6 @@ export const getProjects = async () => {
       return {
         name: project?.name,
         imgUrl: project?.imgUrl,
-        _id: project?._id,
       };
     });
     return safeProjects;
@@ -191,7 +198,6 @@ export async function fetchProjectVideos() {
       return {
         name: item?.name,
         videoUrl: item?.videoUrl,
-        _id: item?._id,
       };
     });
     return safeProjects;
@@ -210,7 +216,6 @@ export const getTeam = async () => {
         name: team?.name,
         job: team?.job,
         imgUrl: team?.imgUrl,
-        _id: team?._id,
       };
     });
     return safeTeams;

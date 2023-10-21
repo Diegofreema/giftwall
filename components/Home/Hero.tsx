@@ -12,7 +12,6 @@ type Prop = {
     imgUrl: string;
     heading: string;
     description: string;
-    _id: string;
   }[];
 };
 const Hero = ({ slider }: Prop) => {

@@ -3,14 +3,13 @@ export type Slider = {
   imgUrl: string;
   heading: string;
   description: string;
-  _id: string;
 }[];
 
 export type PriorityProps = {
   priorities: {
     heading: string;
     description: string;
-    _id: string;
+
     url: string;
   }[];
 };
