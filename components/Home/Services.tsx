@@ -58,7 +58,7 @@ const Services = (props: Props) => {
             </motion.p>
           </div>
         </div>
-        <div className="bottom grid sm:grid-cols-2 grid-cols-1 lg:grid-cols-4 mt-20 gap-3 ">
+        <div className="bottom grid sm:grid-cols-2 grid-cols-1 lg:grid-cols-3 mt-20 gap-6 ">
           {services.map(({ Icon, title }, index) => (
             <motion.div
               key={index}

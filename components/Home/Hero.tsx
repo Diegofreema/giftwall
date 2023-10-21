@@ -28,7 +28,7 @@ const Hero = ({ slider }: Prop) => {
             className="!bg-yellow-400 p-2 sm:ml-4 ml-2 rounded-full h-10 w-10 flex items-center group hover:!bg-purple-900 hover:text-white transition justify-center "
           >
             <IconArrowNarrowLeft
-              size={30}
+              size={25}
               className="group-hover:text-white text-purple-900 transition"
             />
           </Button>
@@ -39,7 +39,7 @@ const Hero = ({ slider }: Prop) => {
             className=" p-2 sm:mr-4 mr-2 rounded-full h-10 w-10 flex items-center group hover:!bg-purple-900 hover:text-white transition justify-center !bg-yellow-400"
           >
             <IconArrowNarrowRight
-              size={30}
+              size={25}
               className="group-hover:text-white text-purple-900 transition"
             />
           </Button>
@@ -71,7 +71,7 @@ const Hero = ({ slider }: Prop) => {
                     </motion.span>
                   ))}
                 </h1>
-                <h3 className=" text-purple-500 text-xl md:text-5xl text-center font-bold">
+                <h3 className=" text-purple-500 text-base md:text-3xl text-center font-bold">
                   {item?.description?.split(' ').map((item, index) => (
                     <motion.span
                       initial={{ opacity: 0, x: -10, y: 10 }}
@@ -97,7 +97,7 @@ const Hero = ({ slider }: Prop) => {
       </div>
     );
   return (
-    <div className=" pt-[100px] min-h-screen pb-[100px] overflow-hidden w-full text-white">
+    <div className=" md:pt-[60px] min-h-screen pb-[100px] overflow-hidden w-full text-white">
       {sliders}
     </div>
   );

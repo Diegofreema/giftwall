@@ -29,7 +29,7 @@ const Footer = () => {
         >
           <Card className=" border-none space-y-3" bg={'transparent'}>
             <Card.Section className="!text-center">
-              <Title className="text-white">In Short</Title>
+              <Title className="text-white">Our Aim</Title>
             </Card.Section>
             <Card.Section className="!text-center">
               <p className="text-white">

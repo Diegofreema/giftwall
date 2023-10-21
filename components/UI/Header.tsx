@@ -79,7 +79,7 @@ export function HeaderMenu() {
           className="flex justify-between items-center"
         >
           <Link href={'/'}>
-            <Avatar size={100} src={'/bmw.png'} />
+            <Avatar size={80} src={'/bmw.png'} />
           </Link>
 
           <Group gap={8} visibleFrom="md" className="text-white">
