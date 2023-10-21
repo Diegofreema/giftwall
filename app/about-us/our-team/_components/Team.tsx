@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
-import { people } from '@/exports';
-import { Container, Text, Title, Image as Img, Stack } from '@mantine/core';
+import { Container, Text, Title, Stack } from '@mantine/core';
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -23,12 +22,12 @@ const Team: React.FC<TeamProps> = ({ team }) => {
       className="!text-base md:!text-lg"
     >
       <div className="relative w-[200px] h-[200px] rounded-full overflow-hidden ">
-        <Img
+        <Image
           src={item?.imgUrl}
           alt="img"
           className="object-cover"
-          width={200}
-          height={200}
+          fill
+          priority
         />
       </div>
       <Text fw={'bold'} className="text-purple-900">
