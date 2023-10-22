@@ -9,28 +9,37 @@ import { links } from '@/exports';
 import { MobileHeader } from '../Home/MobileHeader';
 import { usePathname } from 'next/navigation';
 
-import { motion, motionValue } from 'framer-motion';
+import { motion } from 'framer-motion';
+const MotionLink = motion(Link);
 export function HeaderMenu() {
   const pathname = usePathname();
-  console.log(pathname);
 
   const [opened, { toggle }] = useDisclosure(false);
-  // const isActive = pathname ===
+
   const items = links.map((link) => {
     <Link
       href={link.link}
       className={twMerge(
-        pathname === link.link ? 'text-yellow-400' : 'text-white'
+        'hover:!text-yellow-400 transition inline-block',
+        pathname === link.link || pathname.includes(link.link)
+          ? 'text-yellow-400'
+          : 'text-white'
       )}
     >
       {link.label}
     </Link>;
+
     const menuItems = link.links?.map((item) => (
       <Menu.Item key={item.label}>
-        <Link href={item.link}>{item.label}</Link>
+        <Link
+          className="hover:bg-purple-900 hover:text-white p-1 block transition"
+          href={item.link}
+        >
+          {item.label}
+        </Link>
       </Menu.Item>
     ));
-
+    const servicesPath = link.link === '/services';
     if (menuItems) {
       return (
         <Menu
@@ -41,9 +50,15 @@ export function HeaderMenu() {
         >
           <Menu.Target>
             <Link
+              onClick={(event) => {
+                if (servicesPath) {
+                  event.preventDefault();
+                }
+              }}
               href={link.link}
               className={twMerge(
-                pathname.includes(link.link) ? 'text-yellow-400' : 'text-white'
+                pathname.includes(link.link) ? 'text-yellow-400' : 'text-white',
+                ' transition inline-block'
               )}
             >
               <Center>

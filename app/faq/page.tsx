@@ -35,6 +35,7 @@ const Faq = () => {
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: index * 0.3 }}
+            viewport={{ once: true }}
             key={index}
             order={1}
             className="!text-xl md:!text-4xl  font-semibold   tracking-wider text-purple-900"

@@ -34,7 +34,7 @@ export const links = [
   },
   {
     label: 'Services',
-    link: '#',
+    link: '/services',
     links: [
       {
         label: 'Girl Child Education',
