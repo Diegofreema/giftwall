@@ -66,7 +66,12 @@ const Services = (props: Props) => {
             <motion.div
               initial={{ opacity: 0, scale: 0 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: index * 0.3 }}
+              transition={{
+                delay: index * 0.3,
+                ease: 'easeIn',
+                mass: 0.5,
+                duration: 0.5,
+              }}
               viewport={{ once: true }}
               key={index}
               className="cursor-pointer rounded-md hover:!-translate-y-6 !py-8 !flex flex-col items-center justify-center shadow-md shadow-black p-2 transition !min-h-[200px] duration-300 !bg-purple-900 hover:!bg-yellow-400"

@@ -83,7 +83,11 @@ const Mission = ({ priorities }: PriorityProps) => {
                 <MotionCard
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.3 }}
+                  transition={{
+                    delay: index * 0.3,
+                    ease: 'easeIn',
+                    mass: 0.5,
+                  }}
                   viewport={{ once: true }}
                   key={index}
                   className="cursor-pointer !space-y-2 group hover:!-translate-y-6 !min-h-fit  transition duration-200 relative hover:!bg-yellow-400 group"
