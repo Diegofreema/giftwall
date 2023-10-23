@@ -23,7 +23,7 @@ const Hero = ({ slider }: Prop) => {
         renderCenterLeftControls={({ previousSlide }) => (
           <Button
             onClick={() => previousSlide()}
-            className="!bg-yellow-400 p-2 sm:ml-4 ml-2 rounded-full h-10 w-10 flex items-center group hover:!bg-purple-900 hover:text-white transition justify-center "
+            className="!bg-yellow-400 p-2 sm:ml-4 ml-2 rounded-full h-10 w-10 sm:flex items-center group hover:!bg-purple-900 hover:text-white transition justify-center hidden "
           >
             <IconArrowNarrowLeft
               size={25}
@@ -34,11 +34,11 @@ const Hero = ({ slider }: Prop) => {
         renderCenterRightControls={({ nextSlide }) => (
           <Button
             onClick={() => nextSlide()}
-            className=" p-2 sm:mr-4 mr-2 rounded-full h-10 w-10 flex items-center group hover:!bg-purple-900 hover:text-white transition justify-center !bg-yellow-400"
+            className=" p-2 sm:mr-4 mr-2 rounded-full h-10 w-10 sm:flex items-center group hover:!bg-purple-900 hover:text-white transition justify-center !bg-yellow-400 hidden "
           >
             <IconArrowNarrowRight
               size={25}
-              className="group-hover:text-white text-purple-900 transition"
+              className="group-hover:text-white text-purple-900 transition "
             />
           </Button>
         )}
