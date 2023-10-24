@@ -86,7 +86,7 @@ export function HeaderMenu() {
   });
 
   return (
-    <header className="bg-purple-900 py-2 z-20 fixed inset-x-0 top-0">
+    <header className="bg-purple-900   py-2 z-20 fixed inset-x-0 top-0">
       <Container size="lg">
         <motion.div
           initial={{ opacity: 0, y: -50 }}

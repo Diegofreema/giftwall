@@ -18,7 +18,7 @@ const page = (props: Props) => {
           <MotionTitle
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: index * 0.3 }}
+            transition={{ duration: 0.3, delay: index * 0.3 }}
             key={index}
             className="!text-3xl block md:!text-6xl font-semibold   tracking-wider text-yellow-400"
           >
@@ -30,7 +30,7 @@ const page = (props: Props) => {
         <MotionImage
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.3 }}
           src={'/foundation.jpeg'}
           alt="img"
           fill

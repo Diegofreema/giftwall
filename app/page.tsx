@@ -10,7 +10,7 @@ export default async function Home() {
   return (
     <div className="font-bold text-8xl">
       <Hero slider={slider} />
-      <Services />
+      {/* <Services /> */}
       <Mission priorities={priorities} />
       <Submission />
     </div>

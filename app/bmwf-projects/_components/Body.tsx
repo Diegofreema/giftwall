@@ -19,7 +19,7 @@ const Body: React.FC<ProjectProps> = ({ project, videos }) => {
           <MotionImage
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.3 }}
             viewport={{ once: true }}
             src={item?.imgUrl}
             className="!w-full"
@@ -39,7 +39,7 @@ const Body: React.FC<ProjectProps> = ({ project, videos }) => {
           <motion.video
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.3 }}
             viewport={{ once: true }}
             key={i}
             width="100%"
@@ -61,7 +61,7 @@ const Body: React.FC<ProjectProps> = ({ project, videos }) => {
           <MotionTitle
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: index * 0.3 }}
+            transition={{ duration: 0.3, delay: index * 0.3 }}
             viewport={{ once: true }}
             key={index}
             className="!text-3xl md:!text-6xl font-semibold   tracking-wider text-yellow-400"

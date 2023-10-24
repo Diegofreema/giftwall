@@ -16,13 +16,20 @@ const Body: React.FC<PriorityProps> = ({ priorities }) => {
       <MotionGroup
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: index * 0.3 }}
+        transition={{ duration: 0.3, delay: index * 0.3 }}
+        viewport={{ once: true }}
         id={id}
         key={index}
         fw={'bold'}
-        className="!text-base md:!text-lg"
+        className="!text-base md:!text-lg "
       >
-        <Title>{item.heading}</Title>
+        <Title
+          ta={'center'}
+          mb="lg"
+          className="!text-center w-full !pt-[110px]"
+        >
+          {item.heading}
+        </Title>
         <Text>{item.description}</Text>
       </MotionGroup>
     );
@@ -34,10 +41,10 @@ const Body: React.FC<PriorityProps> = ({ priorities }) => {
           <MotionTitle
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: index * 0.3 }}
+            transition={{ duration: 0.3, delay: index * 0.3 }}
             viewport={{ once: true }}
             key={index}
-            className="!text-3xl md:!text-6xl font-semibold    tracking-wider text-yellow-400"
+            className="!text-3xl !text-center md:!text-6xl font-semibold    tracking-wider text-yellow-400"
           >
             {item}
           </MotionTitle>
@@ -47,7 +54,7 @@ const Body: React.FC<PriorityProps> = ({ priorities }) => {
         <MotionImage
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.3 }}
           src={'/j7.jpeg'}
           alt="img"
           fill
@@ -61,7 +68,7 @@ const Body: React.FC<PriorityProps> = ({ priorities }) => {
           <MotionGroup
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.3 }}
             gap={'md'}
             fw={'bold'}
             className="!text-base md:!text-lg space-y-3"

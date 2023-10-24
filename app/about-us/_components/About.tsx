@@ -16,7 +16,7 @@ const words = texts?.map((item, index) => (
   <MotionText
     initial={{ opacity: 0, y: 10 }}
     whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.7 }}
+    transition={{ duration: 0.3 }}
     viewport={{ once: true }}
     key={index}
     fw={'bold'}
@@ -35,7 +35,7 @@ const About = ({ goals, obj }: AboutProps) => {
           <MotionTitle
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: index * 0.3 }}
+            transition={{ duration: 0.3, delay: index * 0.3 }}
             viewport={{ once: true }}
             key={index}
             order={1}
@@ -48,13 +48,13 @@ const About = ({ goals, obj }: AboutProps) => {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 0.3 }}
         className="w-full h-[300px] relative bg-[#ebe9eb] overflow-hidden"
       >
         <MotionImage
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.3 }}
           src={'/foundation.jpeg'}
           alt="img"
           fill
@@ -67,7 +67,7 @@ const About = ({ goals, obj }: AboutProps) => {
         <MotionText
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.3 }}
           fw={700}
           mt={`lg`}
           className={
@@ -80,7 +80,7 @@ const About = ({ goals, obj }: AboutProps) => {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.3 }}
           className="w-[90%] sm:w-[80] md:w-[70%] mx-auto mt-8"
         >
           <Title
@@ -105,7 +105,7 @@ const About = ({ goals, obj }: AboutProps) => {
         <MotionTitle
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.3 }}
           ta={'center'}
           order={1}
           className="!text-5xl !mb-6"
@@ -118,7 +118,7 @@ const About = ({ goals, obj }: AboutProps) => {
           <MotionTitle
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.3 }}
             ta={'center'}
             order={1}
             className="!text-5xl !mb-6"

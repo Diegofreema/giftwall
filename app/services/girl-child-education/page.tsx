@@ -29,7 +29,7 @@ const video = youtube.map((item, index) => (
   <MotionGroup
     initial={{ opacity: 0, scale: 0.5 }}
     whileInView={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.7, delay: index * 0.3 }}
+    transition={{ duration: 0.3, delay: index * 0.3 }}
     viewport={{ once: true }}
     key={index}
   >
@@ -57,7 +57,7 @@ const Page = (props: Props) => {
           <MotionTitle
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: index * 0.3 }}
+            transition={{ duration: 0.3, delay: index * 0.3 }}
             key={index}
             order={1}
             className="!text-3xl md:!text-5xl  font-semibold   tracking-wider text-purple-900"
@@ -70,7 +70,7 @@ const Page = (props: Props) => {
         <MotionImage
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.3 }}
           src={'/j5.jpeg'}
           alt="img"
           fill
@@ -83,7 +83,7 @@ const Page = (props: Props) => {
           <motion.div
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.3 }}
           >
             <Img src={'/girl-child.png'} radius={10} />
           </motion.div>
@@ -91,7 +91,7 @@ const Page = (props: Props) => {
           <motion.div
             initial={{ opacity: 0, x: 10 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.3 }}
           >
             <Title order={4} ta={'center'} className="!text-purple-900">
               OUR ORGANIZATION PROMISE

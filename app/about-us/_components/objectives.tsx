@@ -12,7 +12,7 @@ export const Objective = ({
     <MotionGroup
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: index * 0.3 }}
+      transition={{ duration: 0.3, delay: index * 0.3 }}
       gap={'md'}
       key={index}
       className="!shadow-sm !shadow-black !rounded-md"

@@ -14,7 +14,7 @@ const Team: React.FC<TeamProps> = ({ team }) => {
     <MotionStack
       initial={{ opacity: 0, scale: 0 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.7 }}
+      transition={{ duration: 0.3 }}
       viewport={{ once: true }}
       align="center"
       key={index}
@@ -45,7 +45,7 @@ const Team: React.FC<TeamProps> = ({ team }) => {
           <MotionTitle
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: index * 0.3 }}
+            transition={{ duration: 0.3, delay: index * 0.3 }}
             viewport={{ once: true }}
             key={index}
             className="!text-3xl md:!text-6xl  font-semibold   tracking-wider text-yellow-400"
@@ -58,7 +58,7 @@ const Team: React.FC<TeamProps> = ({ team }) => {
         <MotionImage
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.3 }}
           src={'/j4.jpeg'}
           alt="img"
           fill

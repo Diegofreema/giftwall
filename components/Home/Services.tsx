@@ -17,7 +17,7 @@ const Services = (props: Props) => {
             {texts.map((item, index) => (
               <h1
                 key={index}
-                className="text-3xl md:text-6xl  font-semibold  mb-1 tracking-wider text-yellow-400"
+                className="text-3xl md:text-6xl text-center  font-semibold  mb-1 tracking-wider text-yellow-400"
               >
                 {item.split(' ').map((word, index) => (
                   <motion.span
@@ -34,7 +34,7 @@ const Services = (props: Props) => {
               </h1>
             ))}
           </div>
-          <div className="flex md:mt-20 space-y-3 flex-col md:flex-row mt-4 justify-between">
+          <div className="flex md:mt-20 space-y-3 items-center flex-col md:flex-row mt-4 justify-between">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -42,11 +42,11 @@ const Services = (props: Props) => {
               viewport={{ once: true }}
               className="flex md:flex-col"
             >
-              <p className="text-black font-medium text-sm ">One Goal,</p>
+              <p className="text-black font-bold text-sm ">One Mission, </p>
 
-              <p className="text-black font-medium text-sm ">
+              <p className="text-black font-bold text-sm ">
                 {' '}
-                Different Services
+                Diverse Initiatives
               </p>
             </motion.div>
 
@@ -55,7 +55,7 @@ const Services = (props: Props) => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="text-[#3E1273]  text-lg "
+              className="text-[#3E1273]  md:!text-2xl text-xl text-center md:text-right "
             >
               BEHIND MARYGIFT WALLS FOUNDATION
             </motion.p>

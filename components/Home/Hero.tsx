@@ -95,7 +95,7 @@ const Hero = ({ slider }: Prop) => {
       </div>
     );
   return (
-    <div className="  min-h-screen pb-[100px] overflow-hidden w-full text-white">
+    <div className="  min-h-screen  overflow-hidden w-full text-white">
       {sliders}
     </div>
   );

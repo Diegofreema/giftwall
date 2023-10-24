@@ -57,7 +57,7 @@ const Gallery = ({ images, videos }: GalleryProps) => {
           <MotionTitle
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: index * 0.3 }}
+            transition={{ duration: 0.3, delay: index * 0.3 }}
             key={index}
             className="!text-3xl md:!text-6xl font-semibold   tracking-wider text-yellow-400"
           >

@@ -41,13 +41,13 @@ const Mission = ({ priorities }: PriorityProps) => {
                 viewport={{ once: true }}
                 id="title"
                 key={index}
-                className="!text-3xl md:!text-6xl  font-semibold  mb-1 tracking-wider text-yellow-400"
+                className="!text-3xl md:!text-6xl  font-semibold !text-center  mb-1 tracking-wider text-yellow-400"
               >
                 {item}
               </MotionTitle>
             ))}
           </div>
-          <div className="flex md:mt-20 space-y-3 flex-col md:flex-row mt-4 justify-between">
+          <div className="flex md:mt-20 space-y-3 flex-col md:flex-row mt-4 items-center justify-between">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -55,9 +55,9 @@ const Mission = ({ priorities }: PriorityProps) => {
               viewport={{ once: true }}
               className="flex md:flex-col"
             >
-              <Text className="text-black font-medium ">Check Out</Text>
+              <Text className="text-black  font-semibold ">Check Out</Text>
 
-              <Text className="text-black font-medium ">Our Priorities</Text>
+              <Text className="text-black font-semibold ">Our Priorities</Text>
             </motion.div>
 
             <motion.div
@@ -66,10 +66,10 @@ const Mission = ({ priorities }: PriorityProps) => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <Text className="!text-[#3E1273]  md:!text-2xl ">
+              <Text className="!text-[#3E1273]  md:!text-2xl font-bold !text-center md:!text-right ">
                 BEHIND MARYGIFT WALLS FOUNDATION,
               </Text>
-              <Text className="!text-[#3E1273]  md:!text-2xl ">
+              <Text className="!text-[#3E1273]  md:!text-2xl font-bold !text-center md:!text-right">
                 A Reason To Help Teenage Girls And Women
               </Text>
             </motion.div>
