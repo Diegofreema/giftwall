@@ -8,7 +8,7 @@ import { Objective } from './objectives';
 import { Goal } from './goals';
 import { AboutProps } from '@/lib/types';
 
-const text = ['About Us'];
+const text = ['About us'];
 // @ts-ignore
 const MotionText = motion(Text);
 const words = texts?.map((item, index) => (
@@ -30,26 +30,11 @@ const MotionImage = motion(Image);
 const About = ({ goals, obj }: AboutProps) => {
   return (
     <div className="min-h-screen py-[120px]">
-      <Container my={'md'}>
-        {text.map((item, index) => (
-          <MotionTitle
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.3 }}
-            viewport={{ once: true }}
-            key={index}
-            order={1}
-            className="!text-3xl md:!text-7xl !mb-10 font-semibold   tracking-wider text-yellow-400"
-          >
-            {item}
-          </MotionTitle>
-        ))}
-      </Container>
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className="w-full h-[300px] relative bg-[#ebe9eb] overflow-hidden"
+        className="mx-auto h-[300px] relative bg-[#ebe9eb] w-[95%] overflow-hidden"
       >
         <MotionImage
           initial={{ opacity: 0, y: -10 }}
@@ -62,6 +47,21 @@ const About = ({ goals, obj }: AboutProps) => {
           className="!object-cover"
         />
       </motion.div>
+      <Container my={'md'}>
+        {text.map((item, index) => (
+          <MotionTitle
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: index * 0.3 }}
+            viewport={{ once: true }}
+            key={index}
+            order={1}
+            className="!text-3xl md:!text-7xl !mb-10 font-semibold !text-center   tracking-wider text-purple-900"
+          >
+            {item}
+          </MotionTitle>
+        ))}
+      </Container>
       <Container className="md:mt-[120px]">
         {/* @ts-ignore */}
         <MotionText
@@ -74,8 +74,8 @@ const About = ({ goals, obj }: AboutProps) => {
             '!text-yellow-400 md:!w-2/3 !mb-20 !text-lg sm:!text-xl md:!text-4xl lg:!text-5xl'
           }
         >
-          <span className="ml-16">With</span> its patrons, the Foundation works
-          for success of young girls, single moms and widows.
+          With its patrons, the Foundation works for success of young girls,
+          single moms and widows.
         </MotionText>
         <motion.div
           initial={{ opacity: 0 }}

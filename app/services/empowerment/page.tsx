@@ -33,7 +33,22 @@ const video = emp.map((item, index) => (
 const Page = (props: Props) => {
   return (
     <div className="min-h-screen py-[120px] ">
-      <Container my={'md'} className="!mb-10">
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        viewport={{ once: true }}
+        className="w-[90%] mx-auto h-[300px] relative bg-[#ebe9eb] overflow-hidden"
+      >
+        <Image
+          src={'/b6.jpeg'}
+          alt="img"
+          fill
+          priority
+          className="!object-fill"
+        />
+      </motion.div>
+      <Container my={'md'} className="!my-10">
         {text.map((item, index) => (
           <MotionTitle
             initial={{ opacity: 0, y: -10 }}
@@ -41,27 +56,12 @@ const Page = (props: Props) => {
             transition={{ duration: 0.3, delay: index * 0.3 }}
             key={index}
             order={1}
-            className="!text-3xl md:!text-5xl  font-semibold   tracking-wider text-purple-900"
+            className="!text-3xl md:!text-5xl text-center  font-semibold   tracking-wider text-purple-900"
           >
             {item}
           </MotionTitle>
         ))}
       </Container>
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-        viewport={{ once: true }}
-        className="w-full h-[300px] relative bg-[#ebe9eb] overflow-hidden"
-      >
-        <Image
-          src={'/b6.jpeg'}
-          alt="img"
-          fill
-          priority
-          className="!object-cover"
-        />
-      </motion.div>
       <Container>
         <div className="md:mt-[120px] !grid !grid-cols-1 mb-20 gap-14 sm:!grid-cols-2">
           <motion.div

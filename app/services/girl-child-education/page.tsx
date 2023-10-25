@@ -14,7 +14,7 @@ import Image from 'next/image';
 
 type Props = {};
 
-const text = ['Girl', 'Child', 'Education'];
+const text = ['Girl child education'];
 const MotionImage = motion(Image);
 const MotionTitle = motion(Title);
 const MotionBlockquote = motion(Blockquote);
@@ -52,21 +52,7 @@ const video = youtube.map((item, index) => (
 const Page = (props: Props) => {
   return (
     <div className="min-h-screen py-[120px] ">
-      <Container my={'md'} className="!mb-10">
-        {text.map((item, index) => (
-          <MotionTitle
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.3 }}
-            key={index}
-            order={1}
-            className="!text-3xl md:!text-5xl  font-semibold   tracking-wider text-purple-900"
-          >
-            {item}
-          </MotionTitle>
-        ))}
-      </Container>
-      <div className="w-full h-[400px] relative bg-[#ebe9eb] overflow-hidden">
+      <div className="w-[90%] mx-auto h-[400px] relative bg-[#ebe9eb] overflow-hidden">
         <MotionImage
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -78,6 +64,20 @@ const Page = (props: Props) => {
           className="!object-fill"
         />
       </div>
+      <Container my={'md'} className="!my-10">
+        {text.map((item, index) => (
+          <MotionTitle
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: index * 0.3 }}
+            key={index}
+            order={1}
+            className="!text-3xl md:!text-5xl text-center  font-semibold   tracking-wider text-purple-900"
+          >
+            {item}
+          </MotionTitle>
+        ))}
+      </Container>
       <Container>
         <div className="md:mt-[120px] !grid !grid-cols-1 mb-20 gap-10 sm:!grid-cols-2">
           <motion.div

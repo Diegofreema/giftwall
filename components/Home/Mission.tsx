@@ -1,29 +1,12 @@
 'use client';
 
-import React from 'react';
-
 import Link from 'next/link';
-import {
-  IconArrowMoveRight,
-  IconClover,
-  IconClubs,
-  IconFeather,
-  IconRosetteFilled,
-} from '@tabler/icons-react';
-import {
-  Button,
-  Card,
-  CardSection,
-  Container,
-  Group,
-  Text,
-  Title,
-} from '@mantine/core';
-import { serviceText } from '@/exports';
+import { IconArrowMoveRight, IconFeather } from '@tabler/icons-react';
+import { Button, Card, Container, Group, Text, Title } from '@mantine/core';
 import { motion } from 'framer-motion';
 import { PriorityProps } from '@/lib/types';
 
-const texts = ['Our', 'Priorities'];
+const texts = ['Our priorities'];
 const MotionTitle = motion(Title);
 // @ts-ignore
 const MotionCard = motion(Card);
@@ -85,8 +68,7 @@ const Mission = ({ priorities }: PriorityProps) => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{
                     delay: index * 0.3,
-                    ease: 'easeIn',
-                    mass: 0.5,
+                    duration: 0.3,
                   }}
                   viewport={{ once: true }}
                   key={index}
