@@ -1,6 +1,12 @@
 'use client';
 import { texts } from '@/exports';
-import { Blockquote, Container, Text, Title } from '@mantine/core';
+import {
+  Blockquote,
+  Container,
+  Text,
+  Title,
+  Image as Img,
+} from '@mantine/core';
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -36,15 +42,13 @@ const About = ({ goals, obj }: AboutProps) => {
         transition={{ duration: 0.3 }}
         className="mx-auto h-[300px] relative bg-[#ebe9eb] w-[95%] overflow-hidden"
       >
-        <MotionImage
-          initial={{ opacity: 0, y: -10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          src={'/foundation.jpeg'}
+        <Img
+          // initial={{ opacity: 0, y: -10 }}
+          // whileInView={{ opacity: 1, y: 0 }}
+          // transition={{ duration: 0.3 }}
+          src={'/j7.jpeg'}
           alt="img"
-          fill
-          priority
-          className="!object-cover"
+          fit="fill"
         />
       </motion.div>
       <Container my={'md'}>
