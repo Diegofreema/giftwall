@@ -1,5 +1,5 @@
 'use client';
-import { feed, texts } from '@/exports';
+import { feed, hygiene, texts } from '@/exports';
 import { Container, Text, Title, Image as Img, Group } from '@mantine/core';
 import { motion } from 'framer-motion';
 
@@ -8,9 +8,9 @@ import Image from 'next/image';
 type Props = {};
 const MotionGroup = motion(Group);
 const MotionTitle = motion(Title);
-const text = ['Good health for women'];
+const text = ['Elevating Confidence Through Personal and Menstrual Hygiene'];
 
-const video = feed.map((item, index) => (
+const video = hygiene.map((item, index) => (
   <MotionGroup
     initial={{ opacity: 0, scale: 0 }}
     whileInView={{ opacity: 1, scale: 1 }}
@@ -20,12 +20,11 @@ const video = feed.map((item, index) => (
     w={'100%'}
     h={'300px'}
   >
-    <iframe
-      width={'100%'}
-      height="300px"
+    <video
       src={item.url}
-      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    ></iframe>
+      className="h-[300px] w-[300px] rounded-md "
+      controls
+    ></video>
   </MotionGroup>
 ));
 
@@ -77,10 +76,7 @@ const Page = (props: Props) => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <Title order={2} ta={'center'} mb={10} className="!text-purple-900">
-              GOOD HEALTH FOR WOMEN
-            </Title>
-            <Text>
+            <Text fw={'bold'}>
               Behind Marygift Walls foundation cares for the health of women and
               girls. We are swayed that for women and girls to function to the
               optimum their health is very important. We have helped defray
@@ -91,6 +87,18 @@ const Page = (props: Props) => {
               Our team of experts are doing exceptionally well in this pursuit.
             </Text>
           </motion.div>
+        </div>
+      </Container>
+      <Container>
+        <Title
+          my={20}
+          className="!text-purple-900 !text-lg sm:!text-3xl"
+          ta={'center'}
+        >
+          Check out some of our videos{' '}
+        </Title>
+        <div className="grid !gap-4 place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-8">
+          {video}
         </div>
       </Container>
     </div>

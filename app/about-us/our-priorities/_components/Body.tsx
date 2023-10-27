@@ -1,14 +1,36 @@
 'use client';
 import { PriorityProps } from '@/lib/types';
-import { Container, Group, Text, Title } from '@mantine/core';
+import { Container, Group, Image, Text, Title } from '@mantine/core';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
-const text = ['Our', 'Priorities'];
-const MotionImage = motion(Image);
+const text = ['Our Priorities'];
+
 const MotionTitle = motion(Title);
 const MotionGroup = motion(Group);
 const Body: React.FC<PriorityProps> = ({ priorities }) => {
+  const images = (i: number) => {
+    let src = '';
+    if (i === 0) {
+      src = '/j3.jpeg';
+    } else if (i === 1) {
+      src = '/fd.png';
+    } else if (i === 2) {
+      src = '/j2.jpeg';
+    } else {
+      src = '/su.png';
+    }
+    return (
+      <Image
+        src={src}
+        alt="img"
+        w={'100%'}
+        h={'400px'}
+        fit="fill"
+        radius={'md'}
+      />
+    );
+  };
+
   const words = priorities?.map((item, index) => {
     const id = item?.url.split('#')[1];
 
@@ -30,13 +52,16 @@ const Body: React.FC<PriorityProps> = ({ priorities }) => {
         >
           {item.heading}
         </Title>
-        <Text>{item.description}</Text>
+        <div className="grid gap-y-6 grid-cols-1 ">
+          {images(index)}
+          <Text fw={'bold'}>{item.description}</Text>
+        </div>
       </MotionGroup>
     );
   });
   return (
     <div className="min-h-screen py-[130px]">
-      <div className="!w-[90%] mx-auto !mb-14">
+      <div className="!w-[90%] mx-auto">
         {text.map((item, index) => (
           <MotionTitle
             initial={{ opacity: 0, y: -20 }}
@@ -50,7 +75,7 @@ const Body: React.FC<PriorityProps> = ({ priorities }) => {
           </MotionTitle>
         ))}
       </div>
-      <div className="w-full h-[300px] overflow-hidden relative">
+      {/* <div className="w-full h-[300px] overflow-hidden relative">
         <MotionImage
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -61,9 +86,9 @@ const Body: React.FC<PriorityProps> = ({ priorities }) => {
           priority
           className="object-fill"
         />
-      </div>
+      </div> */}
       <Container>
-        <div className="grid grid-cols-1 space-y-6 mt-40">
+        <div className="grid grid-cols-1 space-y-6 mt-8">
           {words}
           <MotionGroup
             initial={{ opacity: 0, y: 10 }}
@@ -73,7 +98,7 @@ const Body: React.FC<PriorityProps> = ({ priorities }) => {
             fw={'bold'}
             className="!text-base md:!text-lg space-y-3"
           >
-            <Text>
+            <Text fw={'bold'}>
               {' '}
               Lack of income can lead to financial stress. Food assistance
               programs alleviate some of this burden by addressing a fundamental
@@ -82,7 +107,7 @@ const Body: React.FC<PriorityProps> = ({ priorities }) => {
               care and respect for their dignity, reinforcing their sense of
               belonging and worth within the community.
             </Text>
-            <Text>
+            <Text fw={'bold'}>
               Access to nutritious food supports overall health, reduces the
               risk of malnutrition-related health issues, and can help manage
               chronic conditions common among elderly individuals.These programs

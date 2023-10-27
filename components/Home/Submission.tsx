@@ -2,26 +2,27 @@
 
 import React from 'react';
 
-import { Container, Image, Text, Title } from '@mantine/core';
+import { Container, Text, Title } from '@mantine/core';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 type Props = {};
 
 const Submission = (props: Props) => {
   return (
     <div className="min-h-screen py-[50px]">
       <Container>
-        <div className="flex flex-col md:flex-row md:space-x-12 space-y-4 md:space-y-0 ">
+        <div className="flex flex-col md:flex-row md:space-x-12 items-center  space-y-4 md:space-y-0 ">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="md:basis-[50%] basis-[100%] w-full bg-black relative md:w-[300px]  rounded-md shadow-orange-50 shadow-md overflow-hidden h-full"
+            className="md:basis-[50%] basis-[100%] w-full bg-black relative md:w-[300px]  rounded-md shadow-orange-50 shadow-md overflow-hidden md:h-[600px] h-[300px]"
           >
             <Image
-              src={'/mission.png'}
+              src={'/a8.jpeg'}
               alt="mission-imag"
-              height={'100%'}
-              width={'100%'}
+              fill
+              priority
               className="object-cover"
             />
           </motion.div>

@@ -753,17 +753,7 @@ export const emp = [
     url: 'https://www.youtube.com/embed/PKVvI-dqZb0',
   },
 ];
-
-export const youtube = [
-  {
-    url: 'https://www.youtube.com/embed/7KZb6hZC-U0',
-  },
-  {
-    url: 'https://www.youtube.com/embed/3xK11XkiSoI',
-  },
-  {
-    url: 'https://www.youtube.com/embed/CAmLIB0BFKM',
-  },
+export const hygiene = [
   {
     url: '/vd3.mp4',
   },
@@ -782,6 +772,17 @@ export const youtube = [
   },
   {
     url: '/vd.mp4',
+  },
+];
+export const youtube = [
+  {
+    url: 'https://www.youtube.com/embed/7KZb6hZC-U0',
+  },
+  {
+    url: 'https://www.youtube.com/embed/3xK11XkiSoI',
+  },
+  {
+    url: 'https://www.youtube.com/embed/CAmLIB0BFKM',
   },
 ];
 

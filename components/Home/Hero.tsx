@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@mantine/core';
+import { Button, Image } from '@mantine/core';
 import { IconArrowNarrowLeft, IconArrowNarrowRight } from '@tabler/icons-react';
 import Carousel from 'nuka-carousel';
 import { motion } from 'framer-motion';
@@ -48,22 +48,23 @@ const Hero = ({ slider }: Prop) => {
             <>
               <div className="w-full h-full absolute inset-0 bg-black/70"></div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={item?.imgUrl}
                 alt="img"
                 width={'100%'}
                 height={'100%'}
-                className="w-full h-full object-cover"
+                fit="fill"
+                className="w-full h-full object-fill"
               />
               <div className="absolute !top-[50%] !left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <h1 className="text-xl md:text-6xl text-center mb-4 sm:mb-8 md:mb-16 sm:text-4xl font-bold">
+                <h1 className="text-3xl   md:text-5xl text-center w-full  mb-4 sm:mb-8 md:mb-16 sm:text-4xl font-bold">
                   {item?.heading?.split(' ').map((word, index) => (
                     <motion.span
                       initial={{ opacity: 0, x: 40, y: -30, skewX: 40 }}
                       whileInView={{ opacity: 1, x: 0, y: 0, skewX: 0 }}
                       transition={{ duration: 0.3, delay: 0.3 * index }}
                       viewport={{ once: true }}
-                      className="inline-block"
+                      className="inline-block "
                       key={index}
                     >
                       {word}&nbsp;

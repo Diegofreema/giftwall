@@ -33,19 +33,11 @@ const video = youtube.map((item, index) => (
     viewport={{ once: true }}
     key={index}
   >
-    {item.url.startsWith('https') ? (
-      <iframe
-        src={item.url}
-        className="h-[300px] w-[300px] rounded-md "
-        allowFullScreen
-      ></iframe>
-    ) : (
-      <video
-        src={item.url}
-        className="h-[300px] w-[300px] rounded-md "
-        controls
-      ></video>
-    )}
+    <iframe
+      src={item.url}
+      className="h-[300px] w-[300px] rounded-md "
+      allowFullScreen
+    ></iframe>
   </MotionGroup>
 ));
 
