@@ -56,12 +56,13 @@ const Hero = ({ slider }: Prop) => {
                 className="w-full h-full object-cover"
               />
               <div className="absolute !top-[50%] !left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <h1 className="text-xl md:text-7xl text-center mb-4 sm:mb-8 md:mb-16 sm:text-4xl font-bold">
+                <h1 className="text-xl md:text-6xl text-center mb-4 sm:mb-8 md:mb-16 sm:text-4xl font-bold">
                   {item?.heading?.split(' ').map((word, index) => (
                     <motion.span
                       initial={{ opacity: 0, x: 40, y: -30, skewX: 40 }}
                       whileInView={{ opacity: 1, x: 0, y: 0, skewX: 0 }}
                       transition={{ duration: 0.5, delay: 0.5 * index }}
+                      viewport={{ once: true }}
                       className="inline-block"
                       key={index}
                     >
@@ -75,6 +76,7 @@ const Hero = ({ slider }: Prop) => {
                       initial={{ opacity: 0, x: -10, y: 10 }}
                       whileInView={{ opacity: 1, x: 0, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.5 * index }}
+                      viewport={{ once: true }}
                       className="inline-block"
                       key={index}
                     >

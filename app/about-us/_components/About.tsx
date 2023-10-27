@@ -1,14 +1,7 @@
 'use client';
 import { texts } from '@/exports';
-import {
-  Blockquote,
-  Container,
-  Text,
-  Title,
-  Image as Img,
-} from '@mantine/core';
+import { Blockquote, Container, Text, Title, Image } from '@mantine/core';
 
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Objective } from './objectives';
 import { Goal } from './goals';
@@ -32,7 +25,7 @@ const words = texts?.map((item, index) => (
   </MotionText>
 ));
 const MotionTitle = motion(Title);
-const MotionImage = motion(Image);
+
 const About = ({ goals, obj }: AboutProps) => {
   return (
     <div className="min-h-screen py-[120px]">
@@ -42,14 +35,7 @@ const About = ({ goals, obj }: AboutProps) => {
         transition={{ duration: 0.3 }}
         className="mx-auto h-[300px] relative bg-[#ebe9eb] w-[95%] overflow-hidden"
       >
-        <Img
-          // initial={{ opacity: 0, y: -10 }}
-          // whileInView={{ opacity: 1, y: 0 }}
-          // transition={{ duration: 0.3 }}
-          src={'/j7.jpeg'}
-          alt="img"
-          fit="fill"
-        />
+        <Image src={'/j7.jpeg'} alt="img" fit="fill" />
       </motion.div>
       <Container my={'md'}>
         {text.map((item, index) => (
