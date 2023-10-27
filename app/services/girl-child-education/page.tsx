@@ -77,7 +77,7 @@ const Page = (props: Props) => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <Img src={'/girl-child.png'} radius={10} />
+            <Img src={'/girl-child.jpeg'} radius={10} />
           </motion.div>
 
           <motion.div

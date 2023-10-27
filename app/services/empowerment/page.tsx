@@ -45,7 +45,7 @@ const Page = (props: Props) => {
           alt="img"
           fill
           priority
-          className="!object-fill"
+          className="!object-cover"
         />
       </motion.div>
       <Container my={'md'} className="!my-10">
@@ -70,7 +70,7 @@ const Page = (props: Props) => {
             transition={{ duration: 0.3 }}
             viewport={{ once: true }}
           >
-            <Img src={'/emp.png'} radius={10} fit="cover" />
+            <Img src={'/empw.jpeg'} radius={10} fit="cover" />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, x: 15 }}

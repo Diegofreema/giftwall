@@ -68,7 +68,7 @@ const Page = (props: Props) => {
             transition={{ duration: 0.3 }}
             viewport={{ once: true }}
           >
-            <Img src={'/image-35.png'} radius={10} fit="cover" />
+            <Img src={'/hy.jpeg'} radius={10} fit="cover" />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, x: 15 }}
