@@ -41,7 +41,7 @@ const Page = (props: Props) => {
         className="w-[90%] mx-auto h-[300px] relative bg-[#ebe9eb] overflow-hidden"
       >
         <Image
-          src={'/w9.jpeg'}
+          src={'/itt.jpeg'}
           alt="img"
           fill
           priority
