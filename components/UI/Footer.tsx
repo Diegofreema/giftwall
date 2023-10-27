@@ -88,6 +88,7 @@ const Footer = () => {
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
         >
           © {year} All rights reserved.
         </motion.p>
@@ -95,6 +96,7 @@ const Footer = () => {
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
           className="text-center"
         >
           BEHIND MARYGIFT WALLS FOUNDATION
