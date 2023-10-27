@@ -61,7 +61,7 @@ const Hero = ({ slider }: Prop) => {
                     <motion.span
                       initial={{ opacity: 0, x: 40, y: -30, skewX: 40 }}
                       whileInView={{ opacity: 1, x: 0, y: 0, skewX: 0 }}
-                      transition={{ duration: 0.5, delay: 0.5 * index }}
+                      transition={{ duration: 0.3, delay: 0.3 * index }}
                       viewport={{ once: true }}
                       className="inline-block"
                       key={index}
@@ -75,7 +75,7 @@ const Hero = ({ slider }: Prop) => {
                     <motion.span
                       initial={{ opacity: 0, x: -10, y: 10 }}
                       whileInView={{ opacity: 1, x: 0, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.5 * index }}
+                      transition={{ duration: 0.3, delay: 0.3 * index }}
                       viewport={{ once: true }}
                       className="inline-block"
                       key={index}
