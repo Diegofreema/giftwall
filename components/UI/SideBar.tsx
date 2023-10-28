@@ -20,6 +20,10 @@ const link = [
         label: 'Our priorities',
         link: '/about-us/our-priorities',
       },
+      {
+        label: 'Food Outreach',
+        link: '/services/food-outreach',
+      },
     ],
   },
   {

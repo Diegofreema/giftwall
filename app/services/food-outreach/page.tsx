@@ -8,7 +8,7 @@ import Image from 'next/image';
 type Props = {};
 const MotionGroup = motion(Group);
 const MotionTitle = motion(Title);
-const text = ['Operation Feed the Hungry'];
+const text = ['Food outreach'];
 const words = texts?.map((item, index) => (
   <Text key={index} fw={'bold'} className="!text-base md:!text-lg">
     {item}
@@ -37,6 +37,21 @@ const video = feed.map((item, index) => (
 const Page = (props: Props) => {
   return (
     <div className="min-h-screen py-[120px] ">
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        viewport={{ once: true }}
+        className="w-[90%] mx-auto h-[300px] relative bg-[#ebe9eb] overflow-hidden"
+      >
+        <Image
+          src={'/foodo.jpeg'}
+          alt="img"
+          fill
+          priority
+          className="!object-fill"
+        />
+      </motion.div>
       <Container my={'md'} className="!mb-10">
         {text.map((item, index) => (
           <MotionTitle
@@ -45,27 +60,12 @@ const Page = (props: Props) => {
             transition={{ duration: 0.3, delay: index * 0.3 }}
             key={index}
             order={1}
-            className="!text-3xl md:!text-7xl  font-semibold   tracking-wider text-purple-900"
+            className="!text-3xl md:!text-7xl text-center  font-semibold   tracking-wider text-purple-900"
           >
             {item}
           </MotionTitle>
         ))}
       </Container>
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-        viewport={{ once: true }}
-        className="w-full h-[300px] relative bg-[#ebe9eb] overflow-hidden"
-      >
-        <Image
-          src={'/o2.jpeg'}
-          alt="img"
-          fill
-          priority
-          className="!object-fill"
-        />
-      </motion.div>
       <Container>
         <div className="md:mt-[120px] !grid !grid-cols-1 mb-20 gap-10 sm:!grid-cols-2">
           <motion.div
@@ -74,7 +74,7 @@ const Page = (props: Props) => {
             transition={{ duration: 0.3 }}
             viewport={{ once: true }}
           >
-            <Img src={'/food3.jpeg'} radius={10} fit="cover" />
+            <Img src={'/f.jpeg'} radius={10} fit="cover" />
           </motion.div>
 
           <motion.div
