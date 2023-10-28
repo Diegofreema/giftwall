@@ -44,7 +44,7 @@ const video = youtube.map((item, index) => (
 const Page = (props: Props) => {
   return (
     <div className="min-h-screen py-[120px] ">
-      <div className="w-[90%] mx-auto h-[400px] relative bg-[#ebe9eb] overflow-hidden">
+      <div className="w-[90%] mx-auto md:h-[300px] h-[150px] relative bg-[#ebe9eb] overflow-hidden">
         <MotionImage
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
