@@ -66,13 +66,15 @@ const Posts: NextPage<Props> = ({}) => {
         <Button
           className="border bg-black p-2 rounded-md inline-block  text-white"
           onClick={() => setPage((old) => Math.max(old - 1, 0))}
-          disabled={page === 0}
+          disabled={isFetching || page === 0}
         >
           Previous Page
         </Button>{' '}
         <Button
           className="border bg-black p-2 rounded-md inline-block text-white"
-          disabled={Array.isArray(data) && data.length < maxPostsPerPage}
+          disabled={
+            isFetching || (Array.isArray(data) && data.length < maxPostsPerPage)
+          }
           onClick={() => {
             setPage((old) => old + 1);
           }}
