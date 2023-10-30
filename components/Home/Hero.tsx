@@ -53,7 +53,6 @@ const Hero = ({ slider }: Prop) => {
                 alt="img"
                 width={'100%'}
                 height={'100%'}
-                fit="fill"
                 className="w-full h-full object-fill"
               />
               <div className="absolute !top-[50%] !left-1/2 -translate-x-1/2 -translate-y-1/2">
