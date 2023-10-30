@@ -38,7 +38,7 @@ const Faq = () => {
             viewport={{ once: true }}
             key={index}
             order={1}
-            className="!text-xl md:!text-4xl  font-semibold   tracking-wider text-purple-900"
+            className="!text-3xl md:!text-7xl !mb-10 font-semibold !text-center   tracking-wider text-purple-900"
           >
             {item}
           </MotionTitle>

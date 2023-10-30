@@ -56,7 +56,7 @@ const Page = (props: Props) => {
             transition={{ duration: 0.3, delay: index * 0.3 }}
             key={index}
             order={1}
-            className="!text-3xl md:!text-5xl text-center  font-semibold   tracking-wider text-purple-900"
+            className="!text-3xl md:!text-7xl !mb-10 font-semibold !text-center   tracking-wider text-purple-900"
           >
             {item}
           </MotionTitle>

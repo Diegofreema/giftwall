@@ -63,6 +63,10 @@ export const links = [
     label: 'FAQ',
     link: '/faq',
   },
+  {
+    label: 'Blog',
+    link: '/blog',
+  },
 ];
 
 export const images = [

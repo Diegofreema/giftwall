@@ -69,7 +69,7 @@ const Body: React.FC<PriorityProps> = ({ priorities }) => {
             transition={{ duration: 0.3, delay: index * 0.3 }}
             viewport={{ once: true }}
             key={index}
-            className="!text-3xl !text-center md:!text-6xl font-semibold    tracking-wider text-yellow-400"
+            className="!text-3xl md:!text-7xl !mb-10 font-semibold !text-center   tracking-wider text-purple-900"
           >
             {item}
           </MotionTitle>

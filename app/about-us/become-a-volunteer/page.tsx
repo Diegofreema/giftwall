@@ -32,7 +32,7 @@ const page = (props: Props) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.3 }}
             key={index}
-            className="!text-3xl block md:!text-6xl font-semibold text-center   tracking-wider text-purple-900"
+            className="!text-3xl md:!text-7xl !mb-10 font-semibold !text-center   tracking-wider text-purple-900"
           >
             {item}
           </MotionTitle>

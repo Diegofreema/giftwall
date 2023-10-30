@@ -61,6 +61,10 @@ const link = [
     label: 'FAQ',
     link: '/faq',
   },
+  {
+    label: 'Blog',
+    link: '/blog',
+  },
 ];
 
 export function SideMenu({ close }: { close: () => void }) {

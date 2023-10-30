@@ -46,7 +46,6 @@ const Hero = ({ slider }: Prop) => {
         {slider.map((item) => (
           <div key={item?.imgUrl} className="w-full !h-[100vh] relative">
             <>
-              <div className="w-full h-full absolute inset-0 bg-black/70"></div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <Image
                 src={item?.imgUrl}

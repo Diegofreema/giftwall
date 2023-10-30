@@ -12,6 +12,7 @@ import Footer from '@/components/UI/Footer';
 import Provider from '@/components/Provider';
 import { Toaster } from '@/components/UI/toaster';
 import { CrispProvider } from '@/components/Crisp/CrispProvider';
+import { cn } from '@/lib/utils';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -36,7 +37,7 @@ export default function RootLayout({
           ></script>
         )}
       </head>
-      <body className={inter.className}>
+      <body className={cn(inter.className, 'min-h-screen')}>
         <Provider>
           <MantineProvider>
             <CrispProvider />
