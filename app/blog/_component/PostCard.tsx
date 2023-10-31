@@ -63,7 +63,9 @@ const PostCard: FC<Props> = ({
           </div>
           <CardDescription className="flex justify-between items-center p-4">
             {tags.map((tag, index) => (
-              <span key={index}>#{tag}</span>
+              <span key={index} className="text-ellipsis">
+                #{tag}
+              </span>
             ))}
             <p>{formattedDate}</p>
           </CardDescription>

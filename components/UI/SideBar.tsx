@@ -51,6 +51,10 @@ const link = [
         label: 'Good Health For Women',
         link: '/services/good-health-for-women',
       },
+      {
+        label: 'Food Outreach',
+        link: '/services/food-outreach',
+      },
     ],
   },
   {
