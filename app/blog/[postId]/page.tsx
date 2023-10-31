@@ -9,17 +9,6 @@ import parse from 'html-react-parser';
 import Image from 'next/image';
 interface Props {}
 
-export async function generateStaticParams() {
-  const posts = await fetchAllPosts();
-
-  const blogPostId =
-    Array.isArray(posts) &&
-    posts.map(({ id }: { id: string }) => ({
-      postId: id,
-    }));
-
-  return blogPostId;
-}
 const SinglePost: NextPage<Props> = ({}): JSX.Element => {
   const params = useParams();
   console.log(params);
