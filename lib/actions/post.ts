@@ -26,9 +26,9 @@ export async function fetchSinglePost(id: string) {
     return { message: 'Failed to Fetch Post' };
   }
 }
-export async function fetchAllPosts(pageNo: number) {
+export async function fetchAllPosts(pageNo?: number) {
   const limit = 10;
-  const skip = pageNo * limit;
+  const skip = pageNo || 0 * limit;
   try {
     connectToDB();
 

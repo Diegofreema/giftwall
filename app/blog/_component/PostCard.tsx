@@ -74,7 +74,9 @@ const PostCard: FC<Props> = ({
           <h3 className="font-semibold first-letter:capitalize">
             {trimText(post?.title, 20)}
           </h3>
-          <p className="first-letter:capitalize">{trimText(post?.meta, 70)}</p>
+          <span className="first-letter:capitalize">
+            {trimText(post?.meta, 70)}
+          </span>
         </CardContent>
       </Link>
     </Card>

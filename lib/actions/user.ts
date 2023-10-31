@@ -14,6 +14,7 @@ import Video from '../model/video';
 import { Slider } from '../types';
 import ProjectVideo from '../model/projectVideos';
 import EventModel from '../model/event';
+import ev from '../model/ev';
 
 export type volunteer = {
   email: string;
@@ -76,17 +77,37 @@ export const getSlider = async () => {
 export const getEvents = async () => {
   try {
     connectToDB();
-    const events = await EventModel.find();
+    const events = await ev.find();
     const safeEvents = events?.map((event) => {
       return {
         name: event?.name,
         imgUrl: event?.imgUrl,
         description: event?.description,
         venue: event?.venue,
-        date: event?.date,
+        startDate: event?.startDate.toString(),
+        endDate: event?.enDate.toString(),
+        id: event?._id.toString(),
       };
     });
     return safeEvents;
+  } catch (error: any) {
+    throw new Error(`Failed to get events: ${error?.message}`);
+  }
+};
+
+export const getSingleEvent = async (id: string) => {
+  try {
+    connectToDB();
+    const event = await ev.findById({ _id: id });
+
+    return {
+      name: event?.name,
+      imgUrl: event?.imgUrl,
+      description: event?.description,
+      venue: event?.venue,
+      startDate: event?.startDate.toString(),
+      endDate: event?.enDate.toString(),
+    };
   } catch (error: any) {
     throw new Error(`Failed to get events: ${error?.message}`);
   }

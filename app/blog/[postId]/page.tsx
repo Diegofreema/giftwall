@@ -1,5 +1,5 @@
 'use client';
-import { fetchSinglePost } from '@/lib/actions/post';
+import { fetchAllPosts, fetchSinglePost } from '@/lib/actions/post';
 import { useQuery } from '@tanstack/react-query';
 import { NextPage } from 'next';
 import Head from 'next/head';
@@ -9,6 +9,17 @@ import parse from 'html-react-parser';
 import Image from 'next/image';
 interface Props {}
 
+export async function generateStaticParams() {
+  const posts = await fetchAllPosts();
+
+  const blogPostId =
+    Array.isArray(posts) &&
+    posts.map(({ id }: { id: string }) => ({
+      postId: id,
+    }));
+
+  return blogPostId;
+}
 const SinglePost: NextPage<Props> = ({}): JSX.Element => {
   const params = useParams();
   console.log(params);
