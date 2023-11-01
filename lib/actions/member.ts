@@ -4,10 +4,8 @@ import User, { IUser } from '../model/user';
 import { connectToDB } from '../mongoose';
 
 export const createUser = async (value: IUser) => {
-  const { userId } = auth();
-  if (!userId) return { message: 'User not authenticated' };
-  connectToDB();
   try {
+    connectToDB();
     const user = await User.create({
       ...value,
     });
@@ -19,10 +17,8 @@ export const createUser = async (value: IUser) => {
 };
 
 export const getUser = async (id: string) => {
-  const { userId } = auth();
-  if (!userId) return { message: 'User not authenticated' };
-  connectToDB();
   try {
+    connectToDB();
     const user = await User.findOne({ userId: id });
 
     if (!user) return { message: 'User not found' };
