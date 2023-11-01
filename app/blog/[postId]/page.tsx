@@ -43,6 +43,13 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
     placeholderData: (previousData, previousQuery) =>
       previousData || placeholderData,
   });
+  if (isFetching) {
+    return (
+      <div className="min-h-screen w-[90%]  mx-auto sm:w-[70%] py-[100px] flex items-center justify-center">
+        Loading...
+      </div>
+    );
+  }
 
   if (error) {
     return (

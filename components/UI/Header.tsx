@@ -112,7 +112,7 @@ export function HeaderMenu() {
             </Button>
           </Group>
           <SignedIn>
-            <UserButton />
+            <UserButton afterSignOutUrl="/" />
           </SignedIn>
           <SignedOut>
             <SignInButton>

@@ -1,12 +1,16 @@
-import React from 'react';
+'use client';
 import { useEditor, EditorContent } from '@tiptap/react';
 import Placeholder from '@tiptap/extension-placeholder';
 import StarterKit from '@tiptap/starter-kit';
 import { Button } from '@mantine/core';
+import { useUser } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation';
 
 type Props = {};
 
 const CommentForm = (props: Props) => {
+  const { user } = useUser();
+  const router = useRouter();
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -21,6 +25,12 @@ const CommentForm = (props: Props) => {
       },
     },
   });
+  const handleSubmit = () => {
+    if (!user) {
+      router.push('/sign-in/[[...sign-in]]');
+    }
+    console.log('submit');
+  };
   return (
     <div>
       {' '}
@@ -29,7 +39,9 @@ const CommentForm = (props: Props) => {
         editor={editor}
         className="!min-h-[200px] border-2 border-gray-400 rounded-md p-2"
       />
-      <Button className="mt-5 !bg-purple-900 ">Submit</Button>
+      <Button onClick={handleSubmit} className="mt-5 !bg-purple-900 ">
+        Submit
+      </Button>
     </div>
   );
 };
