@@ -27,7 +27,7 @@ const CommentForm = (props: Props) => {
   });
   const handleSubmit = () => {
     if (!user) {
-      router.push('/sign-in/[[...sign-in]]');
+      router.push('/sign-in');
     }
     console.log('submit');
   };
