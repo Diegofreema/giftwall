@@ -1,4 +1,4 @@
-import { IComment } from './model/comment';
+import { IComment } from './model/comm';
 
 export type replyToComments = CommentResponse[];
 

@@ -54,7 +54,7 @@ const Comment = ({ belongsTo }: Props) => {
 
       toast({
         variant: 'success',
-        title: 'Comment added',
+        title: 'Comment sent',
       });
     },
   });
