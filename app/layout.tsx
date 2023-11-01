@@ -38,17 +38,15 @@ export default function RootLayout({
         )}
       </head>
       <body className={cn(inter.className, 'min-h-screen ')}>
-        <ClerkProvider>
-          <Provider>
-            <MantineProvider>
-              <CrispProvider />
-              <HeaderMenu />
-              {children}
-              <Footer />
-              <Toaster />
-            </MantineProvider>
-          </Provider>
-        </ClerkProvider>
+        <Provider>
+          <MantineProvider>
+            <CrispProvider />
+            <HeaderMenu />
+            {children}
+            <Footer />
+            <Toaster />
+          </MantineProvider>
+        </Provider>
       </body>
     </html>
   );

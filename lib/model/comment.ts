@@ -1,6 +1,6 @@
 import { Schema, ObjectId, model, models, Model } from 'mongoose';
 
-interface IComment {
+export interface IComment {
   _id: ObjectId;
 
   owner: ObjectId;

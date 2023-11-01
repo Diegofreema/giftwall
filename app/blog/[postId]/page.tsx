@@ -1,14 +1,14 @@
 'use client';
-import { fetchAllPosts, fetchSinglePost } from '@/lib/actions/post';
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { fetchSinglePost } from '@/lib/actions/post';
+import { useQuery } from '@tanstack/react-query';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { useParams } from 'next/navigation';
 import dateFormat from 'dateformat';
 import parse from 'html-react-parser';
 import Image from 'next/image';
-import CommentForm from '@/components/CommentForm';
 import { useMemo } from 'react';
+import Comment from '@/components/Comment';
 interface Props {}
 interface Post {
   message: string;
@@ -92,7 +92,7 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
           {post?.content && parse(post?.content)}
         </div>
       </div>
-      <CommentForm />
+      <Comment belongsTo={post?.id} />
     </div>
   );
 };

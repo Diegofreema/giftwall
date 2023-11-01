@@ -111,16 +111,7 @@ export function HeaderMenu() {
               Support Us
             </Button>
           </Group>
-          <SignedIn>
-            <UserButton afterSignOutUrl="/" />
-          </SignedIn>
-          <SignedOut>
-            <SignInButton>
-              <Button className="" rightSection={<IconLogin2 size={20} />}>
-                Sign in
-              </Button>
-            </SignInButton>
-          </SignedOut>
+
           <MobileHeader />
         </motion.div>
       </Container>

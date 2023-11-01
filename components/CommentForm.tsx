@@ -6,9 +6,12 @@ import { Button } from '@mantine/core';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 
-type Props = {};
+type Props = {
+  onSubmit: (value: string) => void;
+  busy?: boolean;
+};
 
-const CommentForm = (props: Props) => {
+const CommentForm = ({ onSubmit, busy }: Props) => {
   const { user } = useUser();
   const router = useRouter();
   const editor = useEditor({
@@ -26,10 +29,15 @@ const CommentForm = (props: Props) => {
     },
   });
   const handleSubmit = () => {
-    if (!user) {
-      router.push('/sign-in');
+    if (editor && !busy) {
+      const value = editor?.getHTML();
+      if (value === '<p></p>') {
+        console.log('empty');
+
+        return;
+      }
+      onSubmit(value);
     }
-    console.log('submit');
   };
   return (
     <div>
@@ -39,7 +47,11 @@ const CommentForm = (props: Props) => {
         editor={editor}
         className="!min-h-[200px] border-2 border-gray-400 rounded-md p-2"
       />
-      <Button onClick={handleSubmit} className="mt-5 !bg-purple-900 ">
+      <Button
+        disabled={busy}
+        onClick={handleSubmit}
+        className="mt-5 !bg-purple-900 "
+      >
         Submit
       </Button>
     </div>
