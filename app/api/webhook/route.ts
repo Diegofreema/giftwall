@@ -51,7 +51,7 @@ export const POST = async (request: Request) => {
   const eventType: EventType = evnt?.type!;
 
   if (eventType === 'user.created') {
-    const { id, logo_image_url, name } = evnt?.data ?? {};
+    const { id, image_url, first_name, last_name } = evnt?.data ?? {};
     const { user } = auth();
     if (!user) {
       return NextResponse.json({ message: 'User not found' }, { status: 404 });
@@ -62,10 +62,10 @@ export const POST = async (request: Request) => {
     try {
       // @ts-ignore
       await createUser({
-        userId: user?.id,
-        name: `${user?.firstName} ${user?.lastName}`,
+        userId: id as string,
+        name: `${first_name} ${last_name}`,
         role: 'user',
-        avatarUrl,
+        avatarUrl: image_url as string,
       });
 
       return NextResponse.json({ message: 'User created' }, { status: 201 });
