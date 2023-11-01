@@ -7,6 +7,7 @@ import { useParams } from 'next/navigation';
 import dateFormat from 'dateformat';
 import parse from 'html-react-parser';
 import Image from 'next/image';
+import CommentForm from '@/components/CommentForm';
 interface Props {}
 
 const SinglePost: NextPage<Props> = ({}): JSX.Element => {
@@ -73,6 +74,7 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
           {post?.content && parse(post?.content)}
         </div>
       </div>
+      <CommentForm />
     </div>
   );
 };

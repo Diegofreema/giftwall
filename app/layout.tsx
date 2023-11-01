@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-
+import { ClerkProvider } from '@clerk/nextjs';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
@@ -37,16 +37,18 @@ export default function RootLayout({
           ></script>
         )}
       </head>
-      <body className={cn(inter.className, 'min-h-screen')}>
-        <Provider>
-          <MantineProvider>
-            <CrispProvider />
-            <HeaderMenu />
-            {children}
-            <Footer />
-            <Toaster />
-          </MantineProvider>
-        </Provider>
+      <body className={cn(inter.className, 'min-h-screen ')}>
+        <ClerkProvider>
+          <Provider>
+            <MantineProvider>
+              <CrispProvider />
+              <HeaderMenu />
+              {children}
+              <Footer />
+              <Toaster />
+            </MantineProvider>
+          </Provider>
+        </ClerkProvider>
       </body>
     </html>
   );

@@ -1,8 +1,13 @@
 'use client';
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import { twMerge } from 'tailwind-merge';
 import { Menu, Group, Center, Button, Container, Avatar } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconChevronDown, IconHeartHandshake } from '@tabler/icons-react';
+import {
+  IconChevronDown,
+  IconHeartHandshake,
+  IconLogin2,
+} from '@tabler/icons-react';
 import Link from 'next/link';
 
 import { links } from '@/exports';
@@ -106,6 +111,16 @@ export function HeaderMenu() {
               Support Us
             </Button>
           </Group>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          <SignedOut>
+            <SignInButton>
+              <Button className="" rightSection={<IconLogin2 size={20} />}>
+                Sign in
+              </Button>
+            </SignInButton>
+          </SignedOut>
           <MobileHeader />
         </motion.div>
       </Container>
