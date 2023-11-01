@@ -15,7 +15,7 @@ import { auth } from '@clerk/nextjs';
 
 // Resource: https://clerk.com/docs/integration/webhooks#supported-events
 // Above document lists the supported events
-type EventType = 'email.created' | 'session.created';
+type EventType = 'user.created' | 'session.created';
 
 type Event = {
   data: Record<string, string | number | Record<string, string>[]>;
@@ -50,7 +50,7 @@ export const POST = async (request: Request) => {
 
   const eventType: EventType = evnt?.type!;
 
-  if (eventType === 'email.created') {
+  if (eventType === 'user.created') {
     const { id, logo_image_url, name } = evnt?.data ?? {};
     const { user } = auth();
     if (!user) {
