@@ -111,13 +111,13 @@ export function HeaderMenu() {
               Support Us
             </Button>
           </Group>
-          <div className="flex space-x-3">
+          <div className="flex !-space-x-3 items-center">
             <SignedIn>
               <UserButton afterSignOutUrl="/" />
             </SignedIn>
             <SignedOut>
               <SignInButton>
-                <div className="flex items-center space-x-4 text-white">
+                <div className="flex items-center space-x-2 text-white">
                   <span>Sign in</span> <IconLogin2 />
                 </div>
               </SignInButton>
