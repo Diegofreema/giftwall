@@ -18,6 +18,7 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
     data: post,
     isFetching,
     error,
+    isPlaceholderData,
   } = useQuery({
     queryKey: ['post'],
     queryFn: async () => {
