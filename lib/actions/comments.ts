@@ -14,6 +14,7 @@ export const createComment = async (
   const { user } = auth();
   if (!user) return { message: 'User not authenticated' };
   connectToDB();
+  console.log(content, ownerId, postId);
 
   try {
     const post = await Post.findById({ _id: postId });

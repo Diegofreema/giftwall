@@ -43,6 +43,7 @@ const CommentForm = ({ onSubmit, busy }: Props) => {
         return;
       }
       onSubmit(value);
+      editor?.commands.setContent('<p></p>');
     }
   };
   return (

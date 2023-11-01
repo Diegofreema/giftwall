@@ -36,6 +36,8 @@ const Comment = ({ belongsTo }: Props) => {
         });
         return;
       }
+      console.log(value, user?.id, belongsTo);
+
       const comment = await createComment(value, user?.id as any, belongsTo);
       console.log(comment);
 
