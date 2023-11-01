@@ -10,6 +10,9 @@ export default authMiddleware({
     '/blog',
     '/event',
     '/blog/(.*)',
+    '/event/(.*)',
+    '/api/webhook',
+    '/services/(.*)',
   ],
 });
 

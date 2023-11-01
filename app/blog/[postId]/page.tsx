@@ -1,6 +1,6 @@
 'use client';
 import { fetchAllPosts, fetchSinglePost } from '@/lib/actions/post';
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { useParams } from 'next/navigation';
@@ -8,32 +8,42 @@ import dateFormat from 'dateformat';
 import parse from 'html-react-parser';
 import Image from 'next/image';
 import CommentForm from '@/components/CommentForm';
+import { useMemo } from 'react';
 interface Props {}
-
+interface Post {
+  message: string;
+  id?: string;
+  author?: string;
+  title?: string;
+  content?: string;
+  meta?: string;
+  tags?: string[];
+  slug?: string;
+  createdAt?: string;
+  thumbnail?: string | undefined;
+}
 const SinglePost: NextPage<Props> = ({}): JSX.Element => {
   const params = useParams();
   console.log(params);
-
+  const placeholderData = useMemo(async () => {
+    const post = await fetchSinglePost(params?.postId as string);
+    return post;
+  }, [params?.postId]);
   const {
     data: post,
     isFetching,
     error,
-    isPlaceholderData,
   } = useQuery({
     queryKey: ['post'],
     queryFn: async () => {
       const post = await fetchSinglePost(params?.postId as string);
       return post;
     },
+    //@ts-ignore
+    placeholderData: (previousData, previousQuery) =>
+      previousData || placeholderData,
   });
 
-  if (isFetching) {
-    return (
-      <div className="min-h-screen w-[90%]  mx-auto sm:w-[80%] py-[100px] flex items-center justify-center">
-        loading...
-      </div>
-    );
-  }
   if (error) {
     return (
       <div className="min-h-screen w-[90%]  mx-auto sm:w-[80%] py-[100px] flex items-center justify-center">
