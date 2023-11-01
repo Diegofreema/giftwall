@@ -111,7 +111,16 @@ export function HeaderMenu() {
               Support Us
             </Button>
           </Group>
-
+          <SignedIn>
+            <UserButton afterSignOutUrl="/" />
+          </SignedIn>
+          <SignedOut>
+            <SignInButton>
+              <div className="flex items-center space-x-4 text-white">
+                <span>Sign in</span> <IconLogin2 />
+              </div>
+            </SignInButton>
+          </SignedOut>
           <MobileHeader />
         </motion.div>
       </Container>

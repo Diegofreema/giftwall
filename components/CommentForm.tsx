@@ -3,8 +3,10 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import Placeholder from '@tiptap/extension-placeholder';
 import StarterKit from '@tiptap/starter-kit';
 import { Button } from '@mantine/core';
-import { useUser } from '@clerk/nextjs';
+
 import { useRouter } from 'next/navigation';
+import { useUser } from '@clerk/nextjs';
+import { useToast } from './UI/use-toast';
 
 type Props = {
   onSubmit: (value: string) => void;
@@ -14,6 +16,7 @@ type Props = {
 const CommentForm = ({ onSubmit, busy }: Props) => {
   const { user } = useUser();
   const router = useRouter();
+  const { toast } = useToast();
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -32,8 +35,11 @@ const CommentForm = ({ onSubmit, busy }: Props) => {
     if (editor && !busy) {
       const value = editor?.getHTML();
       if (value === '<p></p>') {
-        console.log('empty');
-
+        toast({
+          variant: 'destructive',
+          title: 'Error',
+          description: 'Comment cannot be empty',
+        });
         return;
       }
       onSubmit(value);

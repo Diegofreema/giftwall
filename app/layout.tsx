@@ -13,6 +13,7 @@ import Provider from '@/components/Provider';
 import { Toaster } from '@/components/UI/toaster';
 import { CrispProvider } from '@/components/Crisp/CrispProvider';
 import { cn } from '@/lib/utils';
+import { AuthDialog } from '@/components/Auth';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -40,11 +41,14 @@ export default function RootLayout({
       <body className={cn(inter.className, 'min-h-screen ')}>
         <Provider>
           <MantineProvider>
-            <CrispProvider />
-            <HeaderMenu />
-            {children}
-            <Footer />
-            <Toaster />
+            <ClerkProvider>
+              <CrispProvider />
+              <HeaderMenu />
+              <AuthDialog />
+              {children}
+              <Footer />
+              <Toaster />
+            </ClerkProvider>
           </MantineProvider>
         </Provider>
       </body>
