@@ -11,7 +11,7 @@ export default authMiddleware({
     '/event',
     '/blog/(.*)',
     '/event/(.*)',
-    '/api/webhook/clerk',
+    '/api/webhook',
     '/services/(.*)',
   ],
 });

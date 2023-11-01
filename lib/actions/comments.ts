@@ -25,5 +25,9 @@ export const createComment = async (
     });
 
     await comment.save();
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+
+    return { message: 'Failed to create comment' };
+  }
 };
