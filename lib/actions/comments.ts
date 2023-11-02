@@ -6,8 +6,9 @@ import { connectToDB } from '../mongoose';
 import { NextResponse } from 'next/server';
 import { formatComment } from '../validator';
 import User from '../model/user';
-import BlogContent from '../model/blogPosts';
+
 import Com from '../model/comm';
+import Article from '../model/post';
 export const createComment = async (
   content: string,
   ownerId: string,
@@ -19,12 +20,13 @@ export const createComment = async (
   try {
     const user = await User.findOne({ _id: ownerId });
 
-    const post = await BlogContent.findById({ _id: postId });
+    const post = await Article.findById({ _id: postId });
     if (!post) return { message: 'Post not found' };
 
     const comment = new Com({
       content,
       owner: ownerId,
+      belongsTo: postId,
       chiefComment: true,
     });
 
@@ -170,11 +172,13 @@ export const updateComment = async (
     return { message: 'Failed to update to comment' };
   }
 };
-export const getComments = async (belongsTo: string) => {
+export const getComments = async (belongsTo: string, userId: string) => {
   connectToDB();
 
   try {
-    const user = await User.findOne({ _id: belongsTo });
+    const user = await User.findOne({ userId: userId });
+    const post = await Article.findOne({ _id: belongsTo });
+    if (!post) return { message: 'Post not found' };
     const comments = await Com.find({ belongsTo })
       .populate({ path: 'owner', select: 'name avatar' })
       .populate({
@@ -199,6 +203,6 @@ export const getComments = async (belongsTo: string) => {
   } catch (error) {
     console.log(error);
 
-    return { message: 'Failed to update to comment' };
+    return { message: 'Failed to get to comment' };
   }
 };

@@ -35,6 +35,7 @@ export const getUser = async (id: string) => {
   try {
     connectToDB();
     const user = await User.findOne({ userId: id });
+    console.log(user);
 
     if (!user) return { message: 'User not found' };
 

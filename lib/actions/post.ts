@@ -1,12 +1,13 @@
 'use server';
-import BlogContent from '../model/blogPosts';
+
+import Article from '../model/post';
 import { connectToDB } from '../mongoose';
 
 export async function fetchSinglePost(id: string) {
   try {
     connectToDB();
 
-    const slugExists = await BlogContent.findById(id);
+    const slugExists = await Article.findById(id);
     if (!slugExists) {
       return { message: 'Post Not Found' };
     }
@@ -32,7 +33,7 @@ export async function fetchAllPosts(pageNo?: number) {
   try {
     connectToDB();
 
-    const posts = await BlogContent.find()
+    const posts = await Article.find()
       .sort({
         createdAt: 'desc',
       })

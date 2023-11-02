@@ -15,12 +15,11 @@ const maxPostsPerPage = 10;
 const Posts: NextPage<Props> = ({}) => {
   const queryClient = useQueryClient();
   const [page, setPage] = useState(0);
-  const { isPending, isError, error, data, isFetching, isPlaceholderData } =
-    useQuery({
-      queryKey: ['posts', page],
-      queryFn: () => fetchAllPosts(page),
-      placeholderData: keepPreviousData,
-    });
+  const { isPending, isError, error, data, isFetching } = useQuery({
+    queryKey: ['posts', page],
+    queryFn: () => fetchAllPosts(page),
+    placeholderData: keepPreviousData,
+  });
 
   return (
     <div className="min-h-screen w-[90%]  mx-auto sm:w-[70%] py-[150px]">
@@ -59,9 +58,7 @@ const Posts: NextPage<Props> = ({}) => {
           )}
         </div>
       )}
-      <div className="flex  items-center justify-center space-x-4 mt-6">
-        {isFetching ? <span> Loading...</span> : null}{' '}
-      </div>
+      <div className="flex  items-center justify-center space-x-4 mt-6"></div>
       <div className="flex items-center justify-center space-x-4 mt-6">
         <Button
           className="border bg-black p-2 rounded-md inline-block  text-white"

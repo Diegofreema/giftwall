@@ -37,12 +37,12 @@ const comSchema = new Schema<IComment>(
     replies: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Comment',
+        ref: 'Com',
       },
     ],
     replyTo: {
       type: Schema.Types.ObjectId,
-      ref: 'Comment',
+      ref: 'Com',
     },
     chiefComment: {
       type: Boolean,

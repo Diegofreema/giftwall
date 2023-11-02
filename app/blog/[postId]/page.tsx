@@ -54,7 +54,7 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
   if (error) {
     return (
       <div className="min-h-screen w-[90%]  mx-auto sm:w-[80%] py-[100px] flex items-center justify-center">
-        {error.message}
+        {'Failed to get post!!'}
       </div>
     );
   }
