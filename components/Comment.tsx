@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CommentForm from './CommentForm';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { createComment, getComments } from '@/lib/actions/comments';
@@ -23,7 +23,7 @@ const Comment = ({ belongsTo }: Props) => {
   const { onOpen } = useAuthHook();
   const { toast } = useToast();
 
-  const [comments, setComments] = useState<CommentResponse[]>();
+  const [comments, setComments] = useState<CommentResponse[]>([]);
   const router = useRouter();
 
   const {
@@ -37,7 +37,7 @@ const Comment = ({ belongsTo }: Props) => {
       if (error) {
         throw new Error('Oh no!');
       } else {
-        Array.isArray(comments) && setComments(comments);
+        Array.isArray(allComments) && setComments(allComments);
       }
       return comments;
     },
@@ -86,6 +86,11 @@ const Comment = ({ belongsTo }: Props) => {
       console.log(error);
     }
   };
+  useEffect(() => {
+    Array.isArray(allComments) &&
+      // @ts-ignore
+      setComments((prev) => [...prev, ...allComments]);
+  }, [allComments]);
 
   return (
     <div className="py-2">
