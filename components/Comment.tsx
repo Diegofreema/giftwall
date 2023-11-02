@@ -98,9 +98,10 @@ const Comment = ({ belongsTo }: Props) => {
 
       {isLoading ? (
         <p>Loading comments...</p>
-      ) : (
-        comments?.map(({}, i) => <CommentCard key={i} />)
-      )}
+      ) : comments.length > 1 ? (
+        //@ts-ignore
+        comments?.map(({ owner }, i) => <CommentCard key={i} owner={owner} />)
+      ) : null}
     </div>
   );
 };
