@@ -20,7 +20,18 @@ const Posts: NextPage<Props> = ({}) => {
     queryFn: () => fetchAllPosts(page),
     placeholderData: keepPreviousData,
   });
-
+  if (Array.isArray(data) && data?.length === 0) {
+    return (
+      <div className="min-h-screen w-[90%]  mx-auto sm:w-[70%] py-[150px]">
+        <div className="bg-bg-img bg-cover bg-no-repeat py-16 flex items-center justify-center  rounded-md  mx-auto mb-8">
+          <h1 className="font-bold text-3xl">Read our blog</h1>
+        </div>
+        <div className="text-center  flex items-center justify-center ">
+          No posts yet
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen w-[90%]  mx-auto sm:w-[70%] py-[150px]">
       <div className="bg-bg-img bg-cover bg-no-repeat py-16 flex items-center justify-center  rounded-md  mx-auto mb-8">

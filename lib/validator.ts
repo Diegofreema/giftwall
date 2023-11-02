@@ -32,6 +32,6 @@ export const formatComment = (
 
     repliedTo: comment?.replyTo?.toString() as any,
     chiefComment: comment.chiefComment || false,
-    owner: { id: owner._id, name: owner.name, avatar: owner.avatar },
+    owner: { id: owner._id.toString(), name: owner.name, avatar: owner.avatar },
   };
 };

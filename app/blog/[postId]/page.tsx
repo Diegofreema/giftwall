@@ -54,12 +54,18 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
   if (error) {
     return (
       <div className="min-h-screen w-[90%]  mx-auto sm:w-[80%] py-[100px] flex items-center justify-center">
-        {'Failed to get post!!'}
+        {'Post not found!!'}
       </div>
     );
   }
 
   const tags = post?.tags?.join(', ');
+  if (!post?.id)
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        No post found
+      </div>
+    );
   return (
     <div className="md:w-[60%] w-[90%] sm:w-[80%] mx-auto min-h-screen py-[100px] pt-[150px] space-y-5">
       <Head>

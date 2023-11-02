@@ -48,16 +48,13 @@ const Comment = ({ belongsTo }: Props) => {
     onSuccess: async (data) => {
       ///@ts-ignore
       setComments((prev) => [...prev, data]);
-
-      console.log(data);
     },
   });
-  console.log(comments, allComments);
 
   const handleSubmit = async (value: any) => {
     // @ts-ignore
     const user: User = await getUser(userId as any);
-    console.log(user, 'user');
+
     console.log(value, user?.id, belongsTo);
     try {
       if (!userId) {
@@ -94,9 +91,11 @@ const Comment = ({ belongsTo }: Props) => {
     <div className="py-2">
       <CommentForm onSubmit={mutate} busy={isPending} />
 
-      {comments?.map(({}, i) => (
-        <CommentCard key={i} />
-      ))}
+      {isLoading ? (
+        <p>Loading comments...</p>
+      ) : (
+        comments?.map(({}, i) => <CommentCard key={i} />)
+      )}
     </div>
   );
 };
