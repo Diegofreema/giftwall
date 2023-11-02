@@ -42,13 +42,13 @@ export const createComment = async (
 export const replyToComment = async (
   replyToId: string,
   content: string,
-  ownerId: string
+  userId: string
 ) => {
-  const { user } = auth();
-  if (!user) return { message: 'User not authenticated' };
   connectToDB();
 
   try {
+    const user = await User.findOne({ userId });
+    if (!user) return { message: 'user not found' };
     const chiefComment = await Com.findOne({
       _id: replyToId,
 
@@ -56,8 +56,8 @@ export const replyToComment = async (
     });
     if (!chiefComment) return { message: 'Comment not found' };
     const replyComment = new Com({
-      content,
-      owner: ownerId,
+      content: content.toString(),
+      owner: user?._id,
       replyTo: replyToId,
     });
 
@@ -66,7 +66,9 @@ export const replyToComment = async (
       chiefComment.replies = [...chiefComment.replies, replyComment._id];
     await chiefComment.save();
     await replyComment.save();
-    return replyComment;
+
+    const finalComment = await replyComment.populate('owner');
+    return formatComment(finalComment, user);
   } catch (error) {
     console.log(error);
 
@@ -149,12 +151,14 @@ export const updateComment = async (
   content: string,
   ownerId: string
 ) => {
-  const { user } = auth();
-  if (!user) return { message: 'User not authenticated' };
+  const user = await User.findOne({ userId: ownerId });
   connectToDB();
 
   try {
-    const comment = await Com.findOne({ _id: commentId, owner: ownerId });
+    const comment = await Com.findOne({
+      _id: commentId,
+      owner: user?.id,
+    }).populate('owner');
 
     if (!comment)
       return NextResponse.json(
@@ -164,8 +168,8 @@ export const updateComment = async (
 
     comment.content = content;
     await comment.save();
-
-    return NextResponse.json(comment);
+    const finalComment = formatComment(comment);
+    return finalComment;
   } catch (error) {
     console.log(error);
 
@@ -180,12 +184,12 @@ export const getComments = async (belongsTo: string, userId: string) => {
     const post = await Article.findOne({ _id: belongsTo });
     if (!post) return { message: 'Post not found' };
     const comments = await Com.find({ belongsTo })
-      .populate({ path: 'owner', select: 'name avatar' })
+      .populate({ path: 'owner', select: 'name avatarUrl userId' })
       .populate({
         path: 'replies',
         populate: {
           path: 'owner',
-          select: 'name avatar',
+          select: 'name avatarUrl userId',
         },
       })
       .select('createdAt likes content repliedTo');
@@ -194,7 +198,7 @@ export const getComments = async (belongsTo: string, userId: string) => {
     const formattedComment = comments.map((comment) => {
       return {
         ...formatComment(comment, user),
-        replies: comment.replies?.map((reply: any) =>
+        replies: comment?.replies?.map((reply: any) =>
           formatComment(reply, user)
         ),
       };

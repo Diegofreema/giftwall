@@ -7,16 +7,20 @@ import { Button } from '@mantine/core';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 import { useToast } from './UI/use-toast';
+import { useEffect } from 'react';
 
 type Props = {
   onSubmit: (value: string) => void;
   busy?: boolean;
+  onClose?: () => void;
+  initialValue?: string;
 };
 
-const CommentForm = ({ onSubmit, busy }: Props) => {
+const CommentForm = ({ onSubmit, busy, onClose, initialValue }: Props) => {
   const { user } = useUser();
   const router = useRouter();
   const { toast } = useToast();
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -31,6 +35,10 @@ const CommentForm = ({ onSubmit, busy }: Props) => {
       },
     },
   });
+  useEffect(() => {
+    if (typeof initialValue === 'string')
+      editor?.commands.setContent(initialValue);
+  }, [initialValue, editor]);
   const handleSubmit = () => {
     if (editor && !busy) {
       const value = editor?.getHTML();
@@ -54,13 +62,20 @@ const CommentForm = ({ onSubmit, busy }: Props) => {
         editor={editor}
         className="!min-h-[200px] border-2 border-gray-400 rounded-md p-2"
       />
-      <Button
-        disabled={busy}
-        onClick={handleSubmit}
-        className="mt-5 !bg-purple-900 "
-      >
-        Submit
-      </Button>
+      <div>
+        <Button
+          disabled={busy}
+          onClick={handleSubmit}
+          className="mt-5 !bg-purple-900 "
+        >
+          Submit
+        </Button>
+        {onClose && (
+          <Button onClick={onClose} variant="ghost" className="text-black">
+            Close
+          </Button>
+        )}
+      </div>
     </div>
   );
 };

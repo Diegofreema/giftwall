@@ -13,9 +13,10 @@ export interface CommentResponse {
   chiefComment: boolean;
   owner: {
     name: string;
-    avatar?: string;
+    avatarUrl?: string;
     id: string;
-  } | null;
+    userId: string;
+  };
 }
 
 export const formatComment = (
@@ -32,6 +33,11 @@ export const formatComment = (
 
     repliedTo: comment?.replyTo?.toString() as any,
     chiefComment: comment.chiefComment || false,
-    owner: { id: owner._id.toString(), name: owner.name, avatar: owner.avatar },
+    owner: {
+      id: owner._id.toString(),
+      name: owner.name,
+      avatarUrl: owner.avatarUrl,
+      userId: owner.userId,
+    },
   };
 };

@@ -3,7 +3,12 @@
 import React, { useEffect, useState } from 'react';
 import CommentForm from './CommentForm';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { createComment, getComments } from '@/lib/actions/comments';
+import {
+  createComment,
+  getComments,
+  replyToComment,
+  updateComment,
+} from '@/lib/actions/comments';
 import { CommentResponse } from '@/lib/validator';
 import CommentCard from './CommentCard';
 import { useAuth } from '@clerk/nextjs';
@@ -12,6 +17,7 @@ import { IUser } from '@/lib/model/user';
 import { useAuthHook } from '@/hook/useAuth';
 import { useToast } from './UI/use-toast';
 import { useRouter } from 'next/navigation';
+import { comment } from 'postcss';
 
 type Props = {
   belongsTo?: string;
@@ -37,9 +43,10 @@ const Comment = ({ belongsTo }: Props) => {
       if (error) {
         throw new Error('Oh no!');
       }
+      // @ts-ignore
+
       return comments;
     },
-    retry: 10,
   });
   const { mutate, isPending } = useMutation({
     mutationFn: async (value: any) => handleSubmit(value),
@@ -84,26 +91,92 @@ const Comment = ({ belongsTo }: Props) => {
       console.log(error);
     }
   };
-  useEffect(() => {
-    Array.isArray(allComments) &&
-      // @ts-ignore
-      setComments((prev) => [...prev, ...allComments]);
-  }, [allComments]);
+  const insertReply = (reply: CommentResponse) => {
+    if (!comments) return;
+    let updatedComments = [...comments];
+    const chiefIndex = updatedComments.findIndex(
+      ({ id }) => id === reply.repliedTo
+    );
 
+    const { replies } = updatedComments[chiefIndex];
+    if (replies) {
+      updatedComments[chiefIndex].replies = [...replies, reply];
+    } else {
+      updatedComments[chiefIndex].replies = [reply];
+    }
+    setComments([...updatedComments]);
+  };
+  const updateComments = (newComment: CommentResponse) => {
+    if (!comment) return;
+    if (newComment.chiefComment) {
+      const index = comments.findIndex(({ id }) => id === newComment.id);
+    }
+  };
+  const handleUpdateSubmit = async (content: string, id: string) => {
+    try {
+      const comment = await updateComment(id, content, userId as string);
+      updateComments(comment as CommentResponse);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    Array.isArray(allComments) && setComments(allComments);
+  }, [allComments]);
+  const handleReply = async (content: string, id: string) => {
+    try {
+      const reply = await replyToComment(id, content, userId as any);
+      insertReply(reply as CommentResponse);
+      return reply;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="py-2">
       <CommentForm onSubmit={mutate} busy={isPending} />
 
       {isLoading ? (
         <p className="mt-8">Loading comments...</p>
-      ) : comments.length > 1 ? (
+      ) : comments?.length > 1 ? (
         //@ts-ignore
-        comments?.map(({ owner }, i) => (
-          <div className="mt-8" key={i}>
-            {/* @ts-ignore */}
-            <CommentCard owner={owner} />
-          </div>
-        ))
+        comments?.map((comment) => {
+          const { replies } = comment;
+          return (
+            <div className="mt-8" key={comment.id}>
+              <CommentCard
+                // @ts-ignore
+                comment={comment}
+                showControls={userId === comment?.owner.userId}
+                onReplySubmit={(content) => handleReply(content, comment.id)}
+                onUpdateSubmit={(content) =>
+                  handleUpdateSubmit(content, comment?.id)
+                }
+              />
+              {replies?.length ? (
+                <div className=" w-[93%] ml-auto space-y-3">
+                  <h1 className="mt-3 text-black mb-3">Replies</h1>
+                  {replies?.map((reply) => {
+                    return (
+                      <CommentCard
+                        key={reply.id}
+                        // @ts-ignore
+                        comment={reply}
+                        showControls={userId === reply?.owner?.userId}
+                        onReplySubmit={(content) =>
+                          handleReply(content, reply.id)
+                        }
+                        onUpdateSubmit={(content) =>
+                          handleUpdateSubmit(content, reply?.id)
+                        }
+                      />
+                    );
+                  })}
+                </div>
+              ) : null}
+            </div>
+          );
+        })
       ) : null}
     </div>
   );
