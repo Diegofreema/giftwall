@@ -36,8 +36,6 @@ const Comment = ({ belongsTo }: Props) => {
       const comments = await getComments(belongsTo as any, userId as any);
       if (error) {
         throw new Error('Oh no!');
-      } else {
-        Array.isArray(allComments) && setComments(allComments);
       }
       return comments;
     },
@@ -97,10 +95,15 @@ const Comment = ({ belongsTo }: Props) => {
       <CommentForm onSubmit={mutate} busy={isPending} />
 
       {isLoading ? (
-        <p>Loading comments...</p>
+        <p className="mt-8">Loading comments...</p>
       ) : comments.length > 1 ? (
         //@ts-ignore
-        comments?.map(({ owner }, i) => <CommentCard key={i} owner={owner} />)
+        comments?.map(({ owner }, i) => (
+          <div className="mt-8" key={i}>
+            {/* @ts-ignore */}
+            <CommentCard owner={owner} />
+          </div>
+        ))
       ) : null}
     </div>
   );

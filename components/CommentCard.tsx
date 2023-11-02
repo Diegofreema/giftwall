@@ -4,7 +4,7 @@ import React from 'react';
 type Props = {
   owner?: {
     name: string;
-    avatar: string;
+    avatar?: string;
     id: string;
   };
 };
@@ -16,7 +16,9 @@ const CommentCard = ({ owner }: Props) => {
         {owner?.avatar ? (
           <Image src={owner.avatar} fill priority alt="avatar" />
         ) : (
-          <p>{owner?.name.substring(0, 1).toUpperCase()}</p>
+          <span className="w-full inline-block bg-gray-400 text-black">
+            {owner?.name.substring(0, 2).toUpperCase()}
+          </span>
         )}
       </div>
 

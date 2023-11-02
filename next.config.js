@@ -3,9 +3,6 @@ const nextConfig = {
   images: {
     remotePatterns: [{ protocol: 'https', hostname: 'utfs.io' }],
   },
-  experimental: {
-    serverActions: true,
-  },
 };
 
 module.exports = nextConfig;
