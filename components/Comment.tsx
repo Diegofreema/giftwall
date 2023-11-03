@@ -21,6 +21,7 @@ import { useRouter } from 'next/navigation';
 import { comment } from 'postcss';
 import { useAuthHook } from '@/hook/useDeleteHook';
 import { useDeleteHook } from '@/hook/useAuth';
+import { DeleteModal } from './DeleteModal';
 
 type Props = {
   belongsTo?: string;
@@ -41,8 +42,11 @@ const Comment = ({ belongsTo }: Props) => {
     doNotDelete,
   } = useDeleteHook();
   const [deleteItem, setDeleteItem] = useState(isOpen);
+  const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [comments, setComments] = useState<CommentResponse[]>([]);
+  const [commentToDelete, setCommentToDelete] =
+    useState<CommentResponse | null>(null);
 
   const { onOpen } = useAuthHook();
   const { toast } = useToast();
@@ -75,6 +79,7 @@ const Comment = ({ belongsTo }: Props) => {
       console.log(data);
     },
   });
+
   const updateDeletedId = useCallback(
     (deletedComment: CommentResponse) => {
       if (!comments) return;
@@ -84,32 +89,19 @@ const Comment = ({ belongsTo }: Props) => {
           ({ id }) => id !== deletedComment?.id
         );
       else {
-        const chiefCommentIndex = newComments?.findIndex(
+        const chiefCommentIndex = newComments.findIndex(
           ({ id }) => id === deletedComment?.repliedTo
         );
         const newReplies = newComments[chiefCommentIndex]?.replies?.filter(
           ({ id }) => id !== deletedComment?.id
         );
+
         newComments[chiefCommentIndex].replies = newReplies;
       }
-
       setComments([...newComments]);
     },
     [comments]
   );
-  useEffect(() => {
-    const deleteSingleComment = async () => {
-      // const res = await deleteComment(id);
-
-      // if (res) {
-      //   updateDeletedId(res as any);
-      // }
-
-      console.log(id, 'useEffect');
-    };
-    remove && deleteSingleComment();
-    doNotDelete();
-  }, [remove, id, onClose, updateDeletedId, doNotDelete]);
 
   const handleSubmit = async (value: any) => {
     // @ts-ignore
@@ -200,11 +192,27 @@ const Comment = ({ belongsTo }: Props) => {
     }
   };
 
-  const handleModal = async (commentId: string) => {
-    onDelete();
-    getId(commentId);
+  const handleModal = async (comment: CommentResponse) => {
+    setCommentToDelete(comment);
+    setShowModal(true);
+  };
+  const handleDeleteCancel = async () => {
+    setCommentToDelete(null);
+    setShowModal(false);
+  };
+  const handleDeleteConfirm = async () => {
+    if (!commentToDelete) return;
 
-    onShow();
+    try {
+      await deleteComment(commentToDelete?.id as any);
+      updateDeletedId(commentToDelete as CommentResponse);
+      console.log('comment deleted');
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setCommentToDelete(null);
+      setShowModal(false);
+    }
   };
 
   return (
@@ -226,7 +234,7 @@ const Comment = ({ belongsTo }: Props) => {
                 onUpdateSubmit={(content) =>
                   handleUpdateSubmit(content, comment?.id)
                 }
-                onDelete={() => handleModal(comment?.id)}
+                onDelete={() => handleModal(comment)}
               />
               {comment?.replies?.length ? (
                 <div className=" w-[93%] ml-auto space-y-3">
@@ -244,7 +252,7 @@ const Comment = ({ belongsTo }: Props) => {
                         onUpdateSubmit={(content) =>
                           handleUpdateSubmit(content, reply?.id)
                         }
-                        onDelete={() => handleModal(comment?.id)}
+                        onDelete={() => handleModal(comment)}
                       />
                     );
                   })}
@@ -254,6 +262,12 @@ const Comment = ({ belongsTo }: Props) => {
           );
         })
       ) : null}
+
+      <DeleteModal
+        visible={showModal}
+        onCancel={handleDeleteCancel}
+        onDelete={handleDeleteConfirm}
+      />
     </div>
   );
 };

@@ -22,52 +22,20 @@ import { useDeleteHook } from '@/hook/useAuth';
 import { deleteComment } from '@/lib/actions/comments';
 
 type Prop = {
-  name: string;
-  email: string;
-  bio: string;
+  visible: boolean;
+  onCancel: () => void;
+  onDelete: () => void;
 };
-export function DeleteModal() {
+export function DeleteModal({ visible, onCancel, onDelete }: Prop) {
   const { user } = useUser();
   const [mounted, setMounted] = useState(false);
 
-  const {
-    isOpen,
-    onClose,
-    id,
-    onDelete,
-    doNotDelete,
-    delete: remove,
-  } = useDeleteHook();
-  console.log(id);
-
   const { toast } = useToast();
 
-  const { mutate } = useMutation({
-    mutationFn: async () => await deleteComment(id),
-    onSuccess: () => {
-      toast({
-        variant: 'success',
-        title: 'Deleted comment',
-      });
-    },
-    onError: () => {
-      toast({
-        variant: 'destructive',
-        title: 'An error occurred',
-        description: 'Something went wrong, please again later',
-      });
-      onClose();
-    },
-  });
-
-  const handleDelete = () => {
-    mutate();
-    onClose();
-  };
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={visible} onOpenChange={onCancel}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Are you sure you want to delete this?</DialogTitle>
@@ -76,20 +44,14 @@ export function DeleteModal() {
         <div className="!flex items-center space-x-3">
           <Button
             variant={'destructive'}
-            onClick={() => {
-              onDelete();
-              onClose();
-            }}
+            onClick={onDelete}
             type="submit"
             className="w-full"
           >
             Yes
           </Button>
           <Button
-            onClick={() => {
-              doNotDelete();
-              onClose();
-            }}
+            onClick={onCancel}
             type="submit"
             className="w-full bg-purple-900"
           >

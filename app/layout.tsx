@@ -14,7 +14,6 @@ import { Toaster } from '@/components/UI/toaster';
 import { CrispProvider } from '@/components/Crisp/CrispProvider';
 import { cn } from '@/lib/utils';
 import { AuthDialog } from '@/components/Auth';
-import { DeleteModal } from '@/components/DeleteModal';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -43,7 +42,6 @@ export default function RootLayout({
         <Provider>
           <MantineProvider>
             <ClerkProvider>
-              <DeleteModal />
               <CrispProvider />
               <HeaderMenu />
               <AuthDialog />
