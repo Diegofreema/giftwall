@@ -7,6 +7,7 @@ import { Reply } from 'lucide-react';
 import { IconEdit } from '@tabler/icons-react';
 import { IconTrashFilled } from '@tabler/icons-react';
 import CommentForm from './CommentForm';
+import LikeComponent from './LikeComponent';
 
 type Props = {
   comment: {
@@ -15,8 +16,12 @@ type Props = {
     id: string;
     createdAt: string;
     content: string;
+    likes: number;
+    likeByOwner: boolean;
     owner: { avatarUrl: string; name: string };
   };
+
+  onClick: () => void;
   showControls?: boolean;
   onUpdateSubmit?: (content: string) => void;
   onReplySubmit?: (content: string) => void;
@@ -29,6 +34,8 @@ const CommentCard = ({
   onUpdateSubmit,
   showControls = false,
   onDelete,
+
+  onClick,
 }: Props) => {
   const [showForm, setShowForm] = useState(false);
   const [initialValue, setInitialValue] = useState('');
@@ -72,6 +79,11 @@ const CommentCard = ({
           {comment?.content && parse(comment?.content)}
         </div>
         <div className="flex space-x-1">
+          <LikeComponent
+            liked={comment?.likeByOwner}
+            label={comment?.likes + ' ' + 'likes'}
+            onClick={onClick}
+          />
           <Buttons onClick={displayReplyForm}>
             <Reply size={15} />
             <span className="text-xs">Reply</span>

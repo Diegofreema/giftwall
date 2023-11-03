@@ -15,7 +15,6 @@ export const createComment = async (
   postId?: string
 ) => {
   connectToDB();
-  console.log(content, ownerId, postId);
 
   try {
     const user = await User.findOne({ _id: ownerId });
@@ -78,18 +77,25 @@ export const replyToComment = async (
 export const likeComment = async (
   commentId: string,
 
-  likeId: string
+  userId: string
 ) => {
-  const { user } = auth();
-  if (!user) return { message: 'User not authenticated' };
   connectToDB();
-
+  const user = await User.findOne({ userId });
   try {
-    const comment = await Com.findById({ _id: commentId });
+    const comment = await Com.findById({ _id: commentId })
+      .populate({ path: 'owner', select: 'name avatarUrl userId' })
+      .populate({
+        path: 'replies',
+        populate: {
+          path: 'owner',
+          select: 'name avatarUrl userId',
+        },
+      })
+      .select('createdAt likes content repliedTo chiefComment ');
     if (!comment) return { message: 'Comment not found' };
     const oldLikes = comment.likes || [];
 
-    const likedBy = likeId as any;
+    const likedBy = user?._id as any;
 
     if (oldLikes.includes(likedBy)) {
       comment.likes = oldLikes.filter(
@@ -101,7 +107,10 @@ export const likeComment = async (
 
     await comment.save();
 
-    return { message: 'comment' };
+    return {
+      ...formatComment(comment, user),
+      replies: comment.replies?.map((reply: any) => formatComment(reply, user)),
+    };
   } catch (error) {
     console.log(error);
 
@@ -183,8 +192,6 @@ export const getComments = async (belongsTo: string, userId: string) => {
     if (!comments) return { message: 'comment' };
 
     const formattedComment = comments.map((comment) => {
-      console.log(comment);
-
       return {
         ...formatComment(comment, user),
         replies: comment?.replies?.map((reply: any) =>

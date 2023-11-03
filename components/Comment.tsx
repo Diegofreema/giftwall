@@ -7,6 +7,7 @@ import {
   createComment,
   deleteComment,
   getComments,
+  likeComment,
   replyToComment,
   updateComment,
 } from '@/lib/actions/comments';
@@ -29,7 +30,6 @@ type Props = {
 
 const Comment = ({ belongsTo }: Props) => {
   const { userId } = useAuth();
-  console.log(userId);
 
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -56,11 +56,8 @@ const Comment = ({ belongsTo }: Props) => {
     getCommentsFn();
   }, [belongsTo, userId]);
 
-  console.log(comments);
-
   const updateDeletedId = (deletedComment: CommentResponse) => {
     if (!comments) return;
-    console.log('updating......', deletedComment);
 
     const newComments = [...comments];
 
@@ -106,7 +103,7 @@ const Comment = ({ belongsTo }: Props) => {
         return;
       }
       const comment = await createComment(value, user?.id as any, belongsTo);
-      console.log(comment, 'Comment form');
+
       setComments((prevComments) => [
         ...prevComments,
         comment as CommentResponse,
@@ -176,7 +173,30 @@ const Comment = ({ belongsTo }: Props) => {
       console.log(error);
     }
   };
+  const updatedLikeComments = (likeComment: CommentResponse) => {
+    if (!comment) return;
+    let newComments = [...comments];
 
+    if (likeComment.chiefComment)
+      newComments = newComments.map((comment) => {
+        if (comment.id === likeComment.id) return likeComment;
+        return comment;
+      });
+    else {
+      const chiefCommentIndex = newComments.findIndex(
+        ({ id }) => id === likeComment.repliedTo
+      );
+      const newReplies = newComments[chiefCommentIndex]?.replies?.map(
+        (comment) => {
+          if (comment.id === likeComment.id) return likeComment;
+          return comment;
+        }
+      );
+      newComments[chiefCommentIndex].replies = newReplies;
+    }
+
+    setComments([...newComments]);
+  };
   const handleModal = async (comment: CommentResponse) => {
     setCommentToDelete(comment);
 
@@ -192,12 +212,19 @@ const Comment = ({ belongsTo }: Props) => {
     try {
       await deleteComment(commentToDelete?.id as any);
       updateDeletedId(commentToDelete as CommentResponse);
-      console.log('comment deleted');
     } catch (error) {
       console.log(error);
     } finally {
       setCommentToDelete(null);
       setShowModal(false);
+    }
+  };
+  const handleLike = async (comment: CommentResponse) => {
+    try {
+      const newLikes = await likeComment(comment?.id as any, userId as any);
+      updatedLikeComments(newLikes as CommentResponse);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -221,6 +248,7 @@ const Comment = ({ belongsTo }: Props) => {
                   handleUpdateSubmit(content, comment?.id)
                 }
                 onDelete={() => handleModal(comment)}
+                onClick={() => handleLike(comment)}
               />
               {comment?.replies?.length ? (
                 <div className=" w-[93%] ml-auto space-y-3">
@@ -239,6 +267,7 @@ const Comment = ({ belongsTo }: Props) => {
                           handleUpdateSubmit(content, reply?.id)
                         }
                         onDelete={() => handleModal(reply)}
+                        onClick={() => handleLike(reply)}
                       />
                     );
                   })}
