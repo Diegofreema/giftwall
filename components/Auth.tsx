@@ -72,7 +72,7 @@ export function AuthDialog() {
       toast({
         variant: 'success',
         title: 'Success',
-        description: 'Welcome onBoard',
+        description: 'Welcome onboard',
       });
     },
     onError: () => {

@@ -41,33 +41,47 @@ const Comment = ({ belongsTo }: Props) => {
     doNotDelete,
   } = useDeleteHook();
   const [deleteItem, setDeleteItem] = useState(isOpen);
+  const [isLoading, setIsLoading] = useState(false);
+  const [comments, setComments] = useState<CommentResponse[]>([]);
+
   const { onOpen } = useAuthHook();
   const { toast } = useToast();
   const router = useRouter();
   console.log(remove);
 
-  const {
-    data: allComments,
-    fetchStatus,
-    isPending: isLoading,
-    error,
-    refetch: refetchComments,
-  } = useQuery({
-    queryKey: ['comments'],
-    queryFn: async () => {
-      const comments = await getComments(belongsTo as any, userId as any);
-      if (error) {
-        throw new Error('Oh no!');
-      }
-      // @ts-ignore
+  // const {
+  //   data: allComments,
+  //   fetchStatus,
+  //   isPending: isLoading,
+  //   error,
+  //   refetch: refetchComments,
+  // } = useQuery({
+  //   queryKey: ['comments'],
+  //   queryFn: async () => {
+  //     const comments = await ;
+  //     if (error) {
+  //       throw new Error('Oh no!');
+  //     }
+  //     // @ts-ignore
 
-      return comments;
-    },
-  });
-  const [comments, setComments] = useState<CommentResponse[]>(
-    (allComments as CommentResponse[]) || []
-  );
-  console.log(fetchStatus);
+  //     return comments;
+  //   },
+  // });
+
+  useEffect(() => {
+    const getCommentsFn = async () => {
+      setIsLoading(true);
+      try {
+        const allComments = await getComments(belongsTo as any, userId as any);
+        Array.isArray(allComments) && setComments(allComments);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    getCommentsFn();
+  }, [belongsTo, userId]);
 
   console.log(comments);
 
@@ -75,7 +89,9 @@ const Comment = ({ belongsTo }: Props) => {
     mutationFn: async (value: any) => handleSubmit(value),
     onSuccess: async (data) => {
       ///@ts-ignore
-      refetchComments();
+      refetchComments: (options) => {
+        console.log(options);
+      };
 
       console.log(data);
     },
