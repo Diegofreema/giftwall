@@ -49,25 +49,6 @@ const Comment = ({ belongsTo }: Props) => {
   const router = useRouter();
   console.log(remove);
 
-  // const {
-  //   data: allComments,
-  //   fetchStatus,
-  //   isPending: isLoading,
-  //   error,
-  //   refetch: refetchComments,
-  // } = useQuery({
-  //   queryKey: ['comments'],
-  //   queryFn: async () => {
-  //     const comments = await ;
-  //     if (error) {
-  //       throw new Error('Oh no!');
-  //     }
-  //     // @ts-ignore
-
-  //     return comments;
-  //   },
-  // });
-
   useEffect(() => {
     const getCommentsFn = async () => {
       setIsLoading(true);
@@ -89,9 +70,7 @@ const Comment = ({ belongsTo }: Props) => {
     mutationFn: async (value: any) => handleSubmit(value),
     onSuccess: async (data) => {
       ///@ts-ignore
-      refetchComments: (options) => {
-        console.log(options);
-      };
+      setComments([...comments, data]);
 
       console.log(data);
     },
