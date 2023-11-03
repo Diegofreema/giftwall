@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import CommentForm from './CommentForm';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import {
   createComment,
+  deleteComment,
   getComments,
   replyToComment,
   updateComment,
@@ -14,10 +15,12 @@ import CommentCard from './CommentCard';
 import { useAuth } from '@clerk/nextjs';
 import { User, getUser } from '@/lib/actions/member';
 import { IUser } from '@/lib/model/user';
-import { useAuthHook } from '@/hook/useAuth';
+
 import { useToast } from './UI/use-toast';
 import { useRouter } from 'next/navigation';
 import { comment } from 'postcss';
+import { useAuthHook } from '@/hook/useDeleteHook';
+import { useDeleteHook } from '@/hook/useAuth';
 
 type Props = {
   belongsTo?: string;
@@ -25,19 +28,32 @@ type Props = {
 
 const Comment = ({ belongsTo }: Props) => {
   const { userId } = useAuth();
+  console.log(userId);
 
+  const {
+    getId,
+    onOpen: onShow,
+    isOpen,
+    id,
+    delete: remove,
+    onDelete,
+    onClose,
+    doNotDelete,
+  } = useDeleteHook();
+  const [deleteItem, setDeleteItem] = useState(isOpen);
   const { onOpen } = useAuthHook();
   const { toast } = useToast();
-
-  const [comments, setComments] = useState<CommentResponse[]>([]);
   const router = useRouter();
+  console.log(remove);
 
   const {
     data: allComments,
-    isLoading,
+    fetchStatus,
+    isPending: isLoading,
     error,
+    refetch: refetchComments,
   } = useQuery({
-    queryKey: ['comments', belongsTo],
+    queryKey: ['comments'],
     queryFn: async () => {
       const comments = await getComments(belongsTo as any, userId as any);
       if (error) {
@@ -48,29 +64,73 @@ const Comment = ({ belongsTo }: Props) => {
       return comments;
     },
   });
+  const [comments, setComments] = useState<CommentResponse[]>(
+    (allComments as CommentResponse[]) || []
+  );
+  console.log(fetchStatus);
+
+  console.log(comments);
+
   const { mutate, isPending } = useMutation({
     mutationFn: async (value: any) => handleSubmit(value),
     onSuccess: async (data) => {
       ///@ts-ignore
-      setComments((prev) => [...prev, data]);
+      refetchComments();
+
+      console.log(data);
     },
   });
+  const updateDeletedId = useCallback(
+    (deletedComment: CommentResponse) => {
+      if (!comments) return;
+      let newComments = [...comments];
+      if (deletedComment?.chiefComment)
+        newComments = newComments?.filter(
+          ({ id }) => id !== deletedComment?.id
+        );
+      else {
+        const chiefCommentIndex = newComments?.findIndex(
+          ({ id }) => id === deletedComment?.repliedTo
+        );
+        const newReplies = newComments[chiefCommentIndex]?.replies?.filter(
+          ({ id }) => id !== deletedComment?.id
+        );
+        newComments[chiefCommentIndex].replies = newReplies;
+      }
+
+      setComments([...newComments]);
+    },
+    [comments]
+  );
+  useEffect(() => {
+    const deleteSingleComment = async () => {
+      // const res = await deleteComment(id);
+
+      // if (res) {
+      //   updateDeletedId(res as any);
+      // }
+
+      console.log(id, 'useEffect');
+    };
+    remove && deleteSingleComment();
+    doNotDelete();
+  }, [remove, id, onClose, updateDeletedId, doNotDelete]);
 
   const handleSubmit = async (value: any) => {
     // @ts-ignore
     const user: User = await getUser(userId as any);
 
-    console.log(value, user?.id, belongsTo);
+    if (!userId) {
+      router.push('/sign-in');
+      toast({
+        variant: 'destructive',
+        title: 'Wait a minute',
+        description: 'Please login to comment',
+      });
+      return;
+    }
+
     try {
-      if (!userId) {
-        router.push('/sign-in');
-        toast({
-          variant: 'destructive',
-          title: 'Wait a minute',
-          description: 'Please login to comment',
-        });
-        return;
-      }
       if (!user?.boarded) {
         onOpen();
         toast({
@@ -108,9 +168,24 @@ const Comment = ({ belongsTo }: Props) => {
   };
   const updateComments = (newComment: CommentResponse) => {
     if (!comment) return;
+
+    let updatedCommentt = [...comments];
     if (newComment.chiefComment) {
-      const index = comments.findIndex(({ id }) => id === newComment.id);
+      const index = updatedCommentt.findIndex(({ id }) => id === newComment.id);
+      updatedCommentt[index].content = newComment.content;
+    } else {
+      const chiefCommentIndex = updatedCommentt.findIndex(
+        ({ id }) => id === newComment.repliedTo
+      );
+      let newReplies = updatedCommentt[chiefCommentIndex].replies;
+      newReplies = newReplies?.map((comment) => {
+        if (comment.id === newComment.id) comment.content = newComment.content;
+
+        return comment;
+      });
+      updatedCommentt[chiefCommentIndex].replies = newReplies;
     }
+    setComments([...updatedCommentt]);
   };
   const handleUpdateSubmit = async (content: string, id: string) => {
     try {
@@ -120,9 +195,7 @@ const Comment = ({ belongsTo }: Props) => {
       console.log(error);
     }
   };
-  useEffect(() => {
-    Array.isArray(allComments) && setComments(allComments);
-  }, [allComments]);
+
   const handleReply = async (content: string, id: string) => {
     try {
       const reply = await replyToComment(id, content, userId as any);
@@ -132,6 +205,14 @@ const Comment = ({ belongsTo }: Props) => {
       console.log(error);
     }
   };
+
+  const handleModal = async (commentId: string) => {
+    onDelete();
+    getId(commentId);
+
+    onShow();
+  };
+
   return (
     <div className="py-2">
       <CommentForm onSubmit={mutate} busy={isPending} />
@@ -147,11 +228,12 @@ const Comment = ({ belongsTo }: Props) => {
               <CommentCard
                 // @ts-ignore
                 comment={comment}
-                showControls={userId === comment?.owner.userId}
+                showControls={userId === comment?.owner?.userId}
                 onReplySubmit={(content) => handleReply(content, comment.id)}
                 onUpdateSubmit={(content) =>
                   handleUpdateSubmit(content, comment?.id)
                 }
+                onDelete={() => handleModal(comment.id)}
               />
               {replies?.length ? (
                 <div className=" w-[93%] ml-auto space-y-3">
@@ -169,6 +251,7 @@ const Comment = ({ belongsTo }: Props) => {
                         onUpdateSubmit={(content) =>
                           handleUpdateSubmit(content, reply?.id)
                         }
+                        onDelete={() => handleModal(comment.id)}
                       />
                     );
                   })}

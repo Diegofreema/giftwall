@@ -20,6 +20,7 @@ type Props = {
   showControls?: boolean;
   onUpdateSubmit?: (content: string) => void;
   onReplySubmit?: (content: string) => void;
+  onDelete: () => void;
 };
 
 const CommentCard = ({
@@ -27,6 +28,7 @@ const CommentCard = ({
   onReplySubmit,
   onUpdateSubmit,
   showControls = false,
+  onDelete,
 }: Props) => {
   const [showForm, setShowForm] = useState(false);
   const [initialValue, setInitialValue] = useState('');
@@ -76,7 +78,7 @@ const CommentCard = ({
                 <IconEdit size={15} />
                 <span className="text-xs">Edit</span>
               </Buttons>
-              <Buttons onClick={() => {}}>
+              <Buttons onClick={() => onDelete()}>
                 <IconTrashFilled size={15} />
                 <span className="text-xs">Delete</span>
               </Buttons>

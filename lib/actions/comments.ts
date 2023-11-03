@@ -108,27 +108,15 @@ export const likeComment = async (
     return { message: 'Failed to reply to comment' };
   }
 };
-export const deleteComment = async (
-  commentId: string,
-
-  ownerId: string
-) => {
-  const { user } = auth();
-  if (!user) return { message: 'User not authenticated' };
-  connectToDB();
-
+export const deleteComment = async (commentId: string) => {
   try {
-    const comment = await Com.findOne({ _id: commentId, owner: ownerId });
+    const comment = await Com.findOne({ _id: commentId });
 
-    if (!comment)
-      return NextResponse.json(
-        { message: 'comment not found' },
-        { status: 404 }
-      );
+    if (!comment) return { message: 'comment not found' };
 
-    if (comment.chiefComment) await Com.deleteMany({ replyTo: commentId });
-    else {
+    if (!comment.chiefComment) {
       const chiefComment = await Com.findById(comment.replyTo);
+
       if (chiefComment?.replies?.includes(commentId as any)) {
         chiefComment.replies = chiefComment.replies.filter(
           (reply) => reply.toString() !== commentId.toString()
@@ -137,13 +125,14 @@ export const deleteComment = async (
         await chiefComment.save();
       }
     }
+
     await Com.findByIdAndDelete(commentId);
 
     return { removed: true };
   } catch (error) {
     console.log(error);
 
-    return { message: 'Failed to reply to comment' };
+    return { message: 'Failed to delete comment' };
   }
 };
 export const updateComment = async (

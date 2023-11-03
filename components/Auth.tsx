@@ -11,13 +11,14 @@ import {
 import { Input } from './UI/input';
 import { Label } from './UI/label';
 import { useEffect, useState } from 'react';
-import { useAuthHook } from '@/hook/useAuth';
+
 import { IUser } from '@/lib/model/user';
 import { createUser } from '@/lib/actions/member';
 import { useUser } from '@clerk/nextjs';
 import { useMutation } from '@tanstack/react-query';
 import { useToast } from './UI/use-toast';
 import { Textarea } from './UI/textarea';
+import { useAuthHook } from '@/hook/useDeleteHook';
 type Prop = {
   name: string;
   email: string;
