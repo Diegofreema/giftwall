@@ -32,7 +32,7 @@ export const formatComment = (
     createdAt: comment.createdAt?.toString() as any,
 
     repliedTo: comment?.replyTo?.toString() as any,
-    chiefComment: comment.chiefComment || false,
+    chiefComment: comment?.chiefComment || false,
     owner: {
       id: owner._id.toString(),
       name: owner.name,

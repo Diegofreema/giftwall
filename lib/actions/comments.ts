@@ -113,15 +113,13 @@ export const deleteComment = async (commentId: string) => {
     const comment = await Com.findOne({ _id: commentId });
 
     if (!comment) return { message: 'comment not found' };
-
-    if (!comment.chiefComment) {
+    if (comment.chiefComment) await Com.deleteMany({ replyTo: commentId });
+    else {
       const chiefComment = await Com.findById(comment.replyTo);
-
       if (chiefComment?.replies?.includes(commentId as any)) {
         chiefComment.replies = chiefComment.replies.filter(
-          (reply) => reply.toString() !== commentId.toString()
+          (comment) => comment.toString() !== commentId.toString()
         );
-
         await chiefComment.save();
       }
     }
@@ -181,10 +179,12 @@ export const getComments = async (belongsTo: string, userId: string) => {
           select: 'name avatarUrl userId',
         },
       })
-      .select('createdAt likes content repliedTo');
+      .select('createdAt likes content repliedTo chiefComment ');
     if (!comments) return { message: 'comment' };
 
     const formattedComment = comments.map((comment) => {
+      console.log(comment);
+
       return {
         ...formatComment(comment, user),
         replies: comment?.replies?.map((reply: any) =>

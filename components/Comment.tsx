@@ -58,38 +58,29 @@ const Comment = ({ belongsTo }: Props) => {
 
   console.log(comments);
 
-  const { mutate, isPending } = useMutation({
-    mutationFn: async (value: any) => handleSubmit(value),
-    onSuccess: async (data) => {
-      ///@ts-ignore
-      if (data?.content) setComments([...comments, data]);
+  const updateDeletedId = (deletedComment: CommentResponse) => {
+    if (!comments) return;
+    console.log('updating......', deletedComment);
 
-      console.log(data);
-    },
-  });
+    const newComments = [...comments];
 
-  const updateDeletedId = useCallback(
-    (deletedComment: CommentResponse) => {
-      if (!comments) return;
-      let newComments = [...comments];
-      if (deletedComment?.chiefComment)
-        newComments = newComments?.filter(
-          ({ id }) => id !== deletedComment?.id
-        );
-      else {
-        const chiefCommentIndex = newComments.findIndex(
-          ({ id }) => id === deletedComment?.repliedTo
-        );
-        const newReplies = newComments[chiefCommentIndex]?.replies?.filter(
-          ({ id }) => id !== deletedComment?.id
-        );
+    if (deletedComment?.chiefComment) {
+      const filteredComments = newComments.filter(
+        ({ id }) => id !== deletedComment?.id
+      );
+      setComments(filteredComments);
+    } else {
+      const chiefCommentIndex = newComments.findIndex(
+        ({ id }) => id === deletedComment?.repliedTo
+      );
+      const newReplies = newComments[chiefCommentIndex]?.replies?.filter(
+        ({ id }) => id !== deletedComment?.id
+      );
 
-        newComments[chiefCommentIndex].replies = newReplies;
-      }
-      setComments([...newComments]);
-    },
-    [comments]
-  );
+      newComments[chiefCommentIndex].replies = newReplies;
+      setComments(newComments);
+    }
+  };
 
   const handleSubmit = async (value: any) => {
     // @ts-ignore
@@ -103,7 +94,7 @@ const Comment = ({ belongsTo }: Props) => {
       });
       return;
     }
-
+    setIsLoading(true);
     try {
       if (!user?.boarded) {
         onOpen();
@@ -115,7 +106,11 @@ const Comment = ({ belongsTo }: Props) => {
         return;
       }
       const comment = await createComment(value, user?.id as any, belongsTo);
-      console.log(comment);
+      console.log(comment, 'Comment form');
+      setComments((prevComments) => [
+        ...prevComments,
+        comment as CommentResponse,
+      ]);
       toast({
         variant: 'success',
         title: 'Comment sent ',
@@ -123,6 +118,8 @@ const Comment = ({ belongsTo }: Props) => {
       return comment;
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
   const insertReply = (reply: CommentResponse) => {
@@ -182,6 +179,7 @@ const Comment = ({ belongsTo }: Props) => {
 
   const handleModal = async (comment: CommentResponse) => {
     setCommentToDelete(comment);
+
     setShowModal(true);
   };
   const handleDeleteCancel = async () => {
@@ -205,11 +203,11 @@ const Comment = ({ belongsTo }: Props) => {
 
   return (
     <div className="py-2">
-      <CommentForm onSubmit={mutate} busy={isPending} />
+      <CommentForm onSubmit={handleSubmit} busy={isLoading} />
 
       {isLoading ? (
         <p className="mt-8">Loading comments...</p>
-      ) : comments?.length > 1 ? (
+      ) : comments?.length > 0 ? (
         //@ts-ignore
         comments?.map((comment) => {
           return (
@@ -240,7 +238,7 @@ const Comment = ({ belongsTo }: Props) => {
                         onUpdateSubmit={(content) =>
                           handleUpdateSubmit(content, reply?.id)
                         }
-                        onDelete={() => handleModal(comment)}
+                        onDelete={() => handleModal(reply)}
                       />
                     );
                   })}
