@@ -1,6 +1,6 @@
 'use client';
 import { fetchSinglePost } from '@/lib/actions/post';
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { useParams } from 'next/navigation';
@@ -24,11 +24,7 @@ interface Post {
 }
 const SinglePost: NextPage<Props> = ({}): JSX.Element => {
   const params = useParams();
-  console.log(params);
-  const placeholderData = useMemo(async () => {
-    const post = await fetchSinglePost(params?.postId as string);
-    return post;
-  }, [params?.postId]);
+
   const {
     data: post,
     isFetching,
@@ -40,8 +36,7 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
       return post;
     },
     //@ts-ignore
-    placeholderData: (previousData, previousQuery) =>
-      previousData || placeholderData,
+    placeholderData: keepPreviousData,
   });
   if (isFetching) {
     return (

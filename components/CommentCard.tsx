@@ -68,9 +68,9 @@ const CommentCard = ({
         <span className="text-sm text-gray-500">
           {dateFormat(comment?.createdAt, 'd-mmm-yyyy')}
         </span>
-        <p className="text-black">
+        <div className="text-black">
           {comment?.content && parse(comment?.content)}
-        </p>
+        </div>
         <div className="flex space-x-1">
           <Buttons onClick={displayReplyForm}>
             <Reply size={15} />

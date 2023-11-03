@@ -31,17 +31,6 @@ const Comment = ({ belongsTo }: Props) => {
   const { userId } = useAuth();
   console.log(userId);
 
-  const {
-    getId,
-    onOpen: onShow,
-    isOpen,
-    id,
-    delete: remove,
-    onDelete,
-    onClose,
-    doNotDelete,
-  } = useDeleteHook();
-  const [deleteItem, setDeleteItem] = useState(isOpen);
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [comments, setComments] = useState<CommentResponse[]>([]);
@@ -51,7 +40,6 @@ const Comment = ({ belongsTo }: Props) => {
   const { onOpen } = useAuthHook();
   const { toast } = useToast();
   const router = useRouter();
-  console.log(remove);
 
   useEffect(() => {
     const getCommentsFn = async () => {
