@@ -32,10 +32,10 @@ const CommentCard = ({
 }: Props) => {
   const [showForm, setShowForm] = useState(false);
   const [initialValue, setInitialValue] = useState('');
-  const { owner, content, createdAt } = comment;
+
   const handleEdit = () => {
     setShowForm(true);
-    setInitialValue(content);
+    setInitialValue(comment?.content);
   };
   const displayReplyForm = () => {
     setInitialValue('');
@@ -52,21 +52,25 @@ const CommentCard = ({
   return (
     <div className="flex flex-col sm:flex-row sm:space-x-3 ">
       <div className="w-8 h-8 relative rounded-full items-center bg-gray-400 justify-center overflow-hidden">
-        {owner?.avatarUrl ? (
-          <Image src={owner.avatarUrl} fill priority alt="avatar" />
+        {comment?.owner?.avatarUrl ? (
+          <Image src={comment?.owner?.avatarUrl} fill priority alt="avatar" />
         ) : (
           <span className="w-full inline-block text-center leading-8  text-black">
-            {owner?.name.substring(0, 2).toUpperCase()}
+            {comment?.owner?.name.substring(0, 2).toUpperCase()}
           </span>
         )}
       </div>
 
       <div className="flex-1">
-        <h1 className="text-lg text-black font-semibold">{owner?.name}</h1>
+        <h1 className="text-lg text-black font-semibold">
+          {comment?.owner?.name}
+        </h1>
         <span className="text-sm text-gray-500">
-          {dateFormat(createdAt, 'd-mmm-yyyy')}
+          {dateFormat(comment?.createdAt, 'd-mmm-yyyy')}
         </span>
-        <p className="text-black">{content && parse(content)}</p>
+        <p className="text-black">
+          {comment?.content && parse(comment?.content)}
+        </p>
         <div className="flex space-x-1">
           <Buttons onClick={displayReplyForm}>
             <Reply size={15} />

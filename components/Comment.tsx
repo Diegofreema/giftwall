@@ -70,7 +70,7 @@ const Comment = ({ belongsTo }: Props) => {
     mutationFn: async (value: any) => handleSubmit(value),
     onSuccess: async (data) => {
       ///@ts-ignore
-      setComments([...comments, data]);
+      if (data?.content) setComments([...comments, data]);
 
       console.log(data);
     },
@@ -116,11 +116,10 @@ const Comment = ({ belongsTo }: Props) => {
     const user: User = await getUser(userId as any);
 
     if (!userId) {
-      router.push('/sign-in');
       toast({
         variant: 'destructive',
         title: 'Wait a minute',
-        description: 'Please login to comment',
+        description: 'Please sign in to comment',
       });
       return;
     }
@@ -217,23 +216,22 @@ const Comment = ({ belongsTo }: Props) => {
       ) : comments?.length > 1 ? (
         //@ts-ignore
         comments?.map((comment) => {
-          const { replies } = comment;
           return (
-            <div className="mt-8" key={comment.id}>
+            <div className="mt-8" key={comment?.id}>
               <CommentCard
                 // @ts-ignore
                 comment={comment}
                 showControls={userId === comment?.owner?.userId}
-                onReplySubmit={(content) => handleReply(content, comment.id)}
+                onReplySubmit={(content) => handleReply(content, comment?.id)}
                 onUpdateSubmit={(content) =>
                   handleUpdateSubmit(content, comment?.id)
                 }
-                onDelete={() => handleModal(comment.id)}
+                onDelete={() => handleModal(comment?.id)}
               />
-              {replies?.length ? (
+              {comment?.replies?.length ? (
                 <div className=" w-[93%] ml-auto space-y-3">
                   <h1 className="mt-3 text-black mb-3">Replies</h1>
-                  {replies?.map((reply) => {
+                  {comment?.replies?.map((reply) => {
                     return (
                       <CommentCard
                         key={reply.id}
@@ -246,7 +244,7 @@ const Comment = ({ belongsTo }: Props) => {
                         onUpdateSubmit={(content) =>
                           handleUpdateSubmit(content, reply?.id)
                         }
-                        onDelete={() => handleModal(comment.id)}
+                        onDelete={() => handleModal(comment?.id)}
                       />
                     );
                   })}

@@ -116,8 +116,8 @@ export function HeaderMenu() {
               <UserButton afterSignOutUrl="/" />
             </SignedIn>
             <SignedOut>
-              <SignInButton>
-                <div className="flex items-center space-x-2 text-white">
+              <SignInButton mode="modal">
+                <div className="flex items-center cursor-pointer space-x-2 text-white">
                   <span>Sign in</span> <IconLogin2 />
                 </div>
               </SignInButton>
