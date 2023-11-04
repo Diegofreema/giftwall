@@ -63,9 +63,9 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
     const { count, likedByOwner } = likes;
     if (likedByOwner && count === 1) return 'You liked this post.';
     if (likedByOwner && count > 1)
-      return `You and ${count - 1} others liked this post.`;
+      return `You and ${count - 1} other(s) liked this post.`;
     if (count === 0) return 'Like this post';
-    return `${count} people liked this post.`;
+    return `${count} person(s) liked this post.`;
   }, [likes]);
   if (isFetching) {
     return (
