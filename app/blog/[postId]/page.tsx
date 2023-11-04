@@ -1,5 +1,5 @@
 'use client';
-import { fetchSinglePost } from '@/lib/actions/post';
+import { fetchSinglePost, getLikeStatus, updateLike } from '@/lib/actions/post';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { NextPage } from 'next';
 import Head from 'next/head';
@@ -7,8 +7,11 @@ import { useParams } from 'next/navigation';
 import dateFormat from 'dateformat';
 import parse from 'html-react-parser';
 import Image from 'next/image';
-import { useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Comment from '@/components/Comment';
+import LikeComponent from '@/components/LikeComponent';
+import { useUser } from '@clerk/nextjs';
+import { useToast } from '@/components/UI/use-toast';
 interface Props {}
 interface Post {
   message: string;
@@ -23,6 +26,9 @@ interface Post {
   thumbnail?: string | undefined;
 }
 const SinglePost: NextPage<Props> = ({}): JSX.Element => {
+  const { user } = useUser();
+  const { toast } = useToast();
+  const [likes, setLikes] = useState({ likedByOwner: false, count: 0 });
   const params = useParams();
 
   const {
@@ -30,14 +36,37 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
     isFetching,
     error,
   } = useQuery({
-    queryKey: ['post'],
+    queryKey: ['post', params?.postId],
     queryFn: async () => {
       const post = await fetchSinglePost(params?.postId as string);
       return post;
     },
-    //@ts-ignore
-    placeholderData: keepPreviousData,
   });
+  useEffect(() => {
+    const getLikedStatusFn = async () => {
+      try {
+        const likeStatus = await getLikeStatus(
+          params?.postId as string,
+          user?.id as string
+        );
+        setLikes({
+          likedByOwner: likeStatus.likedByOwner as boolean,
+          count: likeStatus.likesCount as number,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }, [params?.postId, user]);
+
+  const getLikeLabel = useCallback((): string => {
+    const { count, likedByOwner } = likes;
+    if (likedByOwner && count === 1) return 'You liked this post.';
+    if (likedByOwner && count > 1)
+      return `You and ${count - 1} others liked this post.`;
+    if (count === 0) return 'Like this post';
+    return `${count} people liked this post.`;
+  }, [likes]);
   if (isFetching) {
     return (
       <div className="min-h-screen w-[90%]  mx-auto sm:w-[70%] py-[100px] flex items-center justify-center">
@@ -53,7 +82,22 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
       </div>
     );
   }
-
+  const handleLick = async () => {
+    if (!user)
+      return toast({
+        description: 'Please login to like',
+        variant: 'destructive',
+      });
+    try {
+      const like = await updateLike(post?.id as string, user?.id as string);
+      setLikes({
+        likedByOwner: !likes.likedByOwner,
+        count: like?.newLikes as number,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const tags = post?.tags?.join(', ');
   if (!post?.id)
     return (
@@ -92,6 +136,13 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
         <div className="prose prose-lg max-w-full mx-auto space-y-5">
           {post?.content && parse(post?.content)}
         </div>
+      </div>
+      <div className="py-4">
+        <LikeComponent
+          liked={likes.likedByOwner}
+          label={getLikeLabel()}
+          onClick={handleLick}
+        />
       </div>
       <Comment belongsTo={post?.id} />
     </div>
