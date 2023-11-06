@@ -58,6 +58,16 @@ export const links = [
   {
     label: 'Gallery',
     link: '/gallery',
+    links: [
+      {
+        label: 'Images',
+        link: '/gallery/image',
+      },
+      {
+        label: 'Videos',
+        link: '/gallery/video',
+      },
+    ],
   },
   {
     label: 'FAQ',

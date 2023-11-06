@@ -128,11 +128,15 @@ export const getGoals = async () => {
     throw new Error(`Failed to get goals: ${error?.message}`);
   }
 };
-export const getGallery = async () => {
+export const getGallery = async (pageNo: number) => {
+  const limit = 8;
+  const skip = pageNo || 0 * limit;
   try {
     connectToDB();
-    const gallery = await Gallery.find();
-    const safeGallery = gallery?.map((item) => {
+    const gallery = await Gallery.find().skip(skip).limit(limit);
+    const safeGallery: {
+      imgUrl: string;
+    }[] = gallery?.map((item) => {
       return {
         imgUrl: item?.imgUrl,
       };
@@ -142,11 +146,15 @@ export const getGallery = async () => {
     throw new Error(`Failed to get gallery: ${error?.message}`);
   }
 };
-export const getVideos = async () => {
+export const getVideos = async (pageNo: number) => {
+  const limit = 8;
+  const skip = pageNo || 0 * limit;
   try {
     connectToDB();
-    const videos = await Video.find();
-    const safeVideos = videos?.map((item) => {
+    const videos = await Video.find().skip(skip).limit(limit);
+    const safeVideos: {
+      videoUrl: string;
+    }[] = videos?.map((item) => {
       return {
         videoUrl: item?.videoUrl,
       };

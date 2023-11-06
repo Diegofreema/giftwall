@@ -66,7 +66,7 @@ export function LinksGroup({
         </Group>
       </UnstyledButton>
       {hasLinks ? (
-        <Collapse in={opened} className="!flex flex-col">
+        <Collapse in={opened} className="!flex flex-col ml-4">
           {items}
         </Collapse>
       ) : null}

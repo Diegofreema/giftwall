@@ -44,7 +44,7 @@ export function HeaderMenu() {
         </Link>
       </Menu.Item>
     ));
-    const servicesPath = link.link === '/services';
+    const servicesPath = link.link === '/services' || link.link === '/gallery';
     if (menuItems) {
       return (
         <Menu
