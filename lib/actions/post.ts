@@ -12,6 +12,20 @@ export async function fetchSinglePost(id: string) {
     if (!slugExists) {
       return { message: 'Post Not Found' };
     }
+    const posts = await Article.find({
+      tags: { $in: [...slugExists?.tags] },
+      _id: { $ne: slugExists?._id },
+    })
+      .sort({ createdAt: 'desc' })
+      .limit(5)
+      .select('_id title');
+
+    const relatedPosts = posts.map((p) => {
+      return {
+        id: p?._id.toString(),
+        title: p?.title,
+      };
+    });
 
     return {
       id: slugExists?._id.toString(),
@@ -23,6 +37,7 @@ export async function fetchSinglePost(id: string) {
       slug: slugExists?.slug,
       createdAt: slugExists?.createdAt,
       thumbnail: slugExists?.thumbnail,
+      relatedPosts,
     };
   } catch (error) {
     return { message: 'Failed to Fetch Post' };

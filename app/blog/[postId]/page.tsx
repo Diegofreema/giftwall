@@ -12,6 +12,7 @@ import Comment from '@/components/Comment';
 import LikeComponent from '@/components/LikeComponent';
 import { useUser } from '@clerk/nextjs';
 import { useToast } from '@/components/UI/use-toast';
+import Link from 'next/link';
 interface Props {}
 interface Post {
   message: string;
@@ -57,6 +58,7 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
         console.log(error);
       }
     };
+    getLikedStatusFn();
   }, [params?.postId, user]);
 
   const getLikeLabel = useCallback((): string => {
@@ -144,6 +146,24 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
           onClick={handleLick}
         />
       </div>
+      {post?.relatedPosts?.length > 0 && (
+        <div className="pt-5 mb-4">
+          <h3 className="text-xl font-semibold text-gray-800">
+            Related posts:
+          </h3>
+          <div className="space-y-4">
+            {post?.relatedPosts?.map((post, i) => (
+              <Link
+                key={i}
+                href={`/blog/${post?.id}`}
+                className="font-semibold text-sm hover:underline transition"
+              >
+                {post?.title}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
       <Comment belongsTo={post?.id} />
     </div>
   );
