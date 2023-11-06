@@ -30,6 +30,7 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
   const { user } = useUser();
   const { toast } = useToast();
   const [likes, setLikes] = useState({ likedByOwner: false, count: 0 });
+  const [likeBusy, setLikeBusy] = useState(false);
   const params = useParams();
 
   const {
@@ -90,6 +91,7 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
         description: 'Please login to like',
         variant: 'destructive',
       });
+    setLikeBusy(true);
     try {
       const like = await updateLike(post?.id as string, user?.id as string);
       setLikes({
@@ -98,6 +100,8 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
       });
     } catch (error) {
       console.log(error);
+    } finally {
+      setLikeBusy(false);
     }
   };
   const tags = post?.tags?.join(', ');
@@ -144,6 +148,7 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
           liked={likes.likedByOwner}
           label={getLikeLabel()}
           onClick={handleLick}
+          busy={likeBusy}
         />
       </div>
       {post?.relatedPosts?.length > 0 && (

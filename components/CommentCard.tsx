@@ -26,6 +26,7 @@ type Props = {
   onUpdateSubmit?: (content: string) => void;
   onReplySubmit?: (content: string) => void;
   onDelete: () => void;
+  likeReply: boolean;
 };
 
 const CommentCard = ({
@@ -34,7 +35,7 @@ const CommentCard = ({
   onUpdateSubmit,
   showControls = false,
   onDelete,
-
+  likeReply,
   onClick,
 }: Props) => {
   const [showForm, setShowForm] = useState(false);
@@ -83,6 +84,7 @@ const CommentCard = ({
             liked={comment?.likeByOwner}
             label={comment?.likes + ' ' + 'likes'}
             onClick={onClick}
+            busy={likeReply}
           />
           <Buttons onClick={displayReplyForm}>
             <Reply size={15} />

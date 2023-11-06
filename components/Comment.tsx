@@ -34,6 +34,7 @@ const Comment = ({ belongsTo }: Props) => {
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [comments, setComments] = useState<CommentResponse[]>([]);
+  const [likeReply, setLikeReply] = useState(false);
   const [commentToDelete, setCommentToDelete] =
     useState<CommentResponse | null>(null);
 
@@ -220,11 +221,14 @@ const Comment = ({ belongsTo }: Props) => {
     }
   };
   const handleLike = async (comment: CommentResponse) => {
+    setLikeReply(true);
     try {
       const newLikes = await likeComment(comment?.id as any, userId as any);
       updatedLikeComments(newLikes as CommentResponse);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLikeReply(false);
     }
   };
 
@@ -249,6 +253,7 @@ const Comment = ({ belongsTo }: Props) => {
                 }
                 onDelete={() => handleModal(comment)}
                 onClick={() => handleLike(comment)}
+                likeReply={likeReply}
               />
               {comment?.replies?.length ? (
                 <div className=" w-[93%] ml-auto space-y-3">
@@ -268,6 +273,7 @@ const Comment = ({ belongsTo }: Props) => {
                         }
                         onDelete={() => handleModal(reply)}
                         onClick={() => handleLike(reply)}
+                        likeReply={likeReply}
                       />
                     );
                   })}
