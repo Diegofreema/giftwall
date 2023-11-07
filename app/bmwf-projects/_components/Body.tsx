@@ -5,7 +5,7 @@ import { Image, Title } from '@mantine/core';
 import { motion } from 'framer-motion';
 import React from 'react';
 
-const text = ['BMWF', 'Projects'];
+const text = ['BMWF Projects'];
 const MotionTitle = motion(Title);
 // @ts-ignore
 const MotionImage = motion(Image);
@@ -64,7 +64,7 @@ const Body: React.FC<ProjectProps> = ({ project, videos }) => {
             transition={{ duration: 0.3, delay: index * 0.3 }}
             viewport={{ once: true }}
             key={index}
-            className="!text-3xl md:!text-6xl font-semibold   tracking-wider text-yellow-400"
+            className="!text-3xl md:!text-6xl font-semibold text-center   tracking-wider text-yellow-400"
           >
             {item}
           </MotionTitle>

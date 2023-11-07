@@ -45,11 +45,11 @@ const Page = (props: Props) => {
         className="w-[90%] mx-auto md:h-[300px] h-[150px] relative bg-[#ebe9eb] overflow-hidden"
       >
         <Image
-          src={'/food3.jpeg'}
+          src={'/bb.jpg'}
           alt="img"
           fill
           priority
-          className="!object-fill"
+          className="!object-cover"
         />
       </motion.div>
       <Container my={'md'} className="!mb-10">
@@ -60,7 +60,7 @@ const Page = (props: Props) => {
             transition={{ duration: 0.3, delay: index * 0.3 }}
             key={index}
             order={1}
-            className="!text-3xl md:!text-7xl !mb-10 font-semibold !text-center   tracking-wider text-purple-900"
+            className="!text-xl md:!text-5xl !mb-10 font-semibold !text-center   tracking-wider text-purple-900"
           >
             {item}
           </MotionTitle>

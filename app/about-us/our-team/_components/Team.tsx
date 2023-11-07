@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
-import { Container, Text, Title, Stack } from '@mantine/core';
+import { Container, Text, Title, Stack, Image } from '@mantine/core';
 
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { TeamProps } from '@/lib/types';
 import { cn } from '@/lib/utils';
 const text = ['Our team'];
-const MotionImage = motion(Image);
+// const MotionImage = motion(Image);
 const MotionTitle = motion(Title);
 const MotionStack = motion(Stack);
 const Team: React.FC<TeamProps> = ({ team }) => {
@@ -23,13 +22,7 @@ const Team: React.FC<TeamProps> = ({ team }) => {
       className={cn('!text-base md:!text-lg', index === 0 && ' mt-10')}
     >
       <div className="relative w-[200px] h-[200px] rounded-full overflow-hidden ">
-        <Image
-          src={item?.imgUrl}
-          alt="img"
-          className="object-cover"
-          fill
-          priority
-        />
+        <Image src={item?.imgUrl} alt="img" className="object-cover" />
       </div>
       <Text fw={'bold'} className="text-purple-900">
         {item?.name.toUpperCase()}
@@ -41,16 +34,13 @@ const Team: React.FC<TeamProps> = ({ team }) => {
   ));
   return (
     <div className="min-h-screen py-[130px]">
-      <div className="w-[90%] mx-auto h-[300px] overflow-hidden relative">
-        <MotionImage
-          initial={{ opacity: 0, y: -10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          src={'/j4.jpeg'}
+      <div className="w-[90%] mx-auto h-[350px] overflow-hidden relative">
+        <Image
+          src={'/bmt.jpg'}
           alt="img"
-          fill
-          priority
-          className="object-fill"
+          fit="fill"
+          radius={'md'}
+          // className="object-fill"
         />
       </div>
       <div className="!w-[90%] mx-auto my-10">

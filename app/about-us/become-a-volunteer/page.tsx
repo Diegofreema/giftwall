@@ -1,28 +1,25 @@
 'use client';
 
-import { Container, Title } from '@mantine/core';
-import Image from 'next/image';
+import { Container, Title, Image } from '@mantine/core';
+
 import VolunteerForm from '../_components/VolunteerForm';
 import { motion } from 'framer-motion';
 
 type Props = {};
 
 const text = ['Become a volunteer'];
-const MotionImage = motion(Image);
+
 const MotionTitle = motion(Title);
 const page = (props: Props) => {
   return (
     <div className="min-h-screen py-[130px]">
-      <div className="w-[90%] mx-auto h-[300px] overflow-hidden relative">
-        <MotionImage
-          initial={{ opacity: 0, y: -10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          src={'/foundation.jpeg'}
+      <div className="w-[90%] mx-auto h-[350px] overflow-hidden relative">
+        <Image
+          src={'/mb.jpg'}
           alt="img"
-          fill
-          priority
-          className="object-cover"
+          fit="fill"
+          radius={'md'}
+          // className="object-fill"
         />
       </div>
       <div className="!w-[90%] mx-auto  my-16 mt-5">

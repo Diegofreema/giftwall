@@ -19,7 +19,7 @@ const Submission = (props: Props) => {
             className="md:basis-[50%] basis-[100%] w-full bg-black relative md:w-[300px]  rounded-md shadow-orange-50 shadow-md overflow-hidden md:h-[600px] h-[300px]"
           >
             <Image
-              src={'/a8.jpeg'}
+              src={'/bm.jpg'}
               alt="mission-imag"
               fill
               priority

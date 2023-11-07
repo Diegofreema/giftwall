@@ -48,7 +48,7 @@ const Body: React.FC<PriorityProps> = ({ priorities }) => {
         <Title
           ta={'center'}
           mb="lg"
-          className="!text-center w-full !pt-[110px]"
+          className="!text-center w-full underline mb-4 !pt-[110px]"
         >
           {item.heading}
         </Title>
