@@ -1,4 +1,4 @@
-import { Group, Text } from '@mantine/core';
+import { Group, Text, Title } from '@mantine/core';
 import { twMerge } from 'tailwind-merge';
 import { motion } from 'framer-motion';
 const MotionGroup = motion(Group);
@@ -25,9 +25,9 @@ export const Objective = ({
           'h-1 w-full rounded-md'
         )}
       />
-      <Text fw={'normal'} className="!text-xs">
+      <Title fw={'bold'} ta={'left'} order={2} className=" !text-purple-900">
         {item?.heading}
-      </Text>
+      </Title>
       <Text fz={'lg'} ta={'left'} className="!font-semibold !text-sm" size="md">
         {item?.description}
       </Text>

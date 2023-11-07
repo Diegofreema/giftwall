@@ -1,5 +1,5 @@
 'use client';
-import { feedText, videos } from '@/exports';
+import { classRoom, feedText, videos } from '@/exports';
 import { Image, Title } from '@mantine/core';
 import { motion } from 'framer-motion';
 
@@ -25,17 +25,26 @@ const Body = () => {
         ))}
       </div>
       <div className="w-[90%] space-y-8 mx-auto sm:w-[60%]">
+        <div className=" h-[350px] overflow-hidden relative">
+          <Image
+            src={'/j3.jpeg'}
+            alt="img"
+            fit="fill"
+            radius={'md'}
+            // className="object-fill"
+          />
+        </div>
         <Title order={2} ta="center">
-          {feedText.title}
+          {classRoom.title}
         </Title>
         <div>
           <p className="font-semibold text-center mb-3">Mission statement</p>
-          <p>{feedText.mission_statements}</p>
+          <p>{classRoom.description}</p>
         </div>
         <div>
           <p className="font-semibold text-center">Goals and Strategies</p>
           <ol className="space-y-5">
-            {feedText.goals.map((item, index) => (
+            {classRoom.goals.map((item, index) => (
               <li key={index}>
                 {index + 1 + '' + ')'} {item.heading} {item.description}
               </li>
@@ -44,38 +53,18 @@ const Body = () => {
         </div>
 
         <div className="space-y-4">
-          <p>{feedText.benefitsTexts}</p>
-          {feedText.benefits.map((item, index) => (
-            <div key={index}>
-              <span>{item.title}</span>
-              <span>{item.description}</span>
-            </div>
-          ))}
-        </div>
-
-        <div className="space-y-4">
           <p className="font-semibold text-center">
-            Advantages of Sponsoring the Elderly Component
+            Importance of Sponsoring &#34;From Street to Classroom&#34;
           </p>
 
-          {feedText.advantage.map((item, index) => (
+          {classRoom.importance.map((item, index) => (
             <p key={index}>
               {index + 1 + '' + ')'} {item}
             </p>
           ))}
         </div>
 
-        <div className="space-y-4">
-          <p className="font-semibold text-center">
-            Advantages of Sponsoring &#34;Feed one Feed all&#34;
-          </p>
-          {feedText.importance.map((item, index) => (
-            <p key={index}>
-              {index + 1 + '' + ')'} {item}
-            </p>
-          ))}
-        </div>
-        <p className="font-semibold italic">{feedText.summary}</p>
+        <p className="font-semibold italic">{classRoom.summary}</p>
       </div>
     </div>
   );

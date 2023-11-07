@@ -1,5 +1,5 @@
 'use client';
-import { feedText, videos } from '@/exports';
+import { feedText } from '@/exports';
 import { Image, Title } from '@mantine/core';
 import { motion } from 'framer-motion';
 
@@ -25,6 +25,15 @@ const Body = () => {
         ))}
       </div>
       <div className="w-[90%] space-y-8 mx-auto sm:w-[60%]">
+        <div className=" h-[350px] overflow-hidden relative">
+          <Image
+            src={'/bb.jpg'}
+            alt="img"
+            fit="fill"
+            radius={'md'}
+            // className="object-fill"
+          />
+        </div>
         <Title order={2} ta="center">
           {feedText.title}
         </Title>

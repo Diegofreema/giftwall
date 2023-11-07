@@ -44,7 +44,10 @@ export function HeaderMenu() {
         </Link>
       </Menu.Item>
     ));
-    const servicesPath = link.link === '/services' || link.link === '/gallery';
+    const servicesPath =
+      link.link === '/services' ||
+      link.link === '/gallery' ||
+      link.link === '/bmwf-projects';
     if (menuItems) {
       return (
         <Menu

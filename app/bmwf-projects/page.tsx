@@ -1,10 +1,9 @@
-import { fetchProjectVideos, getProjects } from '@/lib/actions/user';
-import Body from './_components/Body';
+import React from 'react';
 
-const page = async () => {
-  const projectImages = await getProjects();
-  const projectVideos = await fetchProjectVideos();
-  return <Body project={projectImages} videos={projectVideos} />;
+type Props = {};
+
+const page = (props: Props) => {
+  return <div className="min-h-screen">page</div>;
 };
 
 export default page;
