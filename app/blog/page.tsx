@@ -52,7 +52,7 @@ const Posts: NextPage<Props> = ({}) => {
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {Array.isArray(data) ? (
+          {Array.isArray(data) && data.length > 0 ? (
             data?.map((post, i) => {
               const formattedDate = dateFormat(post?.createdAt, 'd-mmm-yyyy');
               return (
