@@ -27,13 +27,13 @@ const video = youtube.map((item, index) => (
 const Page = (props: Props) => {
   return (
     <div className="min-h-screen py-[120px] ">
-      <div className="w-[90%] mx-auto md:h-[300px] h-[150px] relative bg-[#ebe9eb] overflow-hidden">
+      <div className="w-[80%] mx-auto md:h-[400px] h-[150px] relative bg-[#ebe9eb] overflow-hidden">
         <Image
           src={'/j5.jpeg'}
           alt="img"
           fill
           priority
-          className="!object-fill"
+          className="!object-center w-full"
         />
       </div>
       <div className="!w-[90%] mx-auto  my-16 ">

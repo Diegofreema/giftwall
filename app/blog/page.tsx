@@ -34,11 +34,12 @@ const Posts: NextPage<Props> = ({}) => {
   }
   return (
     <div className="min-h-screen w-[90%]  mx-auto sm:w-[70%] py-[150px]">
-      <div className="bg-bg-img bg-cover bg-no-repeat py-16 flex items-center justify-center  rounded-md  mx-auto mb-8">
-        <h1 className="font-bold text-3xl">Read our blog</h1>
+      <div className="bg-bg-img bg-cover bg-no-repeat relative overflow-hidden py-16 flex items-center justify-center  rounded-md  mx-auto mb-8">
+        <div className="bg-black/50 absolute w-full h-full"></div>
+        <h1 className="font-bold text-3xl text-white z-10">Read our blog</h1>
       </div>
       <div className="mb-8">
-        <p className="font-semibold first-letter:capitalize">
+        <p className="font-semibold text-2xl first-letter:capitalize">
           Weekly Articles With Insight Into Our Foundation
         </p>
       </div>

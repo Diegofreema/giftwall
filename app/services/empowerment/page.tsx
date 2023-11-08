@@ -38,10 +38,10 @@ const Page = (props: Props) => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
         viewport={{ once: true }}
-        className="w-[90%] mx-auto md:h-[300px] h-[150px] relative bg-[#ebe9eb] overflow-hidden"
+        className="md:w-[80%] w-[90%] mx-auto md:h-[300px] h-[150px] relative bg-[#ebe9eb] overflow-hidden"
       >
         <Image
-          src={'/itt.jpeg'}
+          src={'/BMWF_2022_1.jpg'}
           alt="img"
           fill
           priority

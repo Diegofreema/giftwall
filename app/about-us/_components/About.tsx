@@ -35,7 +35,7 @@ const About = ({ goals, obj }: AboutProps) => {
         transition={{ duration: 0.3 }}
         className="mx-auto h-[300px] relative bg-[#ebe9eb] w-[95%] overflow-hidden"
       >
-        <Image src={'/j7.jpeg'} alt="img" fit="fill" />
+        <Image src={'/j7.jpeg'} alt="img" fit="cover" />
       </motion.div>
       <Container my={'md'}>
         {text.map((item, index) => (

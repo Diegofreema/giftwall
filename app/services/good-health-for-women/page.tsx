@@ -36,14 +36,14 @@ const Page = (props: Props) => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
         viewport={{ once: true }}
-        className="w-[90%] mx-auto md:h-[300px] h-[150px] relative bg-[#ebe9eb] overflow-hidden"
+        className="w-[80%] mx-auto md:h-[400px] h-[300px] md:w-[90%] relative bg-[#ebe9eb] overflow-hidden"
       >
         <Image
           src={'/w8.jpeg'}
           alt="img"
           fill
           priority
-          className="!object-fill"
+          className="!object-center"
         />
       </motion.div>
       <Container my={'md'} className="!my-16">

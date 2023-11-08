@@ -1,10 +1,11 @@
 'use client';
 import React from 'react';
-import { Container, Text, Title, Stack, Image } from '@mantine/core';
+import { Container, Text, Title, Stack } from '@mantine/core';
 
 import { motion } from 'framer-motion';
 import { TeamProps } from '@/lib/types';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 const text = ['Our team'];
 // const MotionImage = motion(Image);
 const MotionTitle = motion(Title);
@@ -22,7 +23,13 @@ const Team: React.FC<TeamProps> = ({ team }) => {
       className={cn('!text-base md:!text-lg', index === 0 && ' mt-10')}
     >
       <div className="relative w-[200px] h-[200px] rounded-full overflow-hidden ">
-        <Image src={item?.imgUrl} alt="img" className="object-cover" />
+        <Image
+          src={item?.imgUrl}
+          alt="img"
+          fill
+          priority
+          className="object-cover"
+        />
       </div>
       <Text fw={'bold'} className="text-purple-900">
         {item?.name.toUpperCase()}
@@ -34,13 +41,13 @@ const Team: React.FC<TeamProps> = ({ team }) => {
   ));
   return (
     <div className="min-h-screen py-[130px]">
-      <div className="w-[90%] mx-auto h-[350px] overflow-hidden relative">
+      <div className="w-[90%] md:w-[80%] mx-auto h-[300px]  rounded-md md:h-[400px] relative overflow-hidden ">
         <Image
           src={'/bmt.jpg'}
           alt="img"
-          fit="fill"
-          radius={'md'}
-          // className="object-fill"
+          fill
+          priority
+          className="!object-center "
         />
       </div>
       <div className="!w-[90%] mx-auto my-10">
