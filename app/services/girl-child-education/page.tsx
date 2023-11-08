@@ -1,13 +1,5 @@
 'use client';
-import { texts, youtube } from '@/exports';
-import {
-  Blockquote,
-  Container,
-  Text,
-  Title,
-  Image as Img,
-  Group,
-} from '@mantine/core';
+import { youtube } from '@/exports';
 import { motion } from 'framer-motion';
 
 import Image from 'next/image';
@@ -15,18 +7,9 @@ import Image from 'next/image';
 type Props = {};
 
 const text = ['Girl child education'];
-const MotionImage = motion(Image);
-const MotionTitle = motion(Title);
-const MotionBlockquote = motion(Blockquote);
-const MotionGroup = motion(Group);
-const words = texts?.map((item, index) => (
-  <Text key={index} fw={'bold'} className="!text-base md:!text-lg">
-    {item}
-  </Text>
-));
 
 const video = youtube.map((item, index) => (
-  <MotionGroup
+  <motion.div
     initial={{ opacity: 0, scale: 0.5 }}
     whileInView={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.3, delay: index * 0.3 }}
@@ -38,17 +21,14 @@ const video = youtube.map((item, index) => (
       className="h-[300px] w-[300px] rounded-md "
       allowFullScreen
     ></iframe>
-  </MotionGroup>
+  </motion.div>
 ));
 
 const Page = (props: Props) => {
   return (
     <div className="min-h-screen py-[120px] ">
       <div className="w-[90%] mx-auto md:h-[300px] h-[150px] relative bg-[#ebe9eb] overflow-hidden">
-        <MotionImage
-          initial={{ opacity: 0, y: -10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
+        <Image
           src={'/j5.jpeg'}
           alt="img"
           fill
@@ -56,42 +36,49 @@ const Page = (props: Props) => {
           className="!object-fill"
         />
       </div>
-      <Container my={'md'} className="!my-10">
+      <div className="!w-[90%] mx-auto  my-16 ">
         {text.map((item, index) => (
-          <MotionTitle
+          <motion.h1
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.3 }}
             key={index}
-            order={1}
             className="!text-3xl md:!text-7xl !mb-10 font-semibold !text-center   tracking-wider text-purple-900"
           >
             {item}
-          </MotionTitle>
+          </motion.h1>
         ))}
-      </Container>
-      <Container>
+      </div>
+      <div className="w-[90%] md:w-[80%] space-y-5 mx-auto">
         <div className="md:mt-[120px] !grid !grid-cols-1 mb-20 gap-10 sm:!grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
+            className="relative w-full h-[350px] rounded-md overflow-hidden"
           >
-            <Img src={'/girl-child.jpeg'} radius={10} />
+            <Image
+              src={'/girl-child.jpeg'}
+              fill
+              priority
+              className="rounded-md"
+              alt="img"
+            />
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, x: 10 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
+            className="w-full space-y-5"
           >
-            <Title order={4} ta={'center'} className="!text-purple-900">
+            <h2 className="!text-purple-900  text-center !text-lg sm:!text-3xl">
               OUR ORGANIZATION PROMISE
-            </Title>
-            <Title order={2} ta={'center'} mb={10} className="!text-purple-900">
+            </h2>
+            <h2 className="!text-purple-900  text-center !text-lg sm:!text-3xl">
               GIRL CHILD EDUCATION
-            </Title>
-            <Text>
+            </h2>
+            <p>
               Education is the key to success. We believe that girls have the
               same right to access quality education as the boys. This is not so
               in Africa, due to our culture and abject poverty affecting the
@@ -103,20 +90,16 @@ const Page = (props: Props) => {
               such as schools’ bags, water bottles, writing materials to girls
               in various communities in Nigeria that have been out of school due
               to financial difficulties.
-            </Text>
+            </p>
           </motion.div>
         </div>
-        <Title
-          mt={20}
-          className="!text-purple-900 !text-lg sm:!text-3xl"
-          ta={'center'}
-        >
+        <h2 className="!text-purple-900  text-center !text-lg sm:!text-3xl">
           Check out some of our videos{' '}
-        </Title>
+        </h2>
         <div className="grid !gap-4 place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-8">
           {video}
         </div>
-      </Container>
+      </div>
     </div>
   );
 };

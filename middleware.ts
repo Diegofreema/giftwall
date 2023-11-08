@@ -12,7 +12,10 @@ export default authMiddleware({
     '/blog/(.*)',
     '/event/(.*)',
     '/api/webhook',
-    '/services/(.*)',
+    '/services/girl-child-education',
+    '/services/empowerment',
+    '/services/good-health-for-women',
+    '/services/food-outreach',
     '/services',
     '/about-us',
     '/about-us/become-a-volunteer',
@@ -22,6 +25,9 @@ export default authMiddleware({
     '/faq',
     '/gallery/image',
     '/gallery/video',
+    'bmwf-projects/clean-healthy-girl',
+    'bmwf-projects/street-to-classroom',
+    'bmwf-projects/feed-one-feed-all',
   ],
 });
 

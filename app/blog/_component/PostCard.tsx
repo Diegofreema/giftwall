@@ -62,11 +62,12 @@ const PostCard: FC<Props> = ({
             {!post?.thumbnail && <h3 className="text-center">No image</h3>}
           </div>
           <CardDescription className="flex justify-between items-center p-4">
-            {tags.map((tag, index) => (
-              <span key={index} className="text-ellipsis">
-                #{tag}
-              </span>
-            ))}
+            {tags.length > 0 &&
+              tags.map((tag, index) => (
+                <span key={index} className="text-ellipsis">
+                  #{tag}
+                </span>
+              ))}
             <p>{formattedDate}</p>
           </CardDescription>
         </CardHeader>

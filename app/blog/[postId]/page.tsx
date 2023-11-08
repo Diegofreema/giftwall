@@ -1,13 +1,13 @@
 'use client';
 import { fetchSinglePost, getLikeStatus, updateLike } from '@/lib/actions/post';
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { useParams } from 'next/navigation';
 import dateFormat from 'dateformat';
 import parse from 'html-react-parser';
 import Image from 'next/image';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Comment from '@/components/Comment';
 import LikeComponent from '@/components/LikeComponent';
 import { useUser } from '@clerk/nextjs';
@@ -129,14 +129,15 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
           </div>
         )}
         <div className="flex items-center justify-between">
-          {post?.tags?.map((tag, i) => (
-            <span
-              key={i}
-              className="tag inline-block bg-purple-900 p-2 rounded-full text-white"
-            >
-              #{tag}
-            </span>
-          ))}
+          {post?.tags?.length > 0 &&
+            post?.tags?.map((tag, i) => (
+              <span
+                key={i}
+                className="tag inline-block bg-purple-900 p-2 rounded-full text-white"
+              >
+                #{tag}
+              </span>
+            ))}
           <span>{dateFormat(post?.createdAt, 'd-mmm-yyyy')}</span>
         </div>
         <div className="prose prose-lg max-w-full mx-auto space-y-5">

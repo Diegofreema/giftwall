@@ -1,10 +1,9 @@
 import { NextPage } from 'next';
-import Feed from '../_components/Feed';
 
 interface Props {}
 
 const page: NextPage<Props> = ({}): JSX.Element => {
-  return <Feed />;
+  return <div>page</div>;
 };
 
 export default page;

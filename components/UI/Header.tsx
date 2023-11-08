@@ -23,6 +23,7 @@ export function HeaderMenu() {
 
   const items = links.map((link) => {
     <Link
+      as={link.link}
       href={link.link}
       className={twMerge(
         'hover:!text-yellow-400 transition inline-block',
@@ -58,6 +59,7 @@ export function HeaderMenu() {
         >
           <Menu.Target>
             <Link
+              as={link.link}
               onClick={(event) => {
                 if (servicesPath) {
                   event.preventDefault();

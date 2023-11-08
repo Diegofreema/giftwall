@@ -30,19 +30,19 @@ export const links = [
   },
   {
     label: 'Projects',
-    link: 'bmwf-projects',
+    link: '/bmwf-projects',
     links: [
       {
         label: 'Feed One For All',
-        link: 'bmwf-projects/feed-one-feed-all',
+        link: '/bmwf-projects/feed-one-feed-all',
       },
       {
         label: 'Street To Classroom',
-        link: 'bmwf-projects/street-to-classroom',
+        link: '/bmwf-projects/street-to-classroom',
       },
       {
         label: 'Clean And Healthy Girl',
-        link: 'bmwf-projects/clean-healthy-girl',
+        link: '/bmwf-projects/clean-healthy-girl',
       },
     ],
   },
@@ -87,6 +87,7 @@ export const links = [
     label: 'FAQ',
     link: '/faq',
   },
+
   {
     label: 'Blog',
     link: '/blog',

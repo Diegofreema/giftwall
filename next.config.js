@@ -6,9 +6,6 @@ const nextConfig = {
       { protocol: 'https', hostname: 'img.clerk.com' },
     ],
   },
-  experimental: {
-    serverActions: true,
-  },
 };
 
 module.exports = nextConfig;
