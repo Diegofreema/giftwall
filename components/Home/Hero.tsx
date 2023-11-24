@@ -21,26 +21,26 @@ const Hero = ({ slider }: Prop) => {
         autoplay
         wrapAround
         renderCenterLeftControls={({ previousSlide }) => (
-          <Button
+          <p
             onClick={() => previousSlide()}
-            className="!bg-yellow-400 p-2 sm:ml-4 ml-2 rounded-full h-10 w-10 sm:flex items-center group hover:!bg-purple-900 hover:text-white transition justify-center hidden "
+            className="!bg-yellow-400 p-2 sm:ml-4 ml-2 md:h-10 md:w-10 !w-10 !h-10 !rounded-full  sm:flex items-center group hover:!bg-purple-900 !outline-none hover:text-white transition justify-center hidden  "
           >
             <IconArrowNarrowLeft
               size={25}
-              className="group-hover:text-white text-purple-900 transition"
+              className="group-hover:text-white text-base text-purple-900 transition"
             />
-          </Button>
+          </p>
         )}
         renderCenterRightControls={({ nextSlide }) => (
-          <Button
+          <p
             onClick={() => nextSlide()}
-            className=" p-2 sm:mr-4 mr-2 rounded-full h-10 w-10 sm:flex items-center group hover:!bg-purple-900 hover:text-white transition justify-center !bg-yellow-400 hidden "
+            className="  p-2 sm:mr-4 mr-2 !rounded-full md:h-10 md:w-10 !w-10 !h-10 sm:flex items-center group hover:!bg-purple-900 hover:text-white !outline-none transition justify-center !bg-yellow-400 hidden "
           >
             <IconArrowNarrowRight
               size={25}
-              className="group-hover:text-white text-purple-900 transition "
+              className="group-hover:text-white text-base text-purple-900 transition "
             />
-          </Button>
+          </p>
         )}
       >
         {slider.map((item) => (
@@ -70,7 +70,7 @@ const Hero = ({ slider }: Prop) => {
                     </motion.span>
                   ))}
                 </h1>
-                <h3 className=" text-purple-500 text-base md:text-3xl text-center font-bold">
+                <h3 className=" text-yellow-400 text-base md:text-3xl text-center font-bold">
                   {item?.description?.split(' ').map((item, index) => (
                     <motion.span
                       initial={{ opacity: 0, x: -10, y: 10 }}
