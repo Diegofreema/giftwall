@@ -121,11 +121,11 @@ export function HeaderMenu() {
               <UserButton afterSignOutUrl="/" />
             </SignedIn>
             <SignedOut>
-              <SignInButton mode="modal">
-                <div className="flex items-center cursor-pointer space-x-2 text-white">
-                  <span>Sign in</span> <IconLogin2 />
-                </div>
-              </SignInButton>
+              {/* <SignInButton mode="modal">
+              <div className="flex items-center cursor-pointer space-x-2 text-white">
+                <span>Sign in</span> <IconLogin2 />
+              </div>
+            </SignInButton> */}
             </SignedOut>
             <MobileHeader />
           </div>

@@ -25,9 +25,9 @@ export default authMiddleware({
     '/faq',
     '/gallery/image',
     '/gallery/video',
-    'bmwf-projects/clean-healthy-girl',
-    'bmwf-projects/street-to-classroom',
-    'bmwf-projects/feed-one-feed-all',
+    '/bmwf-projects/clean-healthy-girl',
+    '/bmwf-projects/street-to-classroom',
+    '/bmwf-projects/feed-one-feed-all',
   ],
 });
 

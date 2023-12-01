@@ -43,7 +43,7 @@ const Hero = ({ slider }: Prop) => {
           </p>
         )}
       >
-        {slider.map((item) => (
+        {slider?.map((item) => (
           <div key={item?.imgUrl} className="w-full !h-[100vh] relative">
             <>
               <div className="w-full h-full absolute inset-0 bg-black/40"></div>
