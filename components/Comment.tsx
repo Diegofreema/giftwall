@@ -85,6 +85,7 @@ const Comment = ({ belongsTo }: Props) => {
     const user: User = await getUser(userId as any);
 
     if (!userId) {
+router.push('/sign-in')
       toast({
         variant: 'destructive',
         title: 'Wait a minute',
