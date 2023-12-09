@@ -65,7 +65,7 @@ const PostCard: FC<Props> = ({
             {tags.length > 0 &&
               tags.map((tag, index) => (
                 <span key={index} className="text-ellipsis">
-                  {trimText(tag, 20}
+                  {trimText(tag, 20)}
                 </span>
               ))}
             <p>{formattedDate}</p>
