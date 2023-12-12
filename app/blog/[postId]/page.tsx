@@ -7,7 +7,7 @@ import { useParams, usePathname, useRouter } from 'next/navigation';
 import dateFormat from 'dateformat';
 import parse from 'html-react-parser';
 import Image from 'next/image';
-import { Checkbox } from '@/components/UI/checkbox';
+
 import { useCallback, useEffect, useState } from 'react';
 import {
   SignInButton,
@@ -38,7 +38,7 @@ interface Post {
 const SinglePost: NextPage<Props> = ({}): JSX.Element => {
   const { user } = useUser();
   const { toast } = useToast();
-  const [checked, setChecked] = useState(false);
+
   const router = useRouter();
   const [likes, setLikes] = useState({ likedByOwner: false, count: 0 });
   const [likeBusy, setLikeBusy] = useState(false);
