@@ -186,7 +186,7 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
       )}
       <div className="flex items-center gap-3">
         <SignedOut>
-          <SignInButton afterSignInUrl={pathname}>
+          <SignInButton afterSignInUrl={pathname} afterSignUpUrl={pathname}>
             <div className="flex items-center w-fit cursor-pointer  border-black rounded-sm border gap-1 text-black px-2 py-1">
               Sign in with <span className="font-bold"> Google</span>
             </div>
