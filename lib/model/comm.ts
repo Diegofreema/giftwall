@@ -3,7 +3,7 @@ import { Schema, ObjectId, model, models, Model } from 'mongoose';
 export interface IComment {
   _id: ObjectId;
   belongsTo: ObjectId;
-  owner: ObjectId;
+  owner?: ObjectId;
   content: string;
   likes?: ObjectId[];
   replies?: ObjectId[];
@@ -22,7 +22,6 @@ const comSchema = new Schema<IComment>(
     owner: {
       type: Schema.Types.ObjectId,
       ref: 'User',
-      required: true,
     },
     content: {
       type: String,
