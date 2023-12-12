@@ -13,10 +13,9 @@ import {
 } from '@/lib/actions/comments';
 import { CommentResponse } from '@/lib/validator';
 import CommentCard from './CommentCard';
-import { useAuth } from '@clerk/nextjs';
-import { User, getUser } from '@/lib/actions/member';
+import { useAuth, useUser } from '@clerk/nextjs';
+import { User, createUser, getUser } from '@/lib/actions/member';
 import { IUser } from '@/lib/model/user';
-
 import { useToast } from './UI/use-toast';
 import { useRouter } from 'next/navigation';
 import { comment } from 'postcss';
@@ -30,9 +29,11 @@ type Props = {
 
 const Comment = ({ belongsTo }: Props) => {
   const { userId } = useAuth();
+  const { user: currentUser } = useUser();
 
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [newUserId, setNewUserId] = useState('');
   const [comments, setComments] = useState<CommentResponse[]>([]);
   const [likeReply, setLikeReply] = useState(false);
   const [commentToDelete, setCommentToDelete] =
@@ -83,28 +84,33 @@ const Comment = ({ belongsTo }: Props) => {
   const handleSubmit = async (value: any) => {
     // @ts-ignore
     const user: User = await getUser(userId as any);
-
     if (!userId) {
-router.push('/sign-in')
       toast({
         variant: 'destructive',
-        title: 'Wait a minute',
-        description: 'Please sign in to comment',
+        title: 'Not logged in',
+        description: 'Please login first to comment',
       });
       return;
     }
+
     setIsLoading(true);
     try {
-      if (!user?.boarded) {
-        onOpen();
-        toast({
-          variant: 'destructive',
-          title: 'Wait a minute',
-          description: 'Please complete your profile to comment',
-        });
-        return;
-      }
-      const comment = await createComment(value, user?.id as any, belongsTo);
+      console.log('submitting comment....');
+      !user.boarded &&
+        (await createUser({
+          email: currentUser?.emailAddresses[0].emailAddress as any,
+          name: currentUser?.fullName as string,
+          userId: userId as any,
+          avatarUrl: currentUser?.imageUrl as string,
+        }));
+      // @ts-ignore
+      const createdUser: User = await getUser(userId as any);
+
+      const comment = await createComment(
+        value,
+        createdUser.id || user.id,
+        belongsTo
+      );
 
       setComments((prevComments) => [
         ...prevComments,
