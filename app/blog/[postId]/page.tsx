@@ -3,16 +3,25 @@ import { fetchSinglePost, getLikeStatus, updateLike } from '@/lib/actions/post';
 import { useQuery } from '@tanstack/react-query';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import dateFormat from 'dateformat';
 import parse from 'html-react-parser';
 import Image from 'next/image';
+import { Checkbox } from '@/components/UI/checkbox';
 import { useCallback, useEffect, useState } from 'react';
+import {
+  SignInButton,
+  SignOutButton,
+  SignedIn,
+  SignedOut,
+} from '@clerk/nextjs';
+
 import Comment from '@/components/Comment';
 import LikeComponent from '@/components/LikeComponent';
 import { useUser } from '@clerk/nextjs';
 import { useToast } from '@/components/UI/use-toast';
 import Link from 'next/link';
+import { IconBrandGoogle } from '@tabler/icons-react';
 interface Props {}
 interface Post {
   message: string;
@@ -29,9 +38,12 @@ interface Post {
 const SinglePost: NextPage<Props> = ({}): JSX.Element => {
   const { user } = useUser();
   const { toast } = useToast();
+  const [checked, setChecked] = useState(false);
+  const router = useRouter();
   const [likes, setLikes] = useState({ likedByOwner: false, count: 0 });
   const [likeBusy, setLikeBusy] = useState(false);
   const params = useParams();
+  const pathname = usePathname();
 
   const {
     data: post,
@@ -130,14 +142,16 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
         )}
         <div className="flex items-center justify-between">
           {post?.tags?.length > 0 &&
-            post?.tags?.map((tag, i) => (
-              <span
-                key={i}
-                className="tag inline-block bg-purple-900 p-2 rounded-full text-white"
-              >
-                #{tag}
-              </span>
-            ))}
+            post?.tags?.map((tag, i) =>
+              tag ? (
+                <span
+                  key={i}
+                  className="tag inline-block bg-purple-900 p-2 rounded-full text-white"
+                >
+                  {tag}
+                </span>
+              ) : null
+            )}
           <span>{dateFormat(post?.createdAt, 'd-mmm-yyyy')}</span>
         </div>
         <div className="prose prose-lg max-w-full mx-auto space-y-5">
@@ -170,6 +184,27 @@ const SinglePost: NextPage<Props> = ({}): JSX.Element => {
           </div>
         </div>
       )}
+      <div className="flex items-center gap-3">
+        <SignedOut>
+          <SignInButton afterSignInUrl={pathname}>
+            <div className="flex items-center w-fit cursor-pointer  border-black rounded-sm border gap-1 text-black px-2 py-1">
+              Sign in with <span className="font-bold"> Google</span>
+            </div>
+          </SignInButton>
+        </SignedOut>
+        <SignedIn>
+          <SignOutButton signOutCallback={() => router.push(pathname)}>
+            <div
+              className={
+                'w-fit border-black rounded-sm border cursor-pointer  text-black px-2 py-1'
+              }
+            >
+              Sign out
+            </div>
+          </SignOutButton>
+        </SignedIn>
+      </div>
+
       <Comment belongsTo={post?.id} />
     </div>
   );
