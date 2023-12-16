@@ -133,7 +133,10 @@ export const getGallery = async (pageNo: number) => {
   const skip = pageNo || 0 * limit;
   try {
     connectToDB();
-    const gallery = await Gallery.find().skip(skip).limit(limit);
+    const gallery = await Gallery.find()
+      .skip(skip)
+      .limit(limit)
+      .sort({ createdAt: 'descending' });
     const safeGallery: {
       imgUrl: string;
     }[] = gallery?.map((item) => {
@@ -151,7 +154,10 @@ export const getVideos = async (pageNo: number) => {
   const skip = pageNo || 0 * limit;
   try {
     connectToDB();
-    const videos = await Video.find().skip(skip).limit(limit);
+    const videos = await Video.find()
+      .skip(skip)
+      .limit(limit)
+      .sort({ createdAt: 'descending' });
     const safeVideos: {
       videoUrl: string;
     }[] = videos?.map((item) => {
