@@ -18,7 +18,7 @@ const Hero = ({ slider }: Prop) => {
     slider.length > 0 ? (
       <Carousel
         autoplayInterval={5000}
-        className="!h-[70vh] md:!h-[100vh] mt-[50px]"
+        className="!h-[70vh] md:!h-[100vh] mt-[100px] md:mt-[50px]"
         autoplay
         wrapAround
         renderCenterLeftControls={({ previousSlide }) => (
@@ -47,7 +47,7 @@ const Hero = ({ slider }: Prop) => {
         {slider?.map((item) => (
           <div
             key={item?.imgUrl}
-            className="w-full !h-[70vh] md:!h-[100vh] mt-50  relative"
+            className="w-full !h-[70vh] md:!h-[100vh]   relative"
           >
             <div className="w-full h-full absolute inset-0 bg-black/30 " />
 
@@ -59,7 +59,7 @@ const Hero = ({ slider }: Prop) => {
               className="-z-10"
             />
             <div className="absolute !top-[50%] !left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <h1 className="text-xl   md:text-5xl text-center w-full  mb-4 sm:mb-8 md:mb-16 sm:text-4xl font-bold">
+              <h1 className="text-2xl   md:text-5xl text-center w-full  mb-4 sm:mb-8 md:mb-16 sm:text-4xl font-bold">
                 {item?.heading?.split(' ').map((word, index) => (
                   <motion.span
                     initial={{ opacity: 0, x: 40, y: -30, skewX: 40 }}
@@ -73,7 +73,7 @@ const Hero = ({ slider }: Prop) => {
                   </motion.span>
                 ))}
               </h1>
-              <h3 className=" text-yellow-400 text-sm md:text-3xl text-center font-bold">
+              <h3 className=" text-yellow-400 text-base md:text-3xl text-center font-bold">
                 {item?.description?.split(' ').map((item, index) => (
                   <motion.span
                     initial={{ opacity: 0, x: -10, y: 10 }}
