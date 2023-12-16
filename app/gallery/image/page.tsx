@@ -1,6 +1,6 @@
 'use client';
 import { getGallery } from '@/lib/actions/user';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { NextPage } from 'next';
 import { useInView } from 'react-intersection-observer';
 import { useEffect, useState } from 'react';
@@ -11,6 +11,8 @@ import { IconLoader2 } from '@tabler/icons-react';
 interface Props {}
 
 const Images: NextPage<Props> = ({}) => {
+  const queryClient = useQueryClient();
+
   const {
     data,
     isError,
@@ -29,11 +31,14 @@ const Images: NextPage<Props> = ({}) => {
       return nextPage;
     },
   });
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: ['images'] });
+  }, [queryClient]);
   const { ref, inView } = useInView();
   useEffect(() => {
     if (inView && !isFetching) fetchNextPage();
   }, [inView, isFetching, fetchNextPage]);
-  console.log(data);
+
   if (isPending) {
     return (
       <div className="min-h-screen py-[110px] flex items-center justify-center w-[85%]  md:w-[50%] mx-auto ">
@@ -53,6 +58,8 @@ const Images: NextPage<Props> = ({}) => {
       </div>
     );
   }
+  console.log(data?.pages.map((page) => page?.map((item) => item?.createdAt)));
+
   return (
     <div className="min-h-screen py-[110px] px-4 w-[90%] mx-auto  md:space-x-3 my-16 ">
       <div className="grid md:grid-cols-4 grid-cols-1 gap-4 sm:grid-cols-2">
