@@ -129,14 +129,15 @@ export const getGoals = async () => {
   }
 };
 export const getGallery = async (pageNo: number) => {
-  const limit = 8;
-  const skip = pageNo || 0 * limit;
+  const limit = 10;
+  const skip = (pageNo - 1) * limit;
   try {
     connectToDB();
     const gallery = await Gallery.find()
+      .sort({ createdAt: 'descending' })
       .skip(skip)
-      .limit(limit)
-      .sort({ createdAt: 'descending' });
+      .limit(limit);
+
     const safeGallery: {
       imgUrl: string;
     }[] = gallery?.map((item) => {
@@ -155,9 +156,10 @@ export const getVideos = async (pageNo: number) => {
   try {
     connectToDB();
     const videos = await Video.find()
+      .sort({ createdAt: 'descending' })
       .skip(skip)
-      .limit(limit)
-      .sort({ createdAt: 'descending' });
+      .limit(limit);
+
     const safeVideos: {
       videoUrl: string;
     }[] = videos?.map((item) => {
