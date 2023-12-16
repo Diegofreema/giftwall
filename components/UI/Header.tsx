@@ -9,7 +9,7 @@ import {
   IconLogin2,
 } from '@tabler/icons-react';
 import Link from 'next/link';
-
+import Image from 'next/image';
 import { links } from '@/exports';
 import { MobileHeader } from '../Home/MobileHeader';
 import { usePathname } from 'next/navigation';
@@ -18,6 +18,7 @@ import { motion } from 'framer-motion';
 const MotionLink = motion(Link);
 export function HeaderMenu() {
   const pathname = usePathname();
+  console.log(pathname);
 
   const [opened, { toggle }] = useDisclosure(false);
 
@@ -104,7 +105,9 @@ export function HeaderMenu() {
           className="flex justify-between items-center"
         >
           <Link href={'/'}>
-            <Avatar size={80} src={'/bmw.png'} />
+            <div className="w-10 h-10 md:w-[100px] md:h-[100px] relative">
+              <Image alt="avatar" src={'/bmw.png'} fill priority />
+            </div>
           </Link>
 
           <Group gap={8} visibleFrom="md" className="text-white">
@@ -118,7 +121,7 @@ export function HeaderMenu() {
           </Group>
           <div className="flex !-space-x-3 items-center">
             <SignedIn>
-              <UserButton afterSignOutUrl="/" />
+              <UserButton afterSignOutUrl={pathname} />
             </SignedIn>
             <SignedOut>
               {/* <SignInButton mode="modal">
