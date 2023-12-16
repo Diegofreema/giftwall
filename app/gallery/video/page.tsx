@@ -66,11 +66,9 @@ const Video: NextPage<Props> = ({}) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
                 viewport={{ once: true }}
-                width="100%"
-                height="300px"
                 src={videoUrl}
                 controls
-                className="rounded-xl"
+                className="rounded-xl aspect-video"
               ></motion.video>
             </div>
           ))
