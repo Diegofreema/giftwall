@@ -46,14 +46,14 @@ const Hero = ({ slider }: Prop) => {
       >
         {slider?.map((item) => (
           <div key={item?.imgUrl} className="w-full !h-[100vh] relative">
-            <div className="w-full h-full absolute inset-0 bg-black/40"></div>
+            <div className="w-full h-full absolute inset-0 bg-black/30 " />
 
             <Image
               src={item?.imgUrl}
               alt="img"
               fill
               priority
-              className="w-full h-full object-fill"
+              className="-z-10"
             />
             <div className="absolute !top-[50%] !left-1/2 -translate-x-1/2 -translate-y-1/2">
               <h1 className="text-3xl   md:text-5xl text-center w-full  mb-4 sm:mb-8 md:mb-16 sm:text-4xl font-bold">
@@ -63,7 +63,7 @@ const Hero = ({ slider }: Prop) => {
                     whileInView={{ opacity: 1, x: 0, y: 0, skewX: 0 }}
                     transition={{ duration: 0.3, delay: 0.3 * index }}
                     viewport={{ once: true }}
-                    className="inline-block "
+                    className="inline-block !z-20"
                     key={index}
                   >
                     {word}&nbsp;
@@ -77,7 +77,7 @@ const Hero = ({ slider }: Prop) => {
                     whileInView={{ opacity: 1, x: 0, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.3 * index }}
                     viewport={{ once: true }}
-                    className="inline-block"
+                    className="inline-block !z-20 "
                     key={index}
                   >
                     {item}&nbsp;
