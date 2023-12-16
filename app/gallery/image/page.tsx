@@ -11,8 +11,6 @@ import { IconLoader2 } from '@tabler/icons-react';
 interface Props {}
 
 const Images: NextPage<Props> = ({}) => {
-  const queryClient = useQueryClient();
-
   const {
     data,
     isError,
@@ -31,9 +29,7 @@ const Images: NextPage<Props> = ({}) => {
       return nextPage;
     },
   });
-  useEffect(() => {
-    queryClient.invalidateQueries({ queryKey: ['images'] });
-  }, [queryClient]);
+
   const { ref, inView } = useInView();
   useEffect(() => {
     if (inView && !isFetching) fetchNextPage();
@@ -59,7 +55,6 @@ const Images: NextPage<Props> = ({}) => {
     );
   }
 
-
   return (
     <div className="min-h-screen py-[110px] px-4 w-[90%] mx-auto  md:space-x-3 my-16 ">
       <div className="grid md:grid-cols-4 grid-cols-1 gap-4 sm:grid-cols-2">
@@ -71,15 +66,16 @@ const Images: NextPage<Props> = ({}) => {
               transition={{ duration: 1 }}
               viewport={{ once: true }}
               key={index}
-              className="overflow-hidden rounded-md"
+              className="overflow-hidden rounded-md h-[300px]"
             >
               <Image
                 src={img.imgUrl}
                 alt={'img'}
                 w={'100%'}
-                h={'200px'}
+                h={'100%'}
                 fit={'cover'}
                 radius={10}
+                className="min-h-[200px] object-cover"
               />
             </motion.div>
           ))
