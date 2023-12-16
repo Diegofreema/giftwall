@@ -58,7 +58,7 @@ const Images: NextPage<Props> = ({}) => {
       </div>
     );
   }
-  console.log(data?.pages.map((page) => page?.map((item) => item?.createdAt)));
+
 
   return (
     <div className="min-h-screen py-[110px] px-4 w-[90%] mx-auto  md:space-x-3 my-16 ">
