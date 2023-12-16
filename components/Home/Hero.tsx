@@ -18,7 +18,7 @@ const Hero = ({ slider }: Prop) => {
     slider.length > 0 ? (
       <Carousel
         autoplayInterval={5000}
-        className="!h-[70vh] md:!h-[100vh] mt-[50px]"
+        className="!h-[70vh] md:!h-[100vh] pt-[20px]"
         autoplay
         wrapAround
         renderCenterLeftControls={({ previousSlide }) => (
@@ -57,6 +57,7 @@ const Hero = ({ slider }: Prop) => {
               fill
               priority
               className="-z-10"
+              sizes="(min-width: 808px) 50vw, 100vw"
             />
             <div className="absolute !top-[50%] !left-1/2 -translate-x-1/2 -translate-y-1/2">
               <h1 className="text-2xl   md:text-5xl text-center w-full  mb-4 sm:mb-8 md:mb-16 sm:text-4xl font-bold">
