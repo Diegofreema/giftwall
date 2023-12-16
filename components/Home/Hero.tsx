@@ -18,7 +18,7 @@ const Hero = ({ slider }: Prop) => {
     slider.length > 0 ? (
       <Carousel
         autoplayInterval={5000}
-        className="!h-[70vh] md:!h-[100vh] mt-[100px] md:mt-[50px]"
+        className="!h-[70vh] md:!h-[100vh] mt-[50px]"
         autoplay
         wrapAround
         renderCenterLeftControls={({ previousSlide }) => (
