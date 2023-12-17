@@ -47,7 +47,7 @@ const Hero = ({ slider }: Prop) => {
         {slider?.map((item) => (
           <div
             key={item?.imgUrl}
-            className="w-full h-[100vh]   relative"
+            className="w-full md:!h-[100vh] !h-[70vh]   relative"
           >
             <div className="w-full h-full absolute inset-0 bg-black/30 " />
 
@@ -56,7 +56,7 @@ const Hero = ({ slider }: Prop) => {
               alt="img"
               fill
               priority
-              className="-z-10 object-fill"
+              className="-z-10"
               quality={100}
               sizes="(min-width: 808px) 50vw, 100vw"
             />
