@@ -18,7 +18,7 @@ const Hero = ({ slider }: Prop) => {
     slider.length > 0 ? (
       <Carousel
         autoplayInterval={5000}
-        className="!h-[70vh] md:!h-[100vh] pt-[20px]"
+        className="h-[100vh] pt-[20px]"
         autoplay
         wrapAround
         renderCenterLeftControls={({ previousSlide }) => (
@@ -47,7 +47,7 @@ const Hero = ({ slider }: Prop) => {
         {slider?.map((item) => (
           <div
             key={item?.imgUrl}
-            className="w-full !h-[70vh] md:!h-[100vh]   relative"
+            className="w-full h-[100vh]   relative"
           >
             <div className="w-full h-full absolute inset-0 bg-black/30 " />
 
