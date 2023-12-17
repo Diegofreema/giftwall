@@ -56,7 +56,8 @@ const Hero = ({ slider }: Prop) => {
               alt="img"
               fill
               priority
-              className="-z-10"
+              className="-z-10 object-cover"
+              quality={100}
               sizes="(min-width: 808px) 50vw, 100vw"
             />
             <div className="absolute !top-[50%] !left-1/2 -translate-x-1/2 -translate-y-1/2">
