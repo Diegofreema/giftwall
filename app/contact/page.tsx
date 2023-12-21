@@ -11,10 +11,10 @@ interface Props {}
 const text = ['Contact us'];
 const MotionTitle = motion(Title);
 const Contact: NextPage<Props> = ({}): JSX.Element => {
-  const [state, handleSubmit] = useForm(process.env.NEXT_PUBLIC_FORM!);
-  if (state.succeeded) {
-    return <p>Thanks for your submission!</p>;
-  }
+  // const [state, handleSubmit] = useForm(process.env.NEXT_PUBLIC_FORM!);
+  // if (state.succeeded) {
+  //   return <p>Thanks for your submission!</p>;
+  // }
   return (
     <div className="min-h-screen py-[120px]">
       <Container my={'md'} className="!mb-10">
@@ -33,61 +33,68 @@ const Contact: NextPage<Props> = ({}): JSX.Element => {
         ))}
       </Container>
       <Container>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form
+          action={process.env.NEXT_PUBLIC_FORM}
+          method="POST"
+          className="space-y-6"
+        >
           <div className="space-y-4">
             <label htmlFor="email">Full name</label>
-            <Input id="name" type="name" name="name" placeholder="Full name" />
-            <ValidationError prefix="Name" field="name" errors={state.errors} />
+            <Input
+              required
+              id="name"
+              type="name"
+              name="name"
+              placeholder="Full name"
+            />
+      
           </div>
           <div className="space-y-4">
             <label htmlFor="email">Email Address</label>
-            <Input id="email" type="email" name="email" placeholder="Email" />
-            <ValidationError
-              prefix="Email"
-              field="email"
-              errors={state.errors}
+            <Input
+              required
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Email"
             />
+        
           </div>
           <div className="space-y-4">
             <label htmlFor="email">Subject</label>
             <Input
+              required
               id="subject"
               type="subject"
               name="subject"
               placeholder="Subject"
             />
-            <ValidationError
-              prefix="Subject"
-              field="subject"
-              errors={state.errors}
-            />
+        
           </div>
           <div className="space-y-4">
             <label htmlFor="email">Message</label>
 
             <Textarea
+              required
               id="message"
               name="message"
               placeholder="Message"
               rows={5}
               className="resize-none"
             />
-            <ValidationError
-              prefix="Message"
-              field="message"
-              errors={state.errors}
-            />
+         
           </div>
 
           <Button
             color={'purple'}
+            variant={'link'}
             type="submit"
-            disabled={state.submitting}
+            // disabled={state.submitting}
             className="bg-purple-900 text-white"
           >
             Submit
           </Button>
-          <ValidationError errors={state.errors} />
+         
         </form>
       </Container>
     </div>
