@@ -120,7 +120,7 @@ export function HeaderMenu() {
             </Button>
           </Group>
           <div className="flex !-space-x-3 items-center">
-            <SignedIn>
+{/*             <SignedIn>
               <UserButton afterSignOutUrl={pathname} />
             </SignedIn>
             <SignedOut>
@@ -129,7 +129,7 @@ export function HeaderMenu() {
                 <span>Sign in</span> <IconLogin2 />
               </div>
             </SignInButton> */}
-            </SignedOut>
+            </SignedOut> */}
             <MobileHeader />
           </div>
         </motion.div>
