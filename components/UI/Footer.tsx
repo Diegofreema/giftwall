@@ -13,7 +13,7 @@ const Footer = () => {
   const router = useRouter();
 
   const navigate = () => {
-    router.push('/donate');
+    router.push('https://flutterwave.com/donate/hooymfuxdq9k');
   };
   const date = new Date();
   const year = date.getFullYear();
