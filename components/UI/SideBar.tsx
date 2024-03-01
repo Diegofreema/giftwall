@@ -1,7 +1,9 @@
 'use client';
 
-import { ScrollArea } from '@mantine/core';
+import { Button, ScrollArea } from '@mantine/core';
 import { LinksGroup } from './LinkGroup';
+import { IconHeartHandshake } from '@tabler/icons-react';
+import { usePathname, useRouter } from 'next/navigation';
 
 const link = [
   {
@@ -96,14 +98,32 @@ const link = [
 ];
 
 export function SideMenu({ close }: { close: () => void }) {
+  const pathname = usePathname();
+  const router = useRouter();
   const links = link.map((item) => (
     <LinksGroup close={close} {...item} key={item.label} />
   ));
-
+  const navigate = () => {
+    router.push('/donate');
+    close();
+  };
+  const notDonatePage = pathname !== '/donate';
   return (
     <nav>
       <ScrollArea>
-        <div className="flex flex-col  pt-[30px] ">{links}</div>
+        <div className="flex flex-col  pt-[30px]  ">{links}</div>
+        <div className="mt-[50px]">
+          {notDonatePage && (
+            <Button
+              fullWidth
+              onClick={navigate}
+              className="!rounded-3xl !bg-yellow-400"
+              rightSection={<IconHeartHandshake size={20} />}
+            >
+              Support Us
+            </Button>
+          )}
+        </div>
       </ScrollArea>
     </nav>
   );
