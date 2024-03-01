@@ -1,136 +1,122 @@
 'use client';
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
-import { twMerge } from 'tailwind-merge';
-import { Menu, Group, Center, Button, Container, Avatar } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import {
-  IconChevronDown,
-  IconHeartHandshake,
-  IconLogin2,
-} from '@tabler/icons-react';
+
 import Link from 'next/link';
-import Image from 'next/image';
+import SocialButtons from './SocialButtons';
+import { Card, Image, Title } from '@mantine/core';
+import { IconArrowMoveRight, IconHeart } from '@tabler/icons-react';
+
 import { links } from '@/exports';
-import { MobileHeader } from '../Home/MobileHeader';
-import { usePathname, useRouter } from 'next/navigation';
-
+import MyButton from '@/Ui/Button';
 import { motion } from 'framer-motion';
-const MotionLink = motion(Link);
-export function HeaderMenu() {
-  const pathname = usePathname();
+import { usePathname, useRouter } from 'next/navigation';
+const Footer = () => {
   const router = useRouter();
-
+  const pathname = usePathname();
+  const notDonatePage = pathname !== '/donate';
   const navigate = () => {
     router.push('/donate');
   };
-  console.log(pathname);
-  const notDonatePage = pathname !== '/donate';
-  const [opened, { toggle }] = useDisclosure(false);
-
-  const items = links.map((link) => {
-    <Link
-      as={link.link}
-      href={link.link}
-      className={twMerge(
-        'hover:!text-yellow-400 transition inline-block',
-        pathname === link.link || pathname.includes(link.link)
-          ? 'text-yellow-400'
-          : 'text-white'
-      )}
-    >
-      {link.label}
-    </Link>;
-
-    const menuItems = link.links?.map((item) => (
-      <Menu.Item key={item.label}>
-        <Link
-          className="hover:bg-purple-900 hover:text-white p-1 block transition"
-          href={item.link}
-        >
-          {item.label}
-        </Link>
-      </Menu.Item>
-    ));
-    const servicesPath =
-      link.link === '/services' ||
-      link.link === '/gallery' ||
-      link.link === '/bmwf-projects';
-    if (menuItems) {
-      return (
-        <Menu
-          key={link.label}
-          trigger="hover"
-          transitionProps={{ exitDuration: 0 }}
-          withinPortal
-        >
-          <Menu.Target>
-            <Link
-              as={link.link}
-              onClick={(event) => {
-                if (servicesPath) {
-                  event.preventDefault();
-                }
-              }}
-              href={link.link}
-              className={twMerge(
-                pathname.includes(link.link) ? 'text-yellow-400' : 'text-white',
-                ' transition inline-block'
-              )}
-            >
-              <Center>
-                <span>{link.label}</span>
-                <IconChevronDown size="0.9rem" stroke={1.5} />
-              </Center>
-            </Link>
-          </Menu.Target>
-          <Menu.Dropdown>{menuItems}</Menu.Dropdown>
-        </Menu>
-      );
-    }
-
-    return (
-      <Link
-        key={link.label}
-        href={link.link}
-        className={twMerge(
-          pathname.includes(link.link) ? 'text-yellow-400' : 'text-white'
-        )}
-      >
-        {link.label}
-      </Link>
-    );
-  });
-
+  const date = new Date();
+  const year = date.getFullYear();
   return (
-    <header className="bg-purple-900   py-2 z-20 fixed inset-x-0 top-0">
-      <Container size="lg">
+    <div className="bg-purple-900 pt-16 sm:px-6 md:px-8 px-4">
+      <div className="top ">
         <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
-          className="flex justify-between items-center"
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 md:grid-cols-3 place-items-center gap-4 gap-y-8"
         >
-          <Link href={'/'}>
-            <div className="w-10 h-10 md:w-[100px] md:h-[100px] relative">
-              <Image alt="avatar" src={'/bmw.png'} fill priority />
-            </div>
-          </Link>
-
-          <Group gap={8} visibleFrom="md" className="text-white">
-            {items}
-            {notDonatePage && (
-              <Button
-                onClick={navigate}
-                className="!rounded-3xl !bg-yellow-400"
-                rightSection={<IconHeartHandshake size={20} />}
-              >
-                Support Us
-              </Button>
-            )}
-          </Group>
-
-          <MobileHeader />
+          <div className="flex flex-col items-center justify-center space-y-3">
+            <Title className="text-white text-center  font-bold">
+              Social networks{' '}
+            </Title>
+            <p className="text-white text-center">of</p>
+            <p className="text-white text-center ">
+              BEHIND MARYGIFT WALLS FOUNDATION
+            </p>
+            <SocialButtons />
+          </div>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className=" grid gap-8 "
+          >
+            <Card className=" border-none space-y-3" bg={'transparent'}>
+              <Card.Section className="!text-center">
+                <Title className="text-white">Our Aim</Title>
+              </Card.Section>
+              <Card.Section className="!text-center">
+                <p className="text-white">
+                  The Foundation aims to promote growth and wellbeing of the
+                  girl child, single mothers and widows
+                </p>
+              </Card.Section>
+              {notDonatePage && (
+                <Card.Section className="!text-center">
+                  <MyButton
+                    onClick={navigate}
+                    rightSection={
+                      <IconHeart size={15} className="ml-2 fill-white  " />
+                    }
+                  >
+                    Support Us
+                  </MyButton>
+                </Card.Section>
+              )}
+            </Card>
+          </motion.div>
+          <motion.div className="grid gap-8">
+            <Card className="!bg-transparent border-none space-y-3">
+              <Card.Section className="!text-center">
+                <Title className="text-white">Address</Title>
+              </Card.Section>
+              <Card.Section className="!text-center">
+                <p className="text-white">Find us at,</p>
+                <p className="text-white">No 71A, Issele Azagba road,</p>
+                <p className="text-white">Ogwashi-Uku, Delta State.</p>
+              </Card.Section>
+              <Card.Section className="!text-center">
+                <Link href={'/contact'} className="rounded-lg inline-block">
+                  <MyButton
+                    rightSection={
+                      <IconArrowMoveRight
+                        size={15}
+                        className="ml-2 fill-white   text-white "
+                      />
+                    }
+                  >
+                    Contact
+                  </MyButton>
+                </Link>
+              </Card.Section>
+            </Card>
+          </motion.div>
         </motion.div>
-      </Container>
-    </header>
+      </div>
+
+      <div className="bottom flex flex-col md:flex-row items-center justify-between mt-8 pb-4 text-white sm:mt-16">
+        <motion.p
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          © {year} All rights reserved.
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          BEHIND MARYGIFT WALLS FOUNDATION
+        </motion.p>
+      </div>
+    </div>
   );
-}
+};
+
+export default Footer;
