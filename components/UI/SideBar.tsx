@@ -104,7 +104,7 @@ export function SideMenu({ close }: { close: () => void }) {
     <LinksGroup close={close} {...item} key={item.label} />
   ));
   const navigate = () => {
-    router.push('/donate');
+    router.push('https://flutterwave.com/donate/hooymfuxdq9k');
     close();
   };
   const notDonatePage = pathname !== '/donate';
