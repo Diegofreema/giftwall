@@ -24,7 +24,7 @@ export function HeaderMenu() {
     router.push('/donate');
   };
   console.log(pathname);
-
+  const notDonatePage = pathname !== '/donate';
   const [opened, { toggle }] = useDisclosure(false);
 
   const items = links.map((link) => {
@@ -117,13 +117,15 @@ export function HeaderMenu() {
 
           <Group gap={8} visibleFrom="md" className="text-white">
             {items}
-            <Button
-              onClick={navigate}
-              className="!rounded-3xl !bg-yellow-400"
-              rightSection={<IconHeartHandshake size={20} />}
-            >
-              Support Us
-            </Button>
+            {notDonatePage && (
+              <Button
+                onClick={navigate}
+                className="!rounded-3xl !bg-yellow-400"
+                rightSection={<IconHeartHandshake size={20} />}
+              >
+                Support Us
+              </Button>
+            )}
           </Group>
 
           <MobileHeader />
