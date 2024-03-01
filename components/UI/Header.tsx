@@ -12,12 +12,17 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { links } from '@/exports';
 import { MobileHeader } from '../Home/MobileHeader';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 import { motion } from 'framer-motion';
 const MotionLink = motion(Link);
 export function HeaderMenu() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const navigate = () => {
+    router.push('/donate');
+  };
   console.log(pathname);
 
   const [opened, { toggle }] = useDisclosure(false);
@@ -113,6 +118,7 @@ export function HeaderMenu() {
           <Group gap={8} visibleFrom="md" className="text-white">
             {items}
             <Button
+              onClick={navigate}
               className="!rounded-3xl !bg-yellow-400"
               rightSection={<IconHeartHandshake size={20} />}
             >
