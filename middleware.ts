@@ -28,6 +28,7 @@ export default authMiddleware({
     '/bmwf-projects/clean-healthy-girl',
     '/bmwf-projects/street-to-classroom',
     '/bmwf-projects/feed-one-feed-all',
+    '/donate'
   ],
 });
 
