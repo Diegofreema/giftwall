@@ -4,10 +4,17 @@ import Link from 'next/link';
 import SocialButtons from './SocialButtons';
 import { Card, Image, Title } from '@mantine/core';
 import { IconArrowMoveRight, IconHeart } from '@tabler/icons-react';
+
 import { links } from '@/exports';
 import MyButton from '@/Ui/Button';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 const Footer = () => {
+  const router = useRouter();
+
+  const navigate = () => {
+    router.push('/donate');
+  };
   const date = new Date();
   const year = date.getFullYear();
   return (
@@ -47,6 +54,7 @@ const Footer = () => {
               </Card.Section>
               <Card.Section className="!text-center">
                 <MyButton
+                  onClick={navigate}
                   rightSection={
                     <IconHeart size={15} className="ml-2 fill-white  " />
                   }
@@ -67,16 +75,18 @@ const Footer = () => {
                 <p className="text-white">Ogwashi-Uku, Delta State.</p>
               </Card.Section>
               <Card.Section className="!text-center">
-                <MyButton
-                  rightSection={
-                    <IconArrowMoveRight
-                      size={15}
-                      className="ml-2 fill-white   text-white "
-                    />
-                  }
-                >
-                  <Link href={'/contact'}>Contact</Link>
-                </MyButton>
+                <Link href={'/contact'} className="rounded-lg inline-block">
+                  <MyButton
+                    rightSection={
+                      <IconArrowMoveRight
+                        size={15}
+                        className="ml-2 fill-white   text-white "
+                      />
+                    }
+                  >
+                    Contact
+                  </MyButton>
+                </Link>
               </Card.Section>
             </Card>
           </motion.div>
