@@ -6,14 +6,13 @@ import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
 import './globals.css';
 
-import { HeaderMenu } from '@/components/UI/Header';
-
 import Footer from '@/components/UI/Footer';
 import Provider from '@/components/Provider';
 import { Toaster } from '@/components/UI/toaster';
 import { CrispProvider } from '@/components/Crisp/CrispProvider';
 import { cn } from '@/lib/utils';
 import { AuthDialog } from '@/components/Auth';
+import { HeaderMenu } from '@/components/UI/Header';
 
 const inter = Inter({ subsets: ['latin'] });
 
