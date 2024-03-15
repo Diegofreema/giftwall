@@ -54,7 +54,7 @@ const Footer = () => {
               </Card.Section>
               <Card.Section className="!text-center">
                 <MyButton
-{/*                   onClick={navigate} */}
+
                   rightSection={
                     <IconHeart size={15} className="ml-2 fill-white  " />
                   }
