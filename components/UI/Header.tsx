@@ -114,7 +114,6 @@ export default function Header() {
             {items}
             {notDonatePage && (
               <Button
-{/*                 onClick={navigate} */}
                 className="!rounded-3xl !bg-yellow-400"
                 rightSection={<IconHeartHandshake size={20} />}
               >
